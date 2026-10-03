@@ -28,7 +28,7 @@ jobs:
       staticWebAppName: ${{ steps.out.outputs.staticWebAppName }}
       staticWebAppDefaultHostname: ${{ steps.out.outputs.staticWebAppDefaultHostname }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       # OIDC: the three values are identifiers (no password); kept as repository secrets.
       - uses: azure/login@v3
@@ -75,7 +75,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: prod
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - uses: actions/setup-python@v5
         with:
@@ -101,7 +101,7 @@ jobs:
     runs-on: ubuntu-latest
     environment: prod
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - uses: peaceiris/actions-hugo@v3
         with:
