@@ -72,6 +72,13 @@ resource functionApp 'Microsoft.Web/sites@2024-04-01' = {
       http20Enabled: true
       minTlsVersion: '1.2'
       ftpsState: 'Disabled'
+      // The Functions platform answers CORS preflight (OPTIONS) requests itself and only adds
+      // Access-Control-* headers for origins listed here; the in-code CORS handling alone is not
+      // enough in Azure (it is sufficient under `func start`).
+      cors: {
+        allowedOrigins: split(allowedOrigins, ',')
+        supportCredentials: false
+      }
       appSettings: [
         { name: 'AzureWebJobsStorage__accountName', value: storageAccountName }
         { name: 'AzureWebJobsStorage__blobServiceUri', value: blobBase }
