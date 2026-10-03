@@ -1,0 +1,155 @@
+{{ define "main" }}
+<section class="hero">
+  <h1>{{ i18n "home_h1" }}</h1>
+  <p class="lead">{{ i18n "home_lead" }}</p>
+</section>
+
+<section id="tool" class="card" aria-labelledby="url-label">
+  <form id="inspect-form" novalidate>
+    <label for="url" id="url-label" class="field-label">{{ i18n "url_label" }}</label>
+    <div class="input-row">
+      <input type="url" id="url" name="url" inputmode="url" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="https://school.smartschool.be/planner/sync/ics/..." aria-describedby="url-help url-error">
+      <button type="submit" id="btn-inspect" class="btn btn-primary">{{ i18n "btn_inspect" }}</button>
+    </div>
+    <p id="url-help" class="help">{{ i18n "url_help" }} {{ with site.GetPage "/hoe-werkt-het" }}<a href="{{ .RelPermalink }}#link-vinden">{{ i18n "url_help_link" }}</a>{{ end }}</p>
+    <p id="url-error" class="error" role="alert" hidden></p>
+  </form>
+  <aside class="trust">
+    <strong>{{ i18n "trust_title" }}</strong>
+    <p>{{ i18n "trust_text" }} {{ with site.GetPage "/privacy" }}<a href="{{ .RelPermalink }}">{{ i18n "trust_more" }}</a>{{ end }}</p>
+  </aside>
+  <p id="status" class="status" role="status" aria-live="polite"></p>
+
+  <div id="editor" hidden>
+    <p id="banner-existing" class="banner" hidden></p>
+    <p id="calendar-summary" class="calendar-summary"></p>
+
+    <fieldset class="group">
+      <legend>{{ i18n "tags_legend" }}</legend>
+      <p class="help">{{ i18n "tags_help" }}</p>
+      <ol id="tag-list" class="tag-list" data-up="{{ i18n "tag_up" }}" data-down="{{ i18n "tag_down" }}" data-del="{{ i18n "tag_delete" }}" data-name-label="{{ i18n "tag_name" }}" data-selected="{{ i18n "tag_selected" }}" data-move="{{ i18n "tag_move" }}"></ol>
+      <button type="button" id="btn-add-tag" class="btn">{{ i18n "tag_add" }}</button>
+    </fieldset>
+
+    <fieldset class="group">
+      <legend>{{ i18n "rollover_legend" }}</legend>
+      <div class="inline-fields">
+        <label>{{ i18n "rollover_day" }}
+          <select id="roll-day"></select>
+        </label>
+        <label>{{ i18n "rollover_month" }}
+          <select id="roll-month"></select>
+        </label>
+      </div>
+      <p class="help">{{ i18n "rollover_help" }}</p>
+      <p id="next-rollover" class="help"></p>
+    </fieldset>
+
+    <div class="group">
+      <label class="check">
+        <input type="checkbox" id="include-untagged">
+        <span>{{ i18n "untagged_label" }}</span>
+      </label>
+      <p class="help">{{ i18n "untagged_help" }}</p>
+    </div>
+
+    <details class="group advanced">
+      <summary>{{ i18n "adv_summary" }}</summary>
+      <label class="check">
+        <input type="checkbox" id="use-organisator">
+        <span>{{ i18n "adv_organisator" }}</span>
+      </label>
+      <div class="chip-field">
+        <label for="include-kw-input" class="field-label">{{ i18n "adv_include" }}</label>
+        <div class="chips" id="include-kw-chips">
+          <input type="text" id="include-kw-input" autocomplete="off" aria-describedby="kw-help">
+        </div>
+      </div>
+      <div class="chip-field">
+        <label for="exclude-kw-input" class="field-label">{{ i18n "adv_exclude" }}</label>
+        <div class="chips" id="exclude-kw-chips">
+          <input type="text" id="exclude-kw-input" autocomplete="off" aria-describedby="kw-help">
+        </div>
+      </div>
+      <p id="kw-help" class="help">{{ i18n "adv_keywords_help" }}</p>
+      <label class="check">
+        <input type="checkbox" id="strip-participants">
+        <span>{{ i18n "adv_strip" }}</span>
+      </label>
+    </details>
+
+    <p id="settings-error" class="error" role="alert" hidden></p>
+
+    <section class="group preview" aria-labelledby="preview-title">
+      <h2 id="preview-title">{{ i18n "preview_title" }}</h2>
+      <div class="preview-bar">
+        <p id="preview-count" class="preview-count" role="status" aria-live="polite"></p>
+        <label class="check small">
+          <input type="checkbox" id="only-dropped">
+          <span>{{ i18n "preview_only_dropped" }}</span>
+        </label>
+      </div>
+      <div class="table-wrap">
+        <table class="preview-table">
+          <thead>
+            <tr>
+              <th scope="col">{{ i18n "col_date" }}</th>
+              <th scope="col">{{ i18n "col_summary" }}</th>
+              <th scope="col">{{ i18n "col_tags" }}</th>
+              <th scope="col">{{ i18n "col_status" }}</th>
+            </tr>
+          </thead>
+          <tbody id="preview-body"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <div class="actions">
+      <button type="button" id="btn-generate" class="btn btn-primary btn-lg">{{ i18n "btn_generate" }}</button>
+      <button type="button" id="btn-delete" class="btn btn-danger" hidden>{{ i18n "btn_delete" }}</button>
+    </div>
+
+    <section id="result" class="group result" aria-labelledby="result-title" hidden>
+      <h2 id="result-title">{{ i18n "result_title" }}</h2>
+      <p id="result-message" class="banner" role="status"></p>
+      <div class="url-row">
+        <label for="feed-url" class="field-label">{{ i18n "result_feed" }}</label>
+        <div class="input-row">
+          <input type="text" id="feed-url" readonly>
+          <button type="button" class="btn" data-copy="feed-url">{{ i18n "btn_copy" }}</button>
+        </div>
+      </div>
+      <div class="url-row">
+        <label for="webcal-url" class="field-label">{{ i18n "result_webcal" }}</label>
+        <div class="input-row">
+          <input type="text" id="webcal-url" readonly>
+          <button type="button" class="btn" data-copy="webcal-url">{{ i18n "btn_copy" }}</button>
+        </div>
+      </div>
+      <p class="help">{{ i18n "result_note" }}</p>
+      <div class="actions">
+        <button type="button" id="btn-test" class="btn">{{ i18n "btn_test" }}</button>
+      </div>
+      <p id="test-result" class="status" role="status" aria-live="polite"></p>
+
+      <h3>{{ i18n "result_howto" }}</h3>
+      <div class="accordion">
+        <details><summary>{{ i18n "help_google_title" }}</summary><p>{{ i18n "help_google_body" }}</p></details>
+        <details><summary>{{ i18n "help_ios_title" }}</summary><p>{{ i18n "help_ios_body" }}</p></details>
+        <details><summary>{{ i18n "help_android_title" }}</summary><p>{{ i18n "help_android_body" }}</p></details>
+        <details><summary>{{ i18n "help_outlook_title" }}</summary><p>{{ i18n "help_outlook_body" }}</p></details>
+      </div>
+    </section>
+  </div>
+</section>
+
+<section class="prose home-steps">
+  {{ .Content }}
+</section>
+{{ end }}
+
+{{ define "scripts" }}
+<script type="application/json" id="i18n">{{ partial "i18n-json.html" . | safeJS }}</script>
+{{- $js := resources.Get "js/app.js" | minify | fingerprint }}
+<script src="{{ $js.RelPermalink }}" integrity="{{ $js.Data.Integrity }}" defer></script>
+{{ end }}

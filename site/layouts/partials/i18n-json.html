@@ -1,0 +1,7 @@
+{{- /* Exports js_* strings to app.js. Keep this list in sync with i18n/*.toml. */ -}}
+{{- $keys := slice "loading" "err_https" "err_smartschool" "err_empty_url" "err_tags_count" "err_tag_empty" "err_tag_long" "err_tag_dup" "err_kw_count" "err_kw_long" "err_invalid_url" "err_invalid_settings" "err_rate_limited" "err_upstream" "err_internal" "err_network" "calendar_summary" "calendar_unnamed" "hits_title" "hits_unknown" "new_tag_placeholder" "preview_count" "preview_loading" "preview_empty" "status_kept" "status_dropped" "reason_exclude_kw" "reason_include_kw" "reason_untagged_kept" "reason_untagged_dropped" "reason_tag_match" "reason_tag_mismatch" "next_rollover" "all_day" "chip_remove" "copied" "copy" "saved_new" "saved_update" "render_warning" "rollovers_applied" "test_result" "test_opened" "delete_confirm" "deleted" "delete_none" "existing_banner" "months"  -}}
+{{- $out := dict -}}
+{{- range $k := $keys -}}
+  {{- $out = merge $out (dict $k (i18n (printf "js_%s" $k))) -}}
+{{- end -}}
+{{- $out | jsonify -}}

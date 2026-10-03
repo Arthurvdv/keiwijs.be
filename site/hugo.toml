@@ -1,0 +1,29 @@
+# Smartschool Planner Filter - public website.
+# Local dev:  hugo server -D        (API: `func start` on http://localhost:7071)
+# Production: hugo --minify --gc    (see config/production/hugo.toml and README.md)
+baseURL = "https://example.org/"
+title = "Smartschool Planner Filter"
+defaultContentLanguage = "nl"
+defaultContentLanguageInSubdir = false
+disableKinds = ["taxonomy", "term", "RSS"]
+enableRobotsTXT = true
+disableDefaultLanguageRedirect = true
+
+[params]
+  # Base URL of the Azure Functions API (no trailing slash).
+  apiBase = "http://localhost:7071"
+  githubUrl = "https://github.com/Arthurvdv/smartschool-planner-filter"
+  privacyEmail = "tuurbo@outlook.com"
+
+[languages]
+  [languages.nl]
+    label = "Nederlands"
+    locale = "nl-BE"
+    weight = 1
+  [languages.en]
+    label = "English"
+    locale = "en"
+    weight = 2
+
+[markup.goldmark.renderer]
+  unsafe = false

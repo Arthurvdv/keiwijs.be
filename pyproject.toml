@@ -1,0 +1,48 @@
+[project]
+name = "smartschool-planner-filter"
+version = "0.1.0"
+description = "Credential-free filter proxy for the SmartSchool Planner ICS feed (per-class tags, yearly rollover)."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.13,<3.14"
+dependencies = [
+    "azure-functions>=1.23",
+    "httpx>=0.28",
+    "azure-data-tables>=12.6",
+    "azure-storage-blob>=12.24",
+    "azure-identity>=1.19",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8",
+    "pytest-asyncio>=0.25",
+    "hypothesis>=6.120",
+    "respx>=0.22",
+    "icalendar>=6.3",
+    "ruff>=0.8",
+    "mypy>=1.13",
+    "pip-audit>=2.7",
+]
+
+[tool.ruff]
+line-length = 100
+target-version = "py313"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "S", "N", "W"]
+ignore = ["S101"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S", "E501"]
+
+[tool.mypy]
+python_version = "3.13"
+strict = true
+ignore_missing_imports = true
+files = ["ssfilter", "function_app.py"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+filterwarnings = ["error::DeprecationWarning:ssfilter.*"]

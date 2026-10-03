@@ -1,0 +1,22 @@
+{
+  "version": "2.0",
+  "logging": {
+    "applicationInsights": {
+      "samplingSettings": { "isEnabled": true, "excludedTypes": "Request" },
+      "httpAutoCollectionOptions": {
+        "enableHttpTriggerExtendedInfoCollection": false,
+        "enableW3CDistributedTracing": true,
+        "enableResponseHeaderInjection": false
+      }
+    },
+    "logLevel": { "default": "Information", "Host.Results": "Warning" }
+  },
+  "extensions": {
+    "http": { "routePrefix": "", "maxConcurrentRequests": 16 }
+  },
+  "extensionBundle": {
+    "id": "Microsoft.Azure.Functions.ExtensionBundle",
+    "version": "[4.*, 5.0.0)"
+  },
+  "functionTimeout": "00:30:00"
+}

@@ -1,0 +1,45 @@
+---
+title: "Privacy"
+linkTitle: "Privacy"
+description: "Welke gegevens we bewaren, waar, hoe lang en hoe je alles verwijdert."
+---
+
+Deze tool is een gratis, open-source hobbyproject van een privépersoon (Arthur). Er is geen commercieel gebruik en geen reclame. Hieronder lees je in gewone taal wat er met je gegevens gebeurt.
+
+## Wat bewaren we?
+
+- De **Smartschool-link** die je plakt.
+- Je **instellingen**: de klassen, welke geselecteerd zijn, de doorschuifdatum en de trefwoorden.
+- **Tijdstippen**: wanneer de instellingen werden aangemaakt, gewijzigd en voor het laatst verwerkt.
+- Een **hash** (vingerafdruk) van de laatst gegenereerde agenda, om te weten of er iets veranderd is.
+- De gefilterde agenda zelf, als bestand dat je agenda-app ophaalt.
+
+## Waar?
+
+Alles staat bij Microsoft Azure in de regio **West-Europa** (Nederland).
+
+## Hoe lang?
+
+Tot je het zelf verwijdert. Agenda's waarvan de Smartschool-link langer dan 30 dagen niet meer werkt, kunnen automatisch verwijderd worden.
+
+## Wat bewaren we niet?
+
+- Geen wachtwoorden en geen accounts.
+- Geen analytics- of tracking-cookies. Deze website gebruikt geen cookies.
+- Namen van leerlingen uit het veld "Extra deelnemers" worden standaard uit de beschrijving verwijderd (je kan dit uitzetten onder Geavanceerd).
+
+## Belangrijk: je link is je geheim
+
+Er is geen aanmelding. Je Smartschool-link is tegelijk je sleutel: wie ze kent, kan je gefilterde agenda bekijken en je instellingen wijzigen of verwijderen. Deel de link dus niet, en ook de agenda-link niet met mensen die dat niet mogen zien.
+
+## Je gegevens verwijderen
+
+Plak je Smartschool-link op de [startpagina](/) en klik op **Verwijder mijn instellingen**. Je instellingen en de gefilterde agenda worden dan gewist. Lukt dat niet, mail dan naar het adres hieronder.
+
+## Contact en broncode
+
+- Verantwoordelijke: Arthur, een privépersoon.
+- Vragen over privacy: [tuurbo@outlook.com](mailto:tuurbo@outlook.com)
+- Broncode (MIT-licentie): [github.com/Arthurvdv/smartschool-planner-filter](https://github.com/Arthurvdv/smartschool-planner-filter)
+
+Volgens de AVG heb je recht op inzage, verbetering en verwijdering van je gegevens, en kan je klacht indienen bij de Gegevensbeschermingsautoriteit.

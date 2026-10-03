@@ -1,0 +1,17 @@
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href="{{ site.Home.RelPermalink }}">
+      <span class="brand-name">Smartschool Planner Filter</span>
+      <span class="brand-tag">{{ i18n "site_tagline" }}</span>
+    </a>
+    <nav aria-label="{{ i18n "nav_label" }}" class="nav">
+      {{- $page := . }}
+      {{- range slice "/hoe-werkt-het" "/faq" "/privacy" }}
+        {{- with site.GetPage . }}
+      <a href="{{ .RelPermalink }}"{{ if eq .RelPermalink $page.RelPermalink }} aria-current="page"{{ end }}>{{ .LinkTitle }}</a>
+        {{- end }}
+      {{- end }}
+      {{ partial "lang-switch.html" . }}
+    </nav>
+  </div>
+</header>

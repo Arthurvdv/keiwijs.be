@@ -1,0 +1,14 @@
+<ul class="lang-switch" aria-label="{{ i18n "lang_switch_label" }}">
+  {{- $page := . }}
+  {{- range hugo.Sites }}
+    {{- $lang := .Language.Lang }}
+    {{- if eq $lang site.Language.Lang }}
+  <li><span aria-current="true" lang="{{ $lang }}">{{ upper $lang }}</span></li>
+    {{- else }}
+      {{- $target := "" }}
+      {{- range $page.AllTranslations }}{{ if eq .Language.Lang $lang }}{{ $target = .RelPermalink }}{{ end }}{{ end }}
+      {{- if not $target }}{{ range site.Home.AllTranslations }}{{ if eq .Language.Lang $lang }}{{ $target = .RelPermalink }}{{ end }}{{ end }}{{ end }}
+  <li><a href="{{ $target }}" hreflang="{{ $lang }}" lang="{{ $lang }}">{{ upper $lang }}</a></li>
+    {{- end }}
+  {{- end }}
+</ul>

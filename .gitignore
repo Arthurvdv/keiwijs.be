@@ -1,0 +1,34 @@
+# secrets / local
+local.settings.json
+.env
+*.real.ics
+calendar.ics
+__azurite_db*__.json
+__blobstorage__/
+__queuestorage__/
+.azurite/
+
+# python
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+dist/
+build/
+*.egg-info/
+
+# hugo
+site/public/
+site/resources/_gen/
+.hugo_build.lock
+
+# node
+node_modules/
+
+# ide
+.vscode/
+.idea/

@@ -1,0 +1,5 @@
+azure-functions>=1.23
+httpx>=0.28
+azure-data-tables>=12.6
+azure-storage-blob>=12.24
+azure-identity>=1.19

@@ -1,0 +1,827 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+CALSCALE:GREGORIAN
+PRODID:-//Smartbit Bvba//Smartschool Calendar//BE
+X-WR-CALNAME:GMail
+X-WR-TIMEZONE:Europe/Brussels
+REFRESH-INTERVAL;VALUE=DURATION:PT1H
+BEGIN:VEVENT
+UID:01229fdf-d486-433f-9b62-460a39415108@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20270701
+DTEND;VALUE=DATE:20270901
+SUMMARY:Zomervakantie
+DESCRIPTION:Deelnemers: Iedereen
+END:VEVENT
+BEGIN:VEVENT
+UID:2b80e337-e627-4108-bd60-693de35991bd@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20270208
+DTEND;VALUE=DATE:20270215
+SUMMARY:Krokusvakantie
+DESCRIPTION:Deelnemers: Iedereen
+END:VEVENT
+BEGIN:VEVENT
+UID:3392d30b-c204-406c-a0eb-73f967405f85@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20270329
+DTEND;VALUE=DATE:20270412
+SUMMARY:Paasvakantie
+DESCRIPTION:Deelnemers: Iedereen
+END:VEVENT
+BEGIN:VEVENT
+UID:63c38f44-dc0b-403e-88ec-26cb34b0b2b6@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20270506
+DTEND;VALUE=DATE:20270508
+SUMMARY:Hemelvaart
+DESCRIPTION:Deelnemers: Iedereen
+END:VEVENT
+BEGIN:VEVENT
+UID:6b50cf97-8d26-4194-a486-37c49af7c0b2@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20261111
+DTEND;VALUE=DATE:20261112
+SUMMARY:Wapenstilstand
+DESCRIPTION:Deelnemers: Iedereen
+END:VEVENT
+BEGIN:VEVENT
+UID:b60e33df-4951-4e3d-b766-66e984b01c1a@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20270517
+DTEND;VALUE=DATE:20270518
+SUMMARY:Pinkstermaandag
+DESCRIPTION:Deelnemers: Iedereen
+END:VEVENT
+BEGIN:VEVENT
+UID:d6f3ec25-7e91-49ac-8261-ecbae0723cbe@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20270501
+DTEND;VALUE=DATE:20270502
+SUMMARY:Dag van de arbeid
+DESCRIPTION:Deelnemers: Iedereen
+END:VEVENT
+BEGIN:VEVENT
+UID:eb386716-3776-408b-b7a7-1364710b01c5@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20261221
+DTEND;VALUE=DATE:20270104
+SUMMARY:Kerstvakantie
+DESCRIPTION:Deelnemers: Iedereen
+END:VEVENT
+BEGIN:VEVENT
+UID:edd96167-89fb-4ba5-9e7a-cf703f5f0b4d@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20261102
+DTEND;VALUE=DATE:20261109
+SUMMARY:Herfstvakantie
+DESCRIPTION:Deelnemers: Iedereen
+END:VEVENT
+BEGIN:VEVENT
+UID:02f39c47-e9c0-4c76-a1a7-b96d81d17dfa@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20261014
+DTEND;VALUE=DATE:20261015
+SUMMARY:L3: Bib
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: An Peeters 
+ L3 Peeters
+END:VEVENT
+BEGIN:VEVENT
+UID:104ab47e-ab82-46d2-9f15-b98b5f0d1537@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20260930
+DTEND;VALUE=DATE:20261001
+SUMMARY:Pedagogische studiedag: geen school!
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Bart Jansse
+ ns Zorgleerkracht Janssens
+END:VEVENT
+BEGIN:VEVENT
+UID:123202bb-6770-4e49-90e7-573e4cdf1bd6@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20270310
+DTEND;VALUE=DATE:20270311
+SUMMARY:Pedagogische studiedag: geen school!
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Bart Jansse
+ ns Zorgleerkracht Janssens
+END:VEVENT
+BEGIN:VEVENT
+UID:25d7d448-9f96-42de-bedd-204586f74108@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20261013
+DTEND;VALUE=DATE:20261014
+SUMMARY:L2: Bib
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Carla Maes 
+ L2 Maes
+END:VEVENT
+BEGIN:VEVENT
+UID:295f9da1-a590-4f80-9e0e-bd8f2e0cf4d3@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20270312
+DTEND;VALUE=DATE:20270313
+SUMMARY:L4 + L6 bib
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Dirk Jacobs
+  L6 Jacobs
+END:VEVENT
+BEGIN:VEVENT
+UID:2e29b180-5326-41b7-9832-13078d0bb199@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20260916
+DTEND;VALUE=DATE:20260917
+SUMMARY:L3: Bib
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: An Peeters 
+ L3 Peeters
+END:VEVENT
+BEGIN:VEVENT
+UID:307cdfe1-468e-4cf7-89ae-f3e42d6c75f4@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20261127
+DTEND;VALUE=DATE:20261128
+SUMMARY:Rapport 1 lagere school
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Bart Jansse
+ ns Zorgleerkracht Janssens
+END:VEVENT
+BEGIN:VEVENT
+UID:3a6c8f64-e899-4144-899b-e3477f174dd8@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20270427
+DTEND;VALUE=DATE:20270428
+SUMMARY:L2: Bib
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Carla Maes 
+ L2 Maes
+END:VEVENT
+BEGIN:VEVENT
+UID:3b486f08-046c-496e-9c77-949f1c1629ff@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20270607
+DTEND;VALUE=DATE:20270612
+SUMMARY:Zeeklassen
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Els Mertens
+  Zorgcoördinator Mertens
+END:VEVENT
+BEGIN:VEVENT
+UID:3d6ba771-f5e9-41b9-bcf6-26dd269cf571@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20270304
+DTEND;VALUE=DATE:20270305
+SUMMARY:Vaccinaties L1
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Els Mertens
+  Zorgcoördinator Mertens
+END:VEVENT
+BEGIN:VEVENT
+UID:3df0df03-00f1-4b54-943d-2f83e3bc39d4@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART:20270421T065000Z
+DTEND:20270421T093500Z
+SUMMARY:Vlaamse toets L4
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nExtra deelnemers: ✓ El
+ s Mertens Zorgcoördinator Mertens\nOrganisator: \nWeblink: Info voor oude
+ rs (https://www.vlaanderen.be/onderwijs-en-vorming/vlaamse-toetsen)\nOrgan
+ isatie of verloop:\nWiskunde en Nederlands
+END:VEVENT
+BEGIN:VEVENT
+UID:40190f55-6268-48ef-a19b-97ff126f1014@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20270326
+DTEND;VALUE=DATE:20270327
+SUMMARY:Paaslunch
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Bart Jansse
+ ns Zorgleerkracht Janssens
+END:VEVENT
+BEGIN:VEVENT
+UID:416f4b1a-f8c9-431e-af93-acf53e1c7568@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20270311
+DTEND;VALUE=DATE:20270312
+SUMMARY:Oudercontacten lagere school (L1-L6)
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Bart Jansse
+ ns Zorgleerkracht Janssens
+END:VEVENT
+BEGIN:VEVENT
+UID:45673b1c-9e0f-42c3-9128-b2a7685edda7@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20261124
+DTEND;VALUE=DATE:20261125
+SUMMARY:Oudercontact iedereen (behalve instapklas)
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Bart Jansse
+ ns Zorgleerkracht Janssens
+END:VEVENT
+BEGIN:VEVENT
+UID:4655c799-595d-405f-bb70-7ae14fdbdaea@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20261204
+DTEND;VALUE=DATE:20261205
+SUMMARY:Sinterklaas
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Bart Jansse
+ ns Zorgleerkracht Janssens
+END:VEVENT
+BEGIN:VEVENT
+UID:506253a6-e1af-40fc-a943-00668ac9de32@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20270223
+DTEND;VALUE=DATE:20270224
+SUMMARY:L2: Bib
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Carla Maes 
+ L2 Maes
+END:VEVENT
+BEGIN:VEVENT
+UID:5113cbb1-00af-4ba8-83d2-f7add05ab670@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART:20270426T110000Z
+DTEND:20270426T134000Z
+SUMMARY:L6 Vlaamse toets 2
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nExtra deelnemers: ✓ Di
+ rk Jacobs L6 Jacobs\nOrganisator: \nWeblink: info ouders (https://www.vlaa
+ nderen.be/onderwijs-en-vorming/vlaamse-toetsen)\nOrganisatie of verloop:\n
+ Wiskunde
+END:VEVENT
+BEGIN:VEVENT
+UID:512f59b4-aca1-4a2a-a369-c3f49a2d4a99@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20270619
+DTEND;VALUE=DATE:20270620
+SUMMARY:Schoolfeest
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Bart Jansse
+ ns Zorgleerkracht Janssens
+END:VEVENT
+BEGIN:VEVENT
+UID:55f8490b-974c-42f6-be20-2c1863a2a1b9@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20270309
+DTEND;VALUE=DATE:20270310
+SUMMARY:Oudercontacten lagere school (L1-L6)
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Bart Jansse
+ ns Zorgleerkracht Janssens
+END:VEVENT
+BEGIN:VEVENT
+UID:5e8af65a-896d-46c7-a7b5-e16d6ee48521@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20270428
+DTEND;VALUE=DATE:20270429
+SUMMARY:L3: Bib
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: An Peeters 
+ L3 Peeters
+END:VEVENT
+BEGIN:VEVENT
+UID:5f6da9f4-e33f-4917-9816-df54399ac932@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20260910
+DTEND;VALUE=DATE:20260911
+SUMMARY:Vaccinaties in L2 en L4
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Els Mertens
+  Zorgcoördinator Mertens
+END:VEVENT
+BEGIN:VEVENT
+UID:5f7e994a-7015-4526-a1ea-4db6e70c5573@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20270112
+DTEND;VALUE=DATE:20270113
+SUMMARY:L2: Bib
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Carla Maes 
+ L2 Maes
+END:VEVENT
+BEGIN:VEVENT
+UID:63e0233c-9d27-4efa-a473-c1a8fdfefa07@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20270426
+DTEND;VALUE=DATE:20270427
+SUMMARY:L3: 13u30: Biebexpeditie
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: An Peeters 
+ L3 Peeters
+END:VEVENT
+BEGIN:VEVENT
+UID:661f2801-d328-413f-a6f4-fd15150453c0@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20260915
+DTEND;VALUE=DATE:20260916
+SUMMARY:L2: Bib
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Carla Maes 
+ L2 Maes
+END:VEVENT
+BEGIN:VEVENT
+UID:66cd9289-7436-41ba-b230-1e3d6193c196@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20270224
+DTEND;VALUE=DATE:20270225
+SUMMARY:L3: Bib
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: An Peeters 
+ L3 Peeters
+END:VEVENT
+BEGIN:VEVENT
+UID:6eef290e-710a-4a80-a04b-c07a8a312caa@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20270625
+DTEND;VALUE=DATE:20270626
+SUMMARY:L4 + L6 bib
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Dirk Jacobs
+  L6 Jacobs
+END:VEVENT
+BEGIN:VEVENT
+UID:71381bc1-5e88-4ee2-883a-b342f9c9ba9a@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20261007
+DTEND;VALUE=DATE:20261008
+SUMMARY:Scholenveldloop
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Els Mertens
+  Zorgcoördinator Mertens
+END:VEVENT
+BEGIN:VEVENT
+UID:72c2f1e4-f16d-4796-8339-2ed9117905b7@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20270129
+DTEND;VALUE=DATE:20270130
+SUMMARY:L4 + L6 bib
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Dirk Jacobs
+  L6 Jacobs
+END:VEVENT
+BEGIN:VEVENT
+UID:754a8d3d-48da-4aff-9ca1-5edf0bf20116@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20270628
+DTEND;VALUE=DATE:20270629
+SUMMARY:Proclamatie L6
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Bart Jansse
+ ns Zorgleerkracht Janssens
+END:VEVENT
+BEGIN:VEVENT
+UID:9904a407-6f39-59bb-831d-8cc16f57705d@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20260922
+DTEND;VALUE=DATE:20260923
+SUMMARY:Zwemmen
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Dirk Jacobs
+  L6 Jacobs\, Carla Maes L2 Maes\, Els Mertens Zorgcoördinator Mertens\nOr
+ ganisatie of verloop:\ngeen zwemmen voor L6
+END:VEVENT
+BEGIN:VEVENT
+UID:ea19018c-3342-5ba5-a5e3-3b737185eaab@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20261006
+DTEND;VALUE=DATE:20261007
+SUMMARY:Zwemmen
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Dirk Jacobs
+  L6 Jacobs\, Carla Maes L2 Maes\, Els Mertens Zorgcoördinator Mertens
+END:VEVENT
+BEGIN:VEVENT
+UID:ef69d185-9749-5af6-8238-5b7838a6132c@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20261020
+DTEND;VALUE=DATE:20261021
+SUMMARY:Zwemmen
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Dirk Jacobs
+  L6 Jacobs\, Carla Maes L2 Maes\, Els Mertens Zorgcoördinator Mertens
+END:VEVENT
+BEGIN:VEVENT
+UID:7aed2ce0-ac2b-539c-b827-e7d9c5ab3220@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20261103
+DTEND;VALUE=DATE:20261104
+SUMMARY:Zwemmen
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Dirk Jacobs
+  L6 Jacobs\, Carla Maes L2 Maes\, Els Mertens Zorgcoördinator Mertens
+END:VEVENT
+BEGIN:VEVENT
+UID:f03ecbeb-3ef4-5b28-bbb0-eaa4119f4422@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20261117
+DTEND;VALUE=DATE:20261118
+SUMMARY:Zwemmen
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Dirk Jacobs
+  L6 Jacobs\, Carla Maes L2 Maes\, Els Mertens Zorgcoördinator Mertens
+END:VEVENT
+BEGIN:VEVENT
+UID:acd8259e-9af3-536e-8c02-6afcc00da134@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20261201
+DTEND;VALUE=DATE:20261202
+SUMMARY:Zwemmen
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Dirk Jacobs
+  L6 Jacobs\, Carla Maes L2 Maes\, Els Mertens Zorgcoördinator Mertens
+END:VEVENT
+BEGIN:VEVENT
+UID:c365c69a-cfd4-5b7e-ad7e-e80db4f53ac7@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20261215
+DTEND;VALUE=DATE:20261216
+SUMMARY:Zwemmen
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Dirk Jacobs
+  L6 Jacobs\, Carla Maes L2 Maes\, Els Mertens Zorgcoördinator Mertens
+END:VEVENT
+BEGIN:VEVENT
+UID:11fcfa00-900f-58ce-9521-4fc0900ca376@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20261229
+DTEND;VALUE=DATE:20261230
+SUMMARY:Zwemmen
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Dirk Jacobs
+  L6 Jacobs\, Carla Maes L2 Maes\, Els Mertens Zorgcoördinator Mertens
+END:VEVENT
+BEGIN:VEVENT
+UID:5abebfca-1411-50a2-95a6-d14defa574a8@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20270112
+DTEND;VALUE=DATE:20270113
+SUMMARY:Zwemmen
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Dirk Jacobs
+  L6 Jacobs\, Carla Maes L2 Maes\, Els Mertens Zorgcoördinator Mertens
+END:VEVENT
+BEGIN:VEVENT
+UID:6ba52a28-7657-5121-8d32-afac16a517fb@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20270126
+DTEND;VALUE=DATE:20270127
+SUMMARY:Zwemmen
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Dirk Jacobs
+  L6 Jacobs\, Carla Maes L2 Maes\, Els Mertens Zorgcoördinator Mertens
+END:VEVENT
+BEGIN:VEVENT
+UID:0dd8e90d-a1ce-521f-b5f5-866ca3f71110@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20270209
+DTEND;VALUE=DATE:20270210
+SUMMARY:Zwemmen
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Dirk Jacobs
+  L6 Jacobs\, Carla Maes L2 Maes\, Els Mertens Zorgcoördinator Mertens
+END:VEVENT
+BEGIN:VEVENT
+UID:485da7f5-6fd4-5cff-bbf4-44fc45ec41d2@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20270223
+DTEND;VALUE=DATE:20270224
+SUMMARY:Zwemmen
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Dirk Jacobs
+  L6 Jacobs\, Carla Maes L2 Maes\, Els Mertens Zorgcoördinator Mertens
+END:VEVENT
+BEGIN:VEVENT
+UID:c9569e2e-6f52-5ff8-9ff2-d6938d66bfaa@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20270309
+DTEND;VALUE=DATE:20270310
+SUMMARY:Zwemmen
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Dirk Jacobs
+  L6 Jacobs\, Carla Maes L2 Maes\, Els Mertens Zorgcoördinator Mertens
+END:VEVENT
+BEGIN:VEVENT
+UID:4f3d661b-fe6c-5f8f-86d5-d33f53cc16ab@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20270323
+DTEND;VALUE=DATE:20270324
+SUMMARY:Zwemmen
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Dirk Jacobs
+  L6 Jacobs\, Carla Maes L2 Maes\, Els Mertens Zorgcoördinator Mertens
+END:VEVENT
+BEGIN:VEVENT
+UID:4f3ac20c-19e2-5550-9181-5508fbcaa202@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20270413
+DTEND;VALUE=DATE:20270414
+SUMMARY:Zwemmen
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Dirk Jacobs
+  L6 Jacobs\, Carla Maes L2 Maes\, Els Mertens Zorgcoördinator Mertens
+END:VEVENT
+BEGIN:VEVENT
+UID:99efca09-c13b-53bb-a39d-9155e3a6e30e@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20270427
+DTEND;VALUE=DATE:20270428
+SUMMARY:Zwemmen
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Dirk Jacobs
+  L6 Jacobs\, Carla Maes L2 Maes\, Els Mertens Zorgcoördinator Mertens
+END:VEVENT
+BEGIN:VEVENT
+UID:251e6c9f-efe0-59da-8c83-61f3d2940f06@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20270511
+DTEND;VALUE=DATE:20270512
+SUMMARY:Zwemmen
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Dirk Jacobs
+  L6 Jacobs\, Carla Maes L2 Maes\, Els Mertens Zorgcoördinator Mertens
+END:VEVENT
+BEGIN:VEVENT
+UID:3c3419eb-be17-5d55-8793-8d734d14c1ff@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20270608
+DTEND;VALUE=DATE:20270609
+SUMMARY:Zwemmen
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Dirk Jacobs
+  L6 Jacobs\, Carla Maes L2 Maes\, Els Mertens Zorgcoördinator Mertens
+END:VEVENT
+BEGIN:VEVENT
+UID:80c9e0eb-e1eb-5d67-8c4b-3dccb9d136e7@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20270525
+DTEND;VALUE=DATE:20270526
+SUMMARY:Zwemmen
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Dirk Jacobs
+  L6 Jacobs\, Carla Maes L2 Maes\, Els Mertens Zorgcoördinator Mertens
+END:VEVENT
+BEGIN:VEVENT
+UID:ec59988d-d6cb-5087-a561-a3c800eba871@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20270622
+DTEND;VALUE=DATE:20270623
+SUMMARY:Zwemmen
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Dirk Jacobs
+  L6 Jacobs\, Carla Maes L2 Maes\, Els Mertens Zorgcoördinator Mertens
+END:VEVENT
+BEGIN:VEVENT
+UID:15a737fe-4844-520d-98d2-1250163f8750@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20270629
+DTEND;VALUE=DATE:20270630
+SUMMARY:Zwemmen
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Dirk Jacobs
+  L6 Jacobs\, Carla Maes L2 Maes\, Els Mertens Zorgcoördinator Mertens
+END:VEVENT
+BEGIN:VEVENT
+UID:7b2c0007-bd52-4a15-9811-94ed0c4b8e27@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20261218
+DTEND;VALUE=DATE:20261219
+SUMMARY:L4 + L6 bib
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Dirk Jacobs
+  L6 Jacobs
+END:VEVENT
+BEGIN:VEVENT
+UID:7cbe593c-2a0e-437f-98cc-6e3794a35092@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20261126
+DTEND;VALUE=DATE:20261127
+SUMMARY:Oudercontact iedereen (behalve instapklas)
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Bart Jansse
+ ns Zorgleerkracht Janssens
+END:VEVENT
+BEGIN:VEVENT
+UID:7fe6ee08-69cf-46a9-b183-d9bbeae8a584@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20260929
+DTEND;VALUE=DATE:20260930
+SUMMARY:Dag van de sportclub
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Els Mertens
+  Zorgcoördinator Mertens\nOrganisatie of verloop:\nKinderen mogen in kled
+ ing van hun sportclub naar school komen.
+END:VEVENT
+BEGIN:VEVENT
+UID:8075ae4c-d051-43cf-8b16-31f8c0a92c6e@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20261201
+DTEND;VALUE=DATE:20261202
+SUMMARY:L2: Bib
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Carla Maes 
+ L2 Maes
+END:VEVENT
+BEGIN:VEVENT
+UID:819c06dc-911f-4099-a54c-a76745eff533@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART:20261002T120000Z
+DTEND:20261002T131500Z
+SUMMARY:Dierendag
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Dirk Jacobs
+  L6 Jacobs\, Carla Maes L2 Maes\nOrganisatie of verloop:\nOuders zijn welk
+ om vanaf 14u00
+END:VEVENT
+BEGIN:VEVENT
+UID:8656646c-d017-45df-8f3e-8b69d6ab6125@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20261020
+DTEND;VALUE=DATE:20261021
+SUMMARY:Boostersessie CLB voor L6
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Dirk Jacobs
+  L6 Jacobs
+END:VEVENT
+BEGIN:VEVENT
+UID:88d84977-d43c-46d6-a09c-ff3fead65205@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20261021
+DTEND;VALUE=DATE:20261022
+SUMMARY:Grootoudersfeest
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Bart Jansse
+ ns Zorgleerkracht Janssens
+END:VEVENT
+BEGIN:VEVENT
+UID:8c76267b-1c4f-43c7-aab2-8c15d461a023@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20260921
+DTEND;VALUE=DATE:20260922
+SUMMARY:Schoolfotograaf
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Bart Jansse
+ ns Zorgleerkracht Janssens
+END:VEVENT
+BEGIN:VEVENT
+UID:8cd75e83-e5da-4924-b77f-091622ebe982@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20270630
+DTEND;VALUE=DATE:20270701
+SUMMARY:Rapport 3 lagere school
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Bart Jansse
+ ns Zorgleerkracht Janssens
+END:VEVENT
+BEGIN:VEVENT
+UID:920b39fd-269e-44f5-b2b2-b129007bef30@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20261030
+DTEND;VALUE=DATE:20261031
+SUMMARY:L4 + L6 bib
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Dirk Jacobs
+  L6 Jacobs
+END:VEVENT
+BEGIN:VEVENT
+UID:9f564ba2-9532-40ee-997a-cb8893f7fd63@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20270528
+DTEND;VALUE=DATE:20270529
+SUMMARY:L4 + L6 bib
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Dirk Jacobs
+  L6 Jacobs
+END:VEVENT
+BEGIN:VEVENT
+UID:a100824d-ec37-4b2c-8d2c-bf81e04f69e8@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20270608
+DTEND;VALUE=DATE:20270609
+SUMMARY:L2: Bib
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Carla Maes 
+ L2 Maes
+END:VEVENT
+BEGIN:VEVENT
+UID:a254aec3-99b7-45e2-8871-abcae40fe6ca@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20270312
+DTEND;VALUE=DATE:20270313
+SUMMARY:Rapport 2 lagere school
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Bart Jansse
+ ns Zorgleerkracht Janssens
+END:VEVENT
+BEGIN:VEVENT
+UID:a9a6824f-d213-4862-a846-a8d69394a1c3@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART:20270427T065000Z
+DTEND:20270427T100000Z
+SUMMARY:Vlaamse toetsen 2
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nExtra deelnemers: ✓ El
+ s Mertens Zorgcoördinator Mertens\nOrganisator: \nWeblink: info ouders (h
+ ttps://www.vlaanderen.be/onderwijs-en-vorming/vlaamse-toetsen)\nOrganisati
+ e of verloop:\nWiskunde
+END:VEVENT
+BEGIN:VEVENT
+UID:ab1c0ea3-ce51-434c-96bb-3424a758a5b6@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20270504
+DTEND;VALUE=DATE:20270505
+SUMMARY:Oudercontact kleuters + L6 (op aanvraag)
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Bart Jansse
+ ns Zorgleerkracht Janssens
+END:VEVENT
+BEGIN:VEVENT
+UID:b5e8a227-70f2-4fdd-b0ad-005d3ee8b563@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20270120
+DTEND;VALUE=DATE:20270121
+SUMMARY:Pedagogische studiedag: geen school!
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Bart Jansse
+ ns Zorgleerkracht Janssens
+END:VEVENT
+BEGIN:VEVENT
+UID:b7001611-bbbb-4b7e-b60b-49879de78d60@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20270423
+DTEND;VALUE=DATE:20270424
+SUMMARY:L4 + L6 bib
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Dirk Jacobs
+  L6 Jacobs
+END:VEVENT
+BEGIN:VEVENT
+UID:b872ab42-d0d5-4744-b466-6441743a93f7@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20270113
+DTEND;VALUE=DATE:20270114
+SUMMARY:L3: Bib
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: An Peeters 
+ L3 Peeters
+END:VEVENT
+BEGIN:VEVENT
+UID:b9a850b2-bba1-4711-8a6b-f9c2f9b8330b@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART:20260903T160000Z
+DTEND:20260903T170000Z
+SUMMARY:infomoment lagere school
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Bart Jansse
+ ns Zorgleerkracht Janssens\nOrganisatie of verloop:\ninfomoment lagere sch
+ ool: 18u gezamenlijk deel voor iedereen – 18u15 infomoment per klas lage
+ re school\n werking L1-L2-L3-L4-L5-L6
+END:VEVENT
+BEGIN:VEVENT
+UID:bc09170f-b631-49ab-b4a2-0b061c2bfe02@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART:20270420T065500Z
+DTEND:20270420T100000Z
+SUMMARY:L6 Vlaamse toets 1
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nExtra deelnemers: ✓ Di
+ rk Jacobs L6 Jacobs\nOrganisator: \nWeblink: Info voor ouders (https://www
+ .vlaanderen.be/onderwijs-en-vorming/vlaamse-toetsen)\nOrganisatie of verlo
+ op:\nNederlands en wiskunde
+END:VEVENT
+BEGIN:VEVENT
+UID:be1d14f2-f1aa-47e1-b16d-5934cf0aea99@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20261002
+DTEND;VALUE=DATE:20261003
+SUMMARY:L4 + L6 bib
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Dirk Jacobs
+  L6 Jacobs\, Els Mertens Zorgcoördinator Mertens
+END:VEVENT
+BEGIN:VEVENT
+UID:c30149a2-dc78-4ecd-aa2a-4533206fbe77@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20270324
+DTEND;VALUE=DATE:20270325
+SUMMARY:L3: Bib
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: An Peeters 
+ L3 Peeters
+END:VEVENT
+BEGIN:VEVENT
+UID:c36aa02c-6c12-4ee6-abd3-4b2431e6f7be@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20270205
+DTEND;VALUE=DATE:20270206
+SUMMARY:Carnaval
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Bart Jansse
+ ns Zorgleerkracht Janssens
+END:VEVENT
+BEGIN:VEVENT
+UID:d1356200-c129-4cda-bc35-0430d952845b@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20261202
+DTEND;VALUE=DATE:20261203
+SUMMARY:L3: Bib
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: An Peeters 
+ L3 Peeters
+END:VEVENT
+BEGIN:VEVENT
+UID:d31267ef-9d6c-4c76-bd73-1720bde392a1@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20270315
+DTEND;VALUE=DATE:20270316
+SUMMARY:L2: Scrabble in de Bib
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nExtra deelnemers: ? Leer
+ ling 01\, ? Leerling 02\, ? Leerling 03\, ? Leerling 04\, ? Leerling 05\, 
+ ? Leerling 06\, ? Leerling 07\, ? Leerling 08\, ? Leerling 09\, ? Leerling
+  10\, ? Leerling 11\, ? Leerling 12\, ? Leerling 13\, ? Leerling 14\, ? Le
+ erling 15\, ? Leerling 16\, ? Leerling 17\nOrganisator: Carla Maes L2 Maes
+ \nOrganisatie of verloop:\nWij gaan een activiteit doen in de bib rond 'Sc
+ rabble'. \n 
+END:VEVENT
+BEGIN:VEVENT
+UID:d3998211-4200-4c22-b9a1-5ff47e634d61@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20270609
+DTEND;VALUE=DATE:20270610
+SUMMARY:L3: Bib
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: An Peeters 
+ L3 Peeters
+END:VEVENT
+BEGIN:VEVENT
+UID:d4331d35-6e7f-4dc5-8f06-15ddcf92ba2f@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20261109
+DTEND;VALUE=DATE:20261110
+SUMMARY:Start fluo-actie (Helm op fluo top)
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Els Mertens
+  Zorgcoördinator Mertens
+END:VEVENT
+BEGIN:VEVENT
+UID:d5b27fd7-e00a-4b12-8770-8ed1a18a0ea7@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20270323
+DTEND;VALUE=DATE:20270324
+SUMMARY:L2: Bib
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Carla Maes 
+ L2 Maes
+END:VEVENT
+BEGIN:VEVENT
+UID:ef154f70-5531-4224-8167-56bb678f3df0@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20261210
+DTEND;VALUE=DATE:20261211
+SUMMARY:Oudercontact instapklas
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Bart Jansse
+ ns Zorgleerkracht Janssens
+END:VEVENT
+BEGIN:VEVENT
+UID:fd955ae1-ba35-46d8-9b29-3a32168f0545@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20270413
+DTEND;VALUE=DATE:20270414
+SUMMARY:L2: Mega Spelenpaleis
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: Carla Maes 
+ L2 Maes
+END:VEVENT
+BEGIN:VEVENT
+UID:fe29d1fe-63f4-4bec-b762-0343576e2552@smartbit.be
+DTSTAMP:20261003T082130Z
+DTSTART;VALUE=DATE:20260915
+DTEND;VALUE=DATE:20260916
+SUMMARY:L3: Namiddag: Bezoek aan de fanfare van Beerse
+DESCRIPTION:Kalender: Voorbeeldschool voor ouders\nOrganisator: An Peeters 
+ L3 Peeters
+END:VEVENT
+END:VCALENDAR

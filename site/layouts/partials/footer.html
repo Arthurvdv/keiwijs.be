@@ -1,0 +1,9 @@
+<footer class="site-footer">
+  <div class="container">
+    <p>{{ i18n "footer_disclaimer" }}</p>
+    <p>
+      {{ with site.GetPage "/privacy" }}<a href="{{ .RelPermalink }}">{{ i18n "footer_privacy" }}</a> &middot; {{ end }}
+      <a href="{{ site.Params.githubUrl }}" rel="noopener">{{ i18n "footer_source" }}</a> &middot; {{ i18n "license_mit" }}
+    </p>
+  </div>
+</footer>
