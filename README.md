@@ -16,6 +16,16 @@ URL again loads the saved settings. Anyone who knows that URL can read the
 filtered feed or change its settings, so it should be treated like a password.
 This trade-off is deliberate and documented on the privacy page.
 
+## Live
+
+| | |
+|---|---|
+| Website | https://witty-mushroom-05c7b0c03.6.azurestaticapps.net |
+| API | https://ssplanner-func-fuzhk3.azurewebsites.net (`/healthz`) |
+| Feeds | `https://ssplannerstfuzhk3.z50.web.core.windows.net/feeds/<hash>.ics` |
+
+Deployed from `main` by GitHub Actions (see [docs/DEPLOY.md](docs/DEPLOY.md)).
+
 ## How it works
 
 ```

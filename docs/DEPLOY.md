@@ -56,12 +56,18 @@ az group create -n rg-ssplanner-prod -l belgiumcentral
 APP_ID=$(az ad app create --display-name ssplanner-github-deploy --sign-in-audience AzureADMyOrg --query appId -o tsv)
 SP_OID=$(az ad sp create --id $APP_ID --query id -o tsv)
 
-cat > fc.json <<'EOF'
-{"name":"github-prod","issuer":"https://token.actions.githubusercontent.com",
- "subject":"repo:Arthurvdv/smartschool-planner-filter:environment:prod",
+# GitHub presents the OIDC subject with the owner and repository ids embedded
+# (repo:<owner>@<owner-id>/<repo>@<repo-id>:environment:prod). Register that exact
+# subject; the plain form is kept as well in case the format changes back.
+OWNER_ID=$(gh api users/Arthurvdv -q .id); REPO_ID=$(gh api repos/Arthurvdv/smartschool-planner-filter -q .id)
+cat > fc.json <<EOF
+{"name":"github-prod-ids","issuer":"https://token.actions.githubusercontent.com",
+ "subject":"repo:Arthurvdv@${OWNER_ID}/smartschool-planner-filter@${REPO_ID}:environment:prod",
  "audiences":["api://AzureADTokenExchange"]}
 EOF
 az ad app federated-credential create --id $APP_ID --parameters @fc.json
+sed -e 's/github-prod-ids/github-prod/' -e "s/Arthurvdv@${OWNER_ID}/Arthurvdv/" -e "s/filter@${REPO_ID}/filter/" fc.json > fc-plain.json
+az ad app federated-credential create --id $APP_ID --parameters @fc-plain.json
 
 SCOPE=$(az group show -n rg-ssplanner-prod --query id -o tsv)
 for r in "Contributor" "Role Based Access Control Administrator" "Storage Blob Data Contributor"; do
