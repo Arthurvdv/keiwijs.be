@@ -127,6 +127,8 @@ js_delete_confirm = "Are you sure you want to delete your settings and calendar 
 js_deleted = "Your settings have been deleted."
 js_delete_none = "There were no settings to delete."
 js_existing_banner = "Existing settings loaded for this link."
+js_btn_generate = "Create calendar link"
+js_btn_save = "Save changes"
 js_months = "January,February,March,April,May,June,July,August,September,October,November,December"
 
 # Landing page, navigation and footer (added with the move to www.keiwijs.be).

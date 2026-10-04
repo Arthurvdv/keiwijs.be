@@ -37,5 +37,6 @@ def test_golden_sanity() -> None:
     assert b"X-WR-CALNAME:GMail (L3)" in data
     assert "SUMMARY:☀️ Kerstvakantie".encode() in data
     assert "SUMMARY:📚 L3: Bib".encode() in data
-    assert "DESCRIPTION:🗓️ Kalender: ".encode() in data
+    assert "DESCRIPTION:🗓️ Voorbeeldschool voor ouders".encode() in data
+    assert b"Kalender: " not in data
     assert all(len(line) <= 75 for line in data.split(b"\r\n"))

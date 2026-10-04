@@ -129,6 +129,8 @@ js_delete_confirm = "Ben je zeker dat je jouw instellingen en kalenderlink wilt 
 js_deleted = "Je instellingen zijn verwijderd."
 js_delete_none = "Er waren geen instellingen om te verwijderen."
 js_existing_banner = "Bestaande instellingen geladen voor deze link."
+js_btn_generate = "Kalenderlink aanmaken"
+js_btn_save = "Wijzigingen opslaan"
 js_months = "januari,februari,maart,april,mei,juni,juli,augustus,september,oktober,november,december"
 
 # Landing page, navigation and footer (added with the move to www.keiwijs.be).

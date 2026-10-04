@@ -2,8 +2,9 @@
 
 The Smartschool export has no item-type field, so the title icon comes from an
 ordered list of user keyword rules (first match wins, otherwise a fallback).
-Description lines with a known ``Label:`` always get a fixed icon. Calendar
-apps only render Unicode in SUMMARY/DESCRIPTION, hence emoji instead of images.
+Description lines with a known ``Label:`` always get a fixed icon; with title
+icons on, labels the icon already says are dropped. Calendar apps only render
+Unicode in SUMMARY/DESCRIPTION, hence emoji instead of images.
 Icon and text are always separated by exactly one U+0020 space.
 """
 
@@ -57,6 +58,9 @@ LABEL_ICONS: Mapping[str, str] = {
     "weblink": "🔗",
     "organisatie of verloop": "📝",
 }
+# Labels the icon already says on its own. The two 👥 labels and the
+# "Organisatie of verloop" heading keep their text.
+ICON_ONLY_LABELS = frozenset({"kalender", "organisator", "weblink"})
 
 # Supplementary-plane symbols that default to *text* presentation (narrow glyph)
 # and therefore need VS16. Basic-plane symbols are handled by the code-point check.
@@ -167,14 +171,22 @@ def prefix_summary(summary: str, rules: Sequence[IconRule], fallback: str) -> st
     return with_icon(icon, summary) if icon else summary
 
 
-def decorate_description(description: str) -> str:
-    """Prefix known ``Label:`` lines with their icon; leave everything else untouched."""
+def decorate_description(description: str, *, drop_labels: bool = False) -> str:
+    """Prefix known ``Label:`` lines with their icon; leave everything else untouched.
+
+    With ``drop_labels`` the icon replaces an ``ICON_ONLY_LABELS`` label
+    (``Kalender: X`` becomes ``🗓️ X``), unless the value is empty.
+    """
     out: list[str] = []
     for line in description.split("\n"):
         stripped = line.lstrip()
-        label, sep, _ = stripped.partition(":")
-        icon = LABEL_ICONS.get(label.strip().casefold()) if sep else None
+        label, sep, value = stripped.partition(":")
+        key = label.strip().casefold()
+        icon = LABEL_ICONS.get(key) if sep else None
         if icon and not _starts_with_icon(stripped):
-            line = with_icon(icon, stripped)
+            if drop_labels and key in ICON_ONLY_LABELS and value.strip():
+                line = with_icon(icon, value)
+            else:
+                line = with_icon(icon, stripped)
         out.append(line)
     return "\n".join(out)

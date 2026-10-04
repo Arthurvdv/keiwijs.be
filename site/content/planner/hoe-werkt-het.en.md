@@ -43,7 +43,7 @@ If a class should not move along, for instance because your child repeats a year
 
 When an activity title contains a word from your list, its icon goes in front, for example ☀️ for "vakantie" or 📚 for "bib". The first matching rule wins. If no rule matches, the activity gets the fallback icon (📌 by default); leave it empty if you prefer no icon then. You can add, remove and reorder rules, or switch title icons off completely.
 
-In the description, Smartschool's fixed fields always get an icon: 🗓️ Kalender, 👤 Organisator, 👥 Deelnemers, 🔗 Weblink and 📝 Organisatie of verloop.
+In the description, Smartschool's fixed fields always get an icon: 🗓️ Kalender, 👤 Organisator, 👥 Deelnemers, 🔗 Weblink and 📝 Organisatie of verloop. With title icons on, the icon replaces the words Kalender, Organisator and Weblink, so you see "🗓️ Nieuwstrein voor ouders" instead of "🗓️ Kalender: Nieuwstrein voor ouders".
 
 ## Limitations
 

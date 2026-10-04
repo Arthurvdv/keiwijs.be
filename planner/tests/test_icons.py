@@ -65,6 +65,21 @@ def test_decorate_description_participants() -> None:
     assert decorate_description("Extra deelnemers: ? A") == "👥 Extra deelnemers: ? A"
 
 
+def test_decorate_description_drops_redundant_labels() -> None:
+    text = (
+        "Kalender: School\nOrganisator: A\nWeblink: Info (https://x)\n"
+        "Deelnemers: Iedereen\nExtra deelnemers: ? A\nOrganisatie of verloop:\nOm 8: verzamelen"
+    )
+    once = decorate_description(text, drop_labels=True)
+    assert once == (
+        "🗓️ School\n👤 A\n🔗 Info (https://x)\n"
+        "👥 Deelnemers: Iedereen\n👥 Extra deelnemers: ? A\n📝 Organisatie of verloop:\n"
+        "Om 8: verzamelen"
+    )
+    assert decorate_description(once, drop_labels=True) == once
+    assert decorate_description("Weblink:  ", drop_labels=True) == "🔗 Weblink:  "
+
+
 def test_validate_icon_rules() -> None:
     assert validate_icon_rules([IconRule("  geen   school ", "☀")]) == (
         IconRule("geen school", SUN),

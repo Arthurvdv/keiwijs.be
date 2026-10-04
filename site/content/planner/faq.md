@@ -22,7 +22,7 @@ Op de doorschuifdatum schuift elke geselecteerde klas met "doorschuiven" één p
 
 ## Kan ik de datum aanpassen?
 
-Ja, onder Doorschuifdatum kies je dag en maand. Pas je de datum aan, klik dan opnieuw op 'Kalenderlink aanmaken'.
+Ja, onder Doorschuifdatum kies je dag en maand. Pas je de datum aan, klik dan op 'Wijzigingen opslaan'.
 
 ## Wat als mijn kind een jaar overdoet?
 

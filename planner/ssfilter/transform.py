@@ -29,7 +29,7 @@ def apply_event_transforms(event: Component, cfg: FilterConfig) -> None:
         text = original
         if cfg.strip_participants:
             text, _ = strip_extra_deelnemers(text)
-        text = decorate_description(text)
+        text = decorate_description(text, drop_labels=cfg.title_icons)
         if text != original:
             event.set(prop.with_value(escape_text(text)))
     summary = event.get("SUMMARY")
