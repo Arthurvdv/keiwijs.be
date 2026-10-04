@@ -1,4 +1,4 @@
-"""Azure Functions entry point (Python v2 programming model)."""
+"""Keiwijs Planner: Azure Functions entry point (Python v2 programming model)."""
 
 from __future__ import annotations
 

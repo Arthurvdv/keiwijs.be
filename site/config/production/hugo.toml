@@ -1,2 +1,3 @@
 [params]
-  apiBase = "https://REPLACE-ME.azurewebsites.net"
+  # Explicit function app name (see infra/main.bicep), so no placeholder is needed here.
+  apiBase = "https://planner-keiwijs-be.azurewebsites.net"

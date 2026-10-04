@@ -1,11 +1,20 @@
 # Website (Hugo)
 
-Static site for Smartschool Planner Filter. Hugo extended, no theme, no npm. Dutch is the default language, English lives under `/en/`.
+One Hugo site for the whole domain: the landing page at `/` (and `/en/`) and the Keiwijs Planner as a section under `/planner/` (and `/en/planner/`). Hugo extended, no theme, no npm. Dutch is the default language, English lives under `/en/`.
+
+| URL | Source |
+|---|---|
+| `/`, `/en/` | `content/_index*.md` + `layouts/index.html` |
+| `/planner/`, `/en/planner/` | `content/planner/_index*.md` + `layouts/planner/list.html` (the tool itself; loads `assets/js/app.js`) |
+| `/planner/hoe-werkt-het/`, `/en/planner/how-it-works/` | `content/planner/hoe-werkt-het*.md` |
+| `/planner/faq/`, `/planner/privacy/` (+ `/en/planner/...`) | `content/planner/*.md` |
+
+Menus (top nav and the planner sub-nav) are defined per language in `hugo.toml`. Tool cards on the landing page come from `data/tools.yaml`.
 
 ## Local development
 
-1. Start the API: `func start` in the repo root (listens on http://localhost:7071; CORS is handled by the API).
-2. Start the site: `cd site && hugo server -D` and open http://localhost:1313.
+1. Start the API: `cd planner && func start` (listens on http://localhost:7071; CORS is handled by the API).
+2. Start the site: `cd site && hugo server -D` and open http://localhost:1313/planner/.
 
 The development API base is `params.apiBase` in `hugo.toml` (`http://localhost:7071`).
 
@@ -13,21 +22,27 @@ The development API base is `params.apiBase` in `hugo.toml` (`http://localhost:7
 
 ```
 cd site
-hugo --minify --gc
+hugo --minify --gc --baseURL https://www.keiwijs.be/
 ```
 
-The production environment (default for `hugo`) merges `config/production/hugo.toml`, which sets `apiBase` to the deployed API. Override per build with an environment variable:
+The production environment (default for `hugo`) merges `config/production/hugo.toml`, which sets `apiBase` to the deployed function app (`https://planner-keiwijs-be.azurewebsites.net`).
 
-```
-HUGO_PARAMS_APIBASE=https://my-func.azurewebsites.net hugo --minify --gc --baseURL https://www.example.org/
-```
-
-Output goes to `site/public/` (deploy as the Static Web Apps app artifact; `staticwebapp.config.json` in the repo root holds headers and routes). Remember to put the same API host (and the feed/blob host used by "Test mijn link") in the `connect-src` of the CSP in `staticwebapp.config.json`.
-
-## Placeholders to replace
-
-Search for `REPLACE-ME`: API host (`config/production/hugo.toml`, `staticwebapp.config.json`), GitHub URL (`hugo.toml`, privacy pages), privacy e-mail (privacy pages).
+Output goes to `site/public/`. The deploy workflow copies `site/staticwebapp.config.json` (headers, 404 page, trailing-slash handling) into `site/public/` after substituting the feed host (`REPLACE-ME.web.core.windows.net`) in the CSP `connect-src`; the API host is already explicit there.
 
 ## Translations
 
-UI strings live in `i18n/nl.toml` and `i18n/en.toml`. Keys starting with `js_` are exported to `assets/js/app.js` as a JSON block; when you add one, also add it to the list in `layouts/partials/i18n-json.html`.
+UI strings live in `i18n/nl.toml` and `i18n/en.toml`. Keys starting with `js_` are exported to `assets/js/app.js` as a JSON block; when you add one, also add it to the list in `layouts/partials/i18n-json.html`. Landing-page marketing copy lives in the front matter of `content/_index*.md`, so the i18n files stay strict UI copy (no exclamation marks, see `docs/identity/tone-of-voice.md`).
+
+## Styling
+
+The identity in `docs/identity/` is applied through five stylesheets in `assets/css/`, concatenated and fingerprinted in `layouts/_default/baseof.html` (no `@import`):
+
+| File | Contents |
+|---|---|
+| `tokens.css` | the token sheet from `docs/identity/hugo-implementation.md` §2, verbatim (light + derived dark theme) |
+| `fonts.css` | self-hosted Open Sans (one variable woff2 in `static/fonts/`, OFL) |
+| `base.css` | short-name aliases for the planner CSS, element defaults, headings, links, focus ring, skip link |
+| `components.css` | header, menus, footer, buttons, forms, cards, alerts, landing sections |
+| `planner.css` | everything specific to the planner tool; keeps every class that `app.js` emits |
+
+Colours are only ever referenced by token name. CI checks that each hex value in the built CSS exists in `docs/identity/colors.md` and that the UI strings contain no exclamation marks.

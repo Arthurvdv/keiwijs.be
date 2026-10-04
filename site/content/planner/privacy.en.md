@@ -16,7 +16,7 @@ This tool is a free, open-source hobby project run by a private individual (Arth
 
 ## Where?
 
-Everything is stored at Microsoft Azure in the **West Europe** region (the Netherlands).
+The planner and your data are stored at Microsoft Azure in the **Belgium** region (Belgium Central). The website and the logs are in the **West Europe** region (the Netherlands).
 
 ## For how long?
 
@@ -30,16 +30,18 @@ Until you delete it yourself. Calendars whose Smartschool link has not worked fo
 
 ## Important: your link is your secret
 
+{{< alert kind="info" >}}
 There is no login. Your Smartschool link is also your key: anyone who knows it can see your filtered calendar and change or delete your settings. Do not share the link, and do not share the calendar link with people who should not see it.
+{{< /alert >}}
 
 ## Deleting your data
 
-Paste your Smartschool link on the [home page](/en/) and click **Delete my settings**. Your settings and the filtered calendar are then erased. If that does not work, email the address below.
+Paste your Smartschool link in the [planner]({{< relref "/planner" >}}) and click 'Delete settings'. Your settings and the filtered calendar are then erased. If that does not work, email the address below.
 
 ## Contact and source code
 
 - Responsible: Arthur, a private individual.
 - Privacy questions: [tuurbo@outlook.com](mailto:tuurbo@outlook.com)
-- Source code (MIT license): [github.com/Arthurvdv/smartschool-planner-filter](https://github.com/Arthurvdv/smartschool-planner-filter)
+- Source code (MIT license): [github.com/Arthurvdv/keiwijs.be](https://github.com/Arthurvdv/keiwijs.be)
 
 Under the GDPR you have the right to access, correct and delete your data, and to lodge a complaint with the Belgian Data Protection Authority.

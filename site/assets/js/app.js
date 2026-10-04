@@ -1,4 +1,4 @@
-/* Smartschool Planner Filter - front end. Vanilla ES2020, no dependencies.
+/* Keiwijs Planner - front end. Vanilla ES2020, no dependencies.
  * The pasted Smartschool URL lives in memory only (never in localStorage/cookies). */
 (() => {
   'use strict';

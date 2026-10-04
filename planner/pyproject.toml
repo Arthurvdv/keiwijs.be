@@ -1,7 +1,7 @@
 [project]
-name = "smartschool-planner-filter"
+name = "keiwijs-planner"
 version = "0.1.0"
-description = "Credential-free filter proxy for the SmartSchool Planner ICS feed (per-class tags, yearly rollover)."
+description = "Keiwijs Planner: credential-free filter proxy for the Smartschool Planner ICS feed (per-class tags, yearly rollover)."
 readme = "README.md"
 license = "MIT"
 requires-python = ">=3.13,<3.14"

@@ -1,0 +1,3 @@
+/* Open Sans, self-hosted (OFL, see static/fonts/OFL.txt). One variable file (latin subset) covering
+   the four identity weights 300/400/600/700, as allowed by docs/identity/hugo-implementation.md §4. */
+@font-face { font-family: "Open Sans"; font-style: normal; font-weight: 300 800; font-display: swap; src: url("/fonts/OpenSans-Variable.woff2") format("woff2"); }

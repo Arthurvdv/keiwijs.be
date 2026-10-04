@@ -1,0 +1,51 @@
+name: CI site
+
+on:
+  push:
+  pull_request:
+
+
+permissions:
+  contents: read
+
+jobs:
+  site:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: '0.165.0'
+          extended: true
+
+      - name: Build site
+        working-directory: site
+        run: hugo --minify --gc --baseURL https://www.keiwijs.be/
+
+      - name: Check expected pages
+        working-directory: site/public
+        run: |
+          for f in index.html en/index.html planner/index.html en/planner/index.html \
+                   planner/privacy/index.html en/planner/how-it-works/index.html 404.html; do
+            test -f "$f" || { echo "missing $f"; exit 1; }
+          done
+          # The API base meta tag belongs to the planner pages only.
+          test "$(grep -c 'api-base' planner/index.html)" = "1"
+          test "$(grep -c 'api-base' index.html)" = "0"
+
+      - name: Validate staticwebapp.config.json
+        run: jq . site/staticwebapp.config.json > /dev/null
+
+      # Identity guard rails (docs/identity): UI copy has no exclamation marks and every
+      # colour in the built CSS is a token from colors.md.
+      - name: Tone of voice
+        run: |
+          if grep -n '!' site/i18n/*.toml; then echo "exclamation marks in UI copy"; exit 1; fi
+
+      - name: Colour allow-list
+        run: |
+          allowed=$(grep -ohE '#[0-9A-Fa-f]{6}' docs/identity/colors.md | tr 'a-f' 'A-F' | sort -u)
+          used=$(grep -rhoE '#[0-9A-Fa-f]{6}' site/public/css | tr 'a-f' 'A-F' | sort -u)
+          extra=$(comm -13 <(echo "$allowed") <(echo "$used"))
+          if [ -n "$extra" ]; then echo "colours not in docs/identity/colors.md:"; echo "$extra"; exit 1; fi

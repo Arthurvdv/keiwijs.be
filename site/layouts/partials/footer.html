@@ -1,9 +1,32 @@
 <footer class="site-footer">
-  <div class="container">
-    <p>{{ i18n "footer_disclaimer" }}</p>
-    <p>
-      {{ with site.GetPage "/privacy" }}<a href="{{ .RelPermalink }}">{{ i18n "footer_privacy" }}</a> &middot; {{ end }}
-      <a href="{{ site.Params.githubUrl }}" rel="noopener">{{ i18n "footer_source" }}</a> &middot; {{ i18n "license_mit" }}
-    </p>
+  <div class="container footer-grid">
+    <div class="footer-col">
+      <p class="overline">{{ i18n "footer_col_site" }}</p>
+      <ul>
+        {{- range site.Menus.main }}
+        <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+        {{- end }}
+      </ul>
+    </div>
+    <div class="footer-col">
+      <p class="overline">{{ i18n "footer_col_planner" }}</p>
+      <ul>
+        {{- range site.Menus.planner }}
+        <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+        {{- end }}
+      </ul>
+    </div>
+    <div class="footer-col">
+      <p class="overline">{{ i18n "footer_col_about" }}</p>
+      <ul>
+        <li><a href="{{ site.Params.githubUrl }}" rel="noopener">{{ i18n "footer_source" }}</a></li>
+        <li><a href="mailto:{{ site.Params.contactEmail }}">{{ i18n "footer_contact" }}</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="socket">
+    <div class="container">
+      <p>{{ i18n "footer_disclaimer" }} {{ i18n "license_mit" }}</p>
+    </div>
   </div>
 </footer>

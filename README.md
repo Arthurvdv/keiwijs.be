@@ -1,9 +1,11 @@
-# Smartschool Planner Filter
+# Keiwijs
 
-A small, free, credential-free service that turns the Smartschool Planner feed
-("Planner delen buiten Smartschool") into a calendar subscription that only
-contains the events for **your child's class** plus school-wide events, and that
-**moves the class selection forward every school year** on a date you pick.
+Free, small tools for parents of school-age children, at https://www.keiwijs.be.
+The first one is **Keiwijs Planner**: a credential-free service that turns the
+Smartschool Planner feed ("Planner delen buiten Smartschool") into a calendar
+subscription that only contains the events for **your child's class** plus
+school-wide events, and that **moves the class selection forward every school
+year** on a date you pick.
 
 Parents paste their Smartschool ICS link on the website, tick the class tags
 (K1…K3, L1…L6 by default; the list is editable and the *order* is what matters),
@@ -20,17 +22,27 @@ This trade-off is deliberate and documented on the privacy page.
 
 | | |
 |---|---|
-| Website | https://witty-mushroom-05c7b0c03.6.azurestaticapps.net |
-| API | https://ssplanner-func-fuzhk3.azurewebsites.net (`/healthz`) |
-| Feeds | `https://ssplannerstfuzhk3.z50.web.core.windows.net/feeds/<hash>.ics` |
+| Website | https://www.keiwijs.be |
+| Planner | https://www.keiwijs.be/planner/ |
+| API | https://planner-keiwijs-be.azurewebsites.net (`/healthz`) |
+| Feeds | `https://plannerkeiwijsbe.z??.web.core.windows.net/feeds/<hash>.ics` (zone label assigned by Azure at creation) |
 
 Deployed from `main` by GitHub Actions (see [docs/DEPLOY.md](docs/DEPLOY.md)).
+
+## Repository layout
+
+| Folder | Contents |
+|---|---|
+| `site/` | Hugo site for the whole domain: landing page at `/`, planner at `/planner/` (Dutch first, English under `/en/`) |
+| `planner/` | Azure Functions API (Python 3.13) and the `ssfilter` package, tests and tools |
+| `infra/` | Bicep for Flex Consumption + Storage + Static Web App + monitoring + budget |
+| `docs/` | deployment runbook and the brand identity guide (`docs/identity/`) |
 
 ## How it works
 
 ```
                  ┌──────────── Static Web App (Free) ────────────┐
-   parent ─────► │ Hugo site: paste link, tag editor, preview    │
+   parent ─────► │ www.keiwijs.be/planner: paste link, tag editor│
                  └──────┬────────────────────────────────────────┘
                         │ /api/inspect  /api/preview  /api/config
                  ┌──────▼────────── Azure Functions (Flex) ──────┐
@@ -43,25 +55,25 @@ Deployed from `main` by GitHub Actions (see [docs/DEPLOY.md](docs/DEPLOY.md)).
                                             calendar apps poll the blob
 ```
 
-* `ssfilter/ical.py` – byte-faithful RFC 5545 line parser/serializer (keeps UIDs
-  and unknown properties intact).
-* `ssfilter/tags.py` – tag model, Dutch class-name matching (`L3: Bib`,
+* `planner/ssfilter/ical.py` – byte-faithful RFC 5545 line parser/serializer
+  (keeps UIDs and unknown properties intact).
+* `planner/ssfilter/tags.py` – tag model, Dutch class-name matching (`L3: Bib`,
   `L4 + L6`, `L1-L6`, `kleuters`, `lagere school`, `iedereen (behalve …)`), and
   the yearly rollover (sequence based: `K3 → L1`, last tag drops off).
-* `ssfilter/rules.py` – keep/drop decision: exclude keyword → include keyword →
-  untagged (school-wide) → tag match.
-* `ssfilter/transform.py` – strips pupil names (`Extra deelnemers`), suffixes the
-  calendar name, adds TTL hints, and fingerprints the output ignoring `DTSTAMP`
-  (Smartschool regenerates it on every fetch).
-* `ssfilter/fetcher.py` – SSRF-guarded upstream fetch (https, `*.smartschool.be`,
-  `/planner/sync/ics/<uuid>/<uuid>` only, public IPs, size and time limits).
-* `ssfilter/store.py`, `ssfilter/publisher.py` – Table Storage and Blob static
-  website adapters plus in-memory doubles for tests.
-* `ssfilter/renderer.py` – rollover-if-due → fetch → filter → finalize →
+* `planner/ssfilter/rules.py` – keep/drop decision: exclude keyword → include
+  keyword → untagged (school-wide) → tag match.
+* `planner/ssfilter/transform.py` – strips pupil names (`Extra deelnemers`),
+  suffixes the calendar name, adds TTL hints, and fingerprints the output
+  ignoring `DTSTAMP` (Smartschool regenerates it on every fetch).
+* `planner/ssfilter/fetcher.py` – SSRF-guarded upstream fetch (https,
+  `*.smartschool.be`, `/planner/sync/ics/<uuid>/<uuid>` only, public IPs, size
+  and time limits).
+* `planner/ssfilter/store.py`, `planner/ssfilter/publisher.py` – Table Storage
+  and Blob static website adapters plus in-memory doubles for tests.
+* `planner/ssfilter/renderer.py` – rollover-if-due → fetch → filter → finalize →
   publish-if-changed; on upstream failure the previous blob stays.
-* `function_app.py` – HTTP API, admin routes (function key) and the hourly timer.
-* `site/` – Hugo site (Dutch first, English toggle).
-* `infra/` – Bicep for Flex Consumption + Storage + Static Web App + monitoring.
+* `planner/function_app.py` – HTTP API, admin routes (function key) and the
+  hourly timer.
 
 ## API
 
@@ -101,6 +113,7 @@ Prerequisites: Python 3.13 via [uv](https://docs.astral.sh/uv/), Azure Functions
 Core Tools v4, Node (for Azurite), Hugo extended.
 
 ```bash
+cd planner
 uv sync                                   # creates .venv with runtime + dev deps
 npm i -g azurite
 cp local.settings.json.example local.settings.json
@@ -111,11 +124,11 @@ azurite --silent --location .azurite
 # terminal 2: the API on http://localhost:7071
 func start
 
-# terminal 3: the site on http://localhost:1313 (reads params.apiBase)
-cd site && hugo server
+# terminal 3: the site on http://localhost:1313 (planner at /planner/)
+cd ../site && hugo server
 ```
 
-Tests, lint and types:
+Tests, lint and types (in `planner/`):
 
 ```bash
 uv run pytest -q
@@ -123,11 +136,8 @@ uv run ruff check . && uv run ruff format --check .
 uv run mypy
 ```
 
-The test fixture `tests/fixtures/calendar_anon.ics` is a real Smartschool
-Planner export with teacher and pupil names replaced
-(`tools/anonymise_ics.py`). `tests/golden/l3.ics` is the reviewed rendered
-output for an L3 selection; regenerate it with `python tools/make_golden.py`
-after an intentional output change.
+See [planner/README.md](planner/README.md) for the test fixtures and
+[site/README.md](site/README.md) for the website.
 
 ## Deployment
 
