@@ -32,6 +32,6 @@
 
 <section id="contact" class="contact">
   <h2>{{ i18n "contact_title" }}</h2>
-  <p>{{ i18n "contact_text" }} <a href="mailto:{{ site.Params.contactEmail }}">{{ site.Params.contactEmail }}</a></p>
+  <p>{{ i18n "contact_text" }} <a href="{{ site.Params.githubUrl }}" rel="noopener">{{ i18n "contact_link" }}</a></p>
 </section>
 {{ end }}

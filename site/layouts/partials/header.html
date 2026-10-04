@@ -12,6 +12,7 @@
       <a href="{{ .URL }}"{{ if $current }} aria-current="page"{{ end }}>{{ .Name }}</a>
       {{- end }}
       {{ partial "lang-switch.html" . }}
+      {{ partial "theme-toggle.html" . }}
     </nav>
   </div>
 </header>

@@ -36,12 +36,11 @@ There is no login. Your Smartschool link is also your key: anyone who knows it c
 
 ## Deleting your data
 
-Paste your Smartschool link in the [planner]({{< relref "/planner" >}}) and click 'Delete settings'. Your settings and the filtered calendar are then erased. If that does not work, email the address below.
+Paste your Smartschool link in the [planner]({{< relref "/planner" >}}) and click 'Delete settings'. Your settings and the filtered calendar are then erased. If that does not work, let us know on GitHub (see below). Never paste your Smartschool link there.
 
 ## Contact and source code
 
 - Responsible: Arthur, a private individual.
-- Privacy questions: [tuurbo@outlook.com](mailto:tuurbo@outlook.com)
 - Source code (MIT license): [github.com/Arthurvdv/keiwijs.be](https://github.com/Arthurvdv/keiwijs.be)
 
 Under the GDPR you have the right to access, correct and delete your data, and to lodge a complaint with the Belgian Data Protection Authority.

@@ -15,6 +15,9 @@
   {{- with site.Params.fontPreload }}
   <link rel="preload" href="{{ . }}" as="font" type="font/woff2" crossorigin>
   {{- end }}
+  {{- /* Applies the stored theme before the CSS paints; external because the CSP forbids inline scripts. */}}
+  {{- $theme := resources.Get "js/theme.js" | minify | fingerprint }}
+  <script src="{{ $theme.RelPermalink }}" integrity="{{ $theme.Data.Integrity }}"></script>
   {{- block "head" . }}{{ end }}
   {{- /* tokens → fonts → base → components → planner, concatenated (no @import). */}}
   {{- $css := slice (resources.Get "css/tokens.css") (resources.Get "css/fonts.css") (resources.Get "css/base.css") (resources.Get "css/components.css") (resources.Get "css/planner.css") | resources.Concat "css/main.css" | minify | fingerprint }}

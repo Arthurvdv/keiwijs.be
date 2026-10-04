@@ -8,9 +8,10 @@ slug: "how-it-works"
 ## Where do I find my Smartschool link? {#link-vinden}
 
 1. Open the **Planner** in Smartschool.
-2. Choose **Share planner outside Smartschool** (Planner delen buiten Smartschool).
-3. **Copy the link.** It starts with `https://` and contains `.smartschool.be/planner/sync/ics/`.
-4. Paste the link in the [planner]({{< relref "/planner" >}}) and click 'Check'.
+2. Click the gear icon on the left (**Manage**, Beheer) and choose **Share planner (ICS export)** (Planner delen (ICS-export)).
+3. Click **Add profile** (Profiel toevoegen), give it a name and choose what to share. Smartschool also explains this under *Lees alle informatie in de handleiding* (read all information in the manual). If you already have a profile, skip this step.
+4. **Copy the URL** of your profile from the list. It starts with `https://` and contains `.smartschool.be/planner/sync/ics/`.
+5. Paste the link in the [planner]({{< relref "/planner" >}}) and click 'Check'.
 
 ## How are classes detected?
 

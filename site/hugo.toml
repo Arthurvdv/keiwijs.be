@@ -13,7 +13,6 @@ disableDefaultLanguageRedirect = true
   # Base URL of the Azure Functions API (no trailing slash). Overridden in production config.
   apiBase = "http://localhost:7071"
   githubUrl = "https://github.com/Arthurvdv/keiwijs.be"
-  contactEmail = "tuurbo@outlook.com"
   themeColor = "#FF520E"
   fontPreload = "/fonts/OpenSans-Variable.woff2"
 

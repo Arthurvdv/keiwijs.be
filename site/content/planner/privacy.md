@@ -36,12 +36,11 @@ Er is geen aanmelding. Je Smartschool-link is tegelijk je sleutel: wie ze kent, 
 
 ## Je gegevens verwijderen
 
-Plak je Smartschool-link in de [planner]({{< relref "/planner" >}}) en klik op 'Instellingen verwijderen'. Je instellingen en de gefilterde kalender worden dan gewist. Lukt dat niet, mail dan naar het adres hieronder.
+Plak je Smartschool-link in de [planner]({{< relref "/planner" >}}) en klik op 'Instellingen verwijderen'. Je instellingen en de gefilterde kalender worden dan gewist. Lukt dat niet, laat het dan weten via GitHub (zie hieronder). Plak daar nooit je Smartschool-link.
 
 ## Contact en broncode
 
 - Verantwoordelijke: Arthur, een privépersoon.
-- Vragen over privacy: [tuurbo@outlook.com](mailto:tuurbo@outlook.com)
 - Broncode (MIT-licentie): [github.com/Arthurvdv/keiwijs.be](https://github.com/Arthurvdv/keiwijs.be)
 
 Volgens de AVG heb je recht op inzage, verbetering en verwijdering van je gegevens, en kan je klacht indienen bij de Gegevensbeschermingsautoriteit.

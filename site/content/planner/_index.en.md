@@ -6,6 +6,6 @@ description: "Turn the Smartschool planner into a calendar with only the activit
 
 ## How it works
 
-1. **Paste your Smartschool link.** In Smartschool, copy the link under Planner, Share planner outside Smartschool, and paste it above.
+1. **Paste your Smartschool link.** In Smartschool, copy the link via Planner, Manage (gear icon), Share planner (ICS export), and paste it above.
 2. **Pick your child's class.** Tick the right class(es) and see right away in the preview which activities remain.
 3. **Add the new calendar link.** Subscribe in Google Calendar, on your iPhone or in Outlook. Every school year the class moves up by itself.
