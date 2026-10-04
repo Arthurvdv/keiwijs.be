@@ -1,5 +1,5 @@
 # Keys prefixed with "js_" are exported to app.js (see layouts/partials/i18n-json.html).
-site_tagline = "Smart little tools for parents"
+site_tagline = "Handy little tools for parents"
 skip_link = "Skip to content"
 nav_label = "Main menu"
 lang_switch_label = "Language"
@@ -15,7 +15,7 @@ trust_text = "No password needed. We only store your Smartschool link and your s
 trust_more = "Read more about privacy"
 
 url_label = "Paste your Smartschool link here"
-url_help = "Find it in Smartschool under Planner, Share planner outside Smartschool."
+url_help = "Find it in Smartschool under Planner, Manage (gear icon), Share planner (ICS export)."
 url_help_link = "Where do I find that link?"
 btn_inspect = "Check"
 
@@ -125,11 +125,14 @@ js_months = "January,February,March,April,May,June,July,August,September,October
 nav_planner_label = "Planner menu"
 tools_title = "Tools"
 contact_title = "Contact"
-contact_text = "Questions, spotted a mistake or have an idea for a new tool? Email"
+contact_text = "Questions, spotted a mistake or have an idea for a new tool? Let us know on"
+contact_link = "GitHub"
 footer_col_site = "Keiwijs"
 footer_col_planner = "Planner"
 footer_col_about = "About"
-footer_contact = "Contact"
+theme_system = "Theme: system"
+theme_light = "Theme: light"
+theme_dark = "Theme: dark"
 not_found_title = "This page does not exist"
 not_found_text = "The link is out of date or mistyped. Go back to the home page and try from there."
 not_found_home = "Back to the home page"

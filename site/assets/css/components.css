@@ -20,6 +20,20 @@
 .lang-switch a:hover { color: var(--color-text); text-decoration: none; }
 .lang-switch [aria-current] { color: var(--color-text); font-weight: 600; }
 
+/* derived: theme toggle (system / light / dark), see assets/js/theme.js */
+.theme-toggle {
+  display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; padding: 0;
+  border: 0; border-radius: var(--radius-round); background: transparent; color: var(--color-text-secondary); cursor: pointer;
+  transition: color var(--motion-fast), background-color var(--motion-fast);
+}
+.theme-toggle[hidden] { display: none; }
+.theme-toggle:hover { color: var(--color-text); background: var(--color-bg-hover); }
+.theme-toggle:focus-visible { outline: none; box-shadow: var(--shadow-focus); }
+.theme-toggle svg { display: none; }
+.theme-toggle[data-mode="system"] .icon-system,
+.theme-toggle[data-mode="light"] .icon-light,
+.theme-toggle[data-mode="dark"] .icon-dark { display: block; }
+
 /* ---------- planner sub-navigation (filter chips, components.md §8) ---------- */
 .sub-nav { background: var(--color-bg); border-bottom: 1px solid var(--color-border-subtle); }
 .sub-nav ul { display: flex; gap: var(--space-2); list-style: none; margin: 0; padding: var(--space-2) 0; overflow-x: auto; }

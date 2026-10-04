@@ -288,12 +288,14 @@ small, .meta { font-size: var(--text-meta); color: var(--color-text-muted); }
 | `layouts/shortcodes/alert.html` (new) | `{{< alert kind="info" >}}…{{< /alert >}}` → `.alert.alert-info` using the soft tokens. |
 | `layouts/partials/planner-legend.html` (if applicable) | render `data/planner_types.yaml` (see `planner-item-types.md` §5): icon · label per row. |
 
-### Theme toggle (optional)
+### Theme toggle
 
-If a manual toggle is wanted, set `data-theme="light|dark"` on `<html>` from
-`localStorage` before CSS loads (inline script in `<head>`), and expose a 3-state
-control *Systeem / Licht / Donker* in the footer. Without a toggle, `tokens.css` already
-follows the OS preference.
+`assets/js/theme.js` sets `data-theme="light|dark"` on `<html>` from `localStorage`
+before CSS loads. It is an external, fingerprinted script loaded synchronously in
+`<head>`, because the CSP (`script-src 'self'`) blocks inline scripts. The 3-state
+control *Systeem / Licht / Donker* (`partials/theme-toggle.html`) sits in the header
+next to the language switch. With "Systeem" (the default) `tokens.css` follows the OS
+preference.
 
 ## 6. Content pass
 
