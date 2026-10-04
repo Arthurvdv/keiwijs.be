@@ -19,7 +19,8 @@ vulnerability"). You should get a first reply within 7 days.
 * Upstream fetches are limited to `https://*.smartschool.be/planner/sync/ics/<uuid>/<uuid>`,
   resolved addresses must be public, redirects are re-validated, bodies are
   capped at 5 MiB and 15 s.
-* Pupil names in `Extra deelnemers` are stripped from published feeds by default.
+* Extra participants (`Extra deelnemers`, which can be pupil names) are left out of
+  published feeds by default; users can opt in.
 
 Reports about SSRF bypasses, feed-name enumeration, injection through calendar
 content, or anything that would expose one user's data to another are very

@@ -69,6 +69,15 @@ def test_strip_extra_deelnemers() -> None:
     assert strip_extra_deelnemers("Kalender: X") == ("Kalender: X", False)
 
 
+def test_participants_and_icons(calendar: ical.Component) -> None:
+    stripped = render(RuleEngine(_cfg({"L4"})).apply(calendar)[0], _cfg({"L4"})).decode("utf-8")
+    assert "Extra deelnemers" not in stripped
+    cfg = _cfg({"L4"}, strip_participants=False, title_icons=False)
+    kept = ical.parse(render(RuleEngine(cfg).apply(calendar)[0], cfg))
+    toets = next(e for e in kept.events() if ical.text_value(e, "SUMMARY") == "Vlaamse toets L4")
+    assert "👥 Extra deelnemers: " in ical.text_value(toets, "DESCRIPTION")
+
+
 def test_render_output_properties(calendar: ical.Component) -> None:
     cfg = _cfg({"L2"})
     filtered, _ = RuleEngine(cfg).apply(calendar)

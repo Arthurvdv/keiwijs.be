@@ -95,6 +95,19 @@ input[type="text"]:focus-visible, input[type="url"]:focus-visible, select:focus-
 input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--color-action); flex: none; margin: .25em 0 0; }
 input:disabled { opacity: var(--opacity-disabled); }
 .help { color: var(--color-text-secondary); font-size: var(--text-small); margin: var(--space-1) 0 var(--space-2); }
+fieldset.plain { border: 0; margin: 0; padding: 0; min-width: 0; }
+fieldset.plain:disabled { opacity: var(--opacity-disabled); }
+
+/* ---------- tooltip: <x class="tip" data-tip="…">; shows on hover, keyboard focus and tap (focus) ---------- */
+.tip { position: relative; }
+.tip::after {
+  content: attr(data-tip); position: absolute; z-index: 10; bottom: calc(100% + 6px); left: 50%; transform: translateX(-50%);
+  width: max-content; max-width: min(240px, 70vw); padding: var(--space-1) var(--space-2); border-radius: var(--radius-md);
+  background: var(--color-text); color: var(--color-bg); font-size: var(--text-meta); font-weight: 400; line-height: 1.35;
+  text-align: left; white-space: normal; pointer-events: none; opacity: 0; visibility: hidden;
+  transition: opacity var(--motion-fast) ease-in-out, visibility var(--motion-fast) ease-in-out;
+}
+.tip:hover::after, .tip:focus-within::after { opacity: 1; visibility: visible; }
 
 /* ---------- containers (components.md §6) ---------- */
 .card { background: var(--color-bg); border-radius: var(--radius-card); box-shadow: var(--shadow-card); padding: var(--space-6); margin-top: var(--space-5); }

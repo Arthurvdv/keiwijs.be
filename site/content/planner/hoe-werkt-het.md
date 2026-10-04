@@ -33,11 +33,17 @@ Activiteiten voor de hele school, zoals zwemmen, studiedagen en vakanties, hebbe
 
 ## Hoe werkt de jaarlijkse doorschuiving?
 
-Elk jaar op de datum die je kiest (standaard 1 juli) schuiven de geselecteerde klassen één plaats op in de lijst. De volgorde van de lijst bepaalt dus waar je kind naartoe gaat.
+Elk jaar op de datum die je kiest (standaard 1 augustus) schuiven de geselecteerde klassen één plaats op in de lijst. De volgorde van de lijst bepaalt dus waar je kind naartoe gaat.
 
-**Voorbeeld:** je hebt twee kinderen, het ene in K2 en het andere in L4. Op 1 juli wordt dat K3 en L5. Zat een kind in L6, dan valt die klas weg: het kind verlaat de lagere school en die klas wordt niet meer gevolgd.
+**Voorbeeld:** je hebt twee kinderen, het ene in K2 en het andere in L4. Op 1 augustus wordt dat K3 en L5. Zat een kind in L6, dan valt die klas weg: het kind verlaat de lagere school en die klas wordt niet meer gevolgd.
 
-Wil je dat een klas niet meeschuift, bijvoorbeeld omdat je kind zit te blijven, haal dan het vinkje bij "volgend schooljaar doorschuiven" weg.
+Wil je dat een klas niet meeschuift, bijvoorbeeld omdat je kind zit te blijven, haal dan het vinkje bij "Volgend schooljaar doorschuiven" (het afstudeerhoedje) weg.
+
+## Pictogrammen
+
+Bevat de titel van een activiteit een woord uit je lijst, dan komt het bijhorende pictogram ervoor, bijvoorbeeld ☀️ voor "vakantie" of 📚 voor "bib". De eerste regel die past, wint. Past er geen enkele regel, dan krijgt de activiteit het reservepictogram (standaard 📌); laat dat leeg als je dan liever geen pictogram ziet. Je kan regels toevoegen, verwijderen en van volgorde veranderen, of de pictogrammen in de titel helemaal uitzetten.
+
+In de beschrijving krijgen de vaste velden van Smartschool altijd een pictogram: 🗓️ Kalender, 👤 Organisator, 👥 Deelnemers, 🔗 Weblink en 📝 Organisatie of verloop.
 
 ## Beperkingen
 

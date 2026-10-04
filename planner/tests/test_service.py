@@ -53,13 +53,19 @@ async def test_inspect_new_feed(app: App, fixture_bytes: bytes) -> None:
     assert data["calendarName"] == "GMail"
     assert data["tagHits"]["L2"] == 17 and data["tagHits"]["K1"] == 1
     assert data["settings"]["tags"][0] == {"name": "K1", "selected": False, "moveNext": False}
-    assert data["settings"]["rolloverMonthDay"] == "07-01"
+    assert data["settings"]["rolloverMonthDay"] == "08-01"
+    assert data["settings"]["titleIcons"] is True
+    assert data["settings"]["fallbackIcon"] == "📌"
+    assert data["settings"]["iconRules"][0] == {"keyword": "vakantie", "icon": "☀️"}
     assert data["feedUrl"].startswith("https://acct.z6.web.core.windows.net/feeds/")
     # nothing selected yet: only untagged items are kept
     assert data["keptCount"] == 48
     first = data["events"][0]
     assert set(first) >= {"uid", "start", "summary", "tags", "keep", "reason", "detail", "allDay"}
     assert first["start"] == "2026-09-03T16:00:00Z" and first["allDay"] is False
+    icons = {e["summary"]: e["icon"] for e in data["events"]}
+    assert icons["L3: Bib"] == "📚" and icons["Kerstvakantie"] == "☀️"
+    assert icons["Paaslunch"] == "📌"
 
 
 @respx.mock
@@ -119,6 +125,22 @@ async def test_validation_errors(app: App, fixture_bytes: bytes) -> None:
     with pytest.raises(ApiError) as exc:
         await app.save(URL, {"tags": "nope"})
     assert exc.value.code == "invalid_settings"
+    with pytest.raises(ApiError) as exc:
+        await app.save(URL, _settings(["L1"], iconRules=[{"keyword": "", "icon": "x"}]))
+    assert exc.value.code == "invalid_settings"
+
+
+@respx.mock
+async def test_icon_settings_round_trip(app: App, fixture_bytes: bytes) -> None:
+    respx.get(URL).mock(return_value=httpx.Response(200, content=fixture_bytes))
+    rules = [{"keyword": "Bib", "icon": "☀"}, {"keyword": "toets", "icon": "📝"}]
+    await app.save(URL, _settings(["L3"], titleIcons=False, iconRules=rules, fallbackIcon=""))
+    again = await app.inspect(URL)
+    assert again["settings"]["titleIcons"] is False
+    assert again["settings"]["fallbackIcon"] == ""
+    # the lone text-presentation sun gets VS16 so it renders full width
+    assert again["settings"]["iconRules"][0] == {"keyword": "Bib", "icon": "☀️"}
+    assert all(e["icon"] is None for e in again["events"])
 
 
 @respx.mock

@@ -26,7 +26,7 @@ Until you delete it yourself. Calendars whose Smartschool link has not worked fo
 
 - No passwords and no accounts.
 - No analytics or tracking cookies. This website does not use cookies.
-- Pupil names in the "Extra deelnemers" field are removed from the description by default (you can switch this off under Advanced).
+- The "Extra deelnemers" (extra participants) field can contain pupil names. Smartschool shows them itself, but we leave them out of the description by default. You can include them with "Include extra participants in the description" under Advanced.
 
 ## Important: your link is your secret
 

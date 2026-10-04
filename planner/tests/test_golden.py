@@ -35,4 +35,7 @@ def test_golden_sanity() -> None:
     assert data.count(b"BEGIN:VEVENT") == 64
     assert b"Extra deelnemers" not in data
     assert b"X-WR-CALNAME:GMail (L3)" in data
+    assert "SUMMARY:☀️ Kerstvakantie".encode() in data
+    assert "SUMMARY:📚 L3: Bib".encode() in data
+    assert "DESCRIPTION:🗓️ Kalender: ".encode() in data
     assert all(len(line) <= 75 for line in data.split(b"\r\n"))

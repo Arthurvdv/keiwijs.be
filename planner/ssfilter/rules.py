@@ -7,6 +7,7 @@ from dataclasses import dataclass, field
 from typing import Literal
 
 from .ical import Component, text_value
+from .icons import DEFAULT_FALLBACK_ICON, DEFAULT_ICON_RULES, IconRule
 from .tags import Tag, TagMatcher, TagSignal
 
 Reason = Literal[
@@ -30,6 +31,9 @@ class FilterConfig:
     exclude_keywords: tuple[str, ...] = ()
     use_organisator: bool = False
     strip_participants: bool = True
+    title_icons: bool = True
+    icon_rules: tuple[IconRule, ...] = DEFAULT_ICON_RULES
+    fallback_icon: str = DEFAULT_FALLBACK_ICON
 
     @property
     def selected_names(self) -> frozenset[str]:

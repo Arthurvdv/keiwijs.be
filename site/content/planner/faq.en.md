@@ -16,7 +16,7 @@ The filtered calendar is rebuilt every hour. Your calendar app fetches the chang
 
 Yes. Tick both classes, for example K2 and L4. Both children then appear in one calendar. Two separate calendars are not possible with the same link.
 
-## What happens on 1 July?
+## What happens on 1 August?
 
 On the rollover date every selected class with "move up" moves one place in the list: K2 becomes K3, K3 becomes L1 and L6 drops off. The calendar link stays the same.
 

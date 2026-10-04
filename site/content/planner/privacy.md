@@ -26,7 +26,7 @@ Tot je het zelf verwijdert. Kalenders waarvan de Smartschool-link langer dan 30 
 
 - Geen wachtwoorden en geen accounts.
 - Geen analytics- of tracking-cookies. Deze website gebruikt geen cookies.
-- Namen van leerlingen uit het veld "Extra deelnemers" worden standaard uit de beschrijving verwijderd (je kan dit uitzetten onder Geavanceerd).
+- Het veld "Extra deelnemers" kan namen van leerlingen bevatten. Smartschool toont die zelf ook, maar wij laten ze standaard weg uit de beschrijving. Je kan ze toch opnemen via "Extra deelnemers opnemen in de beschrijving" onder Geavanceerd.
 
 ## Belangrijk: je link is je geheim
 

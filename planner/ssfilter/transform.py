@@ -5,6 +5,7 @@ from __future__ import annotations
 import hashlib
 
 from .ical import Component, escape_text, make_line, serialize, text_value, unfold
+from .icons import decorate_description, prefix_summary
 from .rules import FilterConfig
 
 PARTICIPANTS_PREFIX = "extra deelnemers:"
@@ -22,14 +23,21 @@ def strip_extra_deelnemers(description: str) -> tuple[str, bool]:
 
 
 def apply_event_transforms(event: Component, cfg: FilterConfig) -> None:
-    if not cfg.strip_participants:
-        return
     prop = event.get("DESCRIPTION")
-    if prop is None:
-        return
-    new_text, changed = strip_extra_deelnemers(text_value(event, "DESCRIPTION"))
-    if changed:
-        event.set(prop.with_value(escape_text(new_text)))
+    if prop is not None:
+        original = text_value(event, "DESCRIPTION")
+        text = original
+        if cfg.strip_participants:
+            text, _ = strip_extra_deelnemers(text)
+        text = decorate_description(text)
+        if text != original:
+            event.set(prop.with_value(escape_text(text)))
+    summary = event.get("SUMMARY")
+    if cfg.title_icons and summary is not None:
+        original = text_value(event, "SUMMARY")
+        titled = prefix_summary(original, cfg.icon_rules, cfg.fallback_icon)
+        if titled != original:
+            event.set(summary.with_value(escape_text(titled)))
 
 
 def set_calname(calendar: Component, suffix: str) -> None:

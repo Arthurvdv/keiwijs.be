@@ -16,7 +16,7 @@ De gefilterde kalender wordt elk uur opnieuw opgebouwd. Je kalender-app haalt de
 
 Ja. Vink beide klassen aan, bijvoorbeeld K2 en L4. Beide kinderen zitten dan in één kalender. Wil je twee aparte kalenders, dan kan je dat niet met dezelfde link doen.
 
-## Wat gebeurt er op 1 juli?
+## Wat gebeurt er op 1 augustus?
 
 Op de doorschuifdatum schuift elke geselecteerde klas met "doorschuiven" één plaats op in de lijst: K2 wordt K3, K3 wordt L1 en L6 valt weg. De kalenderlink blijft dezelfde.
 
