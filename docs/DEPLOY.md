@@ -135,21 +135,24 @@ Notes:
 
 ## Custom domains (DNS at the registrar, mijn.host)
 
+Both domains are bound (done 2026-10-04); this section documents how, for a re-provision.
+
 mijn.host supports A, AAAA, CNAME, SPF, SRV and TXT records (no ALIAS/ANAME, no URL forwarding), so the
 apex uses the TXT-token validation plus an A record to the Static Web App's stable inbound IP, as in the
 [Azure docs for external DNS providers](https://learn.microsoft.com/azure/static-web-apps/apex-domain-external).
 
-| Phase | Who | Step |
+| Step | Who | What |
 |---|---|---|
 | 1 | workflow | `Deploy infra` with default inputs creates everything. Read `staticWebAppDefaultHostname` from the job summary. |
-| 1 | you | At the registrar: `CNAME www -> <staticWebAppDefaultHostname>` (TTL 300). Check with `nslookup -type=CNAME www.keiwijs.be 1.1.1.1`. |
-| 2 | workflow | `Run workflow` → `Deploy infra` with **bindCustomDomains = true**. Bicep creates the `www` binding (CNAME validation; the operation waits for DNS, so only run it once the CNAME resolves). Wait until `az staticwebapp hostname list -n keiwijs-be-swa -g rg-keiwijs-prod -o table` shows `Ready`. |
-| 3 | workflow | `Run workflow` → `Deploy infra` with **bindCustomDomains = true** and **bindApex = true**. The job summary prints the TXT validation token and the stable inbound IP. |
-| 3 | you | At the registrar: `TXT @ = <token>` and `A @ = <stableInboundIP>`. If validation stays `Validating` for more than 30 minutes, add the same TXT at `_dnsauth.www.keiwijs.be` as well. |
-| 4 | you | Azure portal → `keiwijs-be-swa` → Custom domains → `www.keiwijs.be` → **Set default**. Azure then redirects `keiwijs.be` and the `*.azurestaticapps.net` hostname to `www.keiwijs.be`. This setting has no CLI or Bicep equivalent. |
-| 5 | you | Flip `bindCustomDomains = true` in `infra/main.bicepparam` so a re-provision reproduces the `www` binding. |
+| 2 | you | Registrar: `CNAME www -> <staticWebAppDefaultHostname>.` (TTL 300). Delete the registrar's parking A/AAAA records (apex and `*`). Check with `nslookup -type=CNAME www.keiwijs.be 1.1.1.1`. |
+| 3 | you | Portal → `keiwijs-be-swa` → Custom domains → Add `www.keiwijs.be` (CNAME validation). Or `Deploy infra` with **bindCustomDomains = true**: that works too, but the deployment then hangs for 20+ minutes polling the operation (status "Forbidden" on the poll) and has to be cancelled, so the portal is the better route. |
+| 4 | you | Portal → Custom domains → Add `keiwijs.be` → TXT → Generate code. Or `Deploy infra` with **bindApex = true**, which prints the token and IP in the job summary. The stable inbound IP is also in the JSON view of the Static Web App (`stableInboundIP`, currently `20.82.12.44`). |
+| 5 | you | Registrar: `TXT @ = <token>` and `A @ = <stableInboundIP>`. Validation took about 7 minutes; if it stays `Validating` for more than 30 minutes, add the same TXT at `_dnsauth.www.keiwijs.be` as well. |
+| 6 | you | Portal → Custom domains → `www.keiwijs.be` → **Set default**. Azure then 301s `keiwijs.be` and the `*.azurestaticapps.net` hostname to `www.keiwijs.be`. This setting has no CLI or Bicep equivalent. |
 
+Check: `az staticwebapp hostname list -n keiwijs-be-swa -g rg-keiwijs-prod -o table` shows both `Ready`.
 The Static Web App Free tier allows two custom domains, which `www.keiwijs.be` and `keiwijs.be` use up.
+Keep the validation TXT record; it is harmless and saves a step if the binding ever needs re-validation.
 
 ## Finding the URLs
 
@@ -195,6 +198,6 @@ Expected: well under the 2/month budget.
 ## History
 
 - 2026-10-03: first deployment as `smartschool-planner-filter` in `rg-ssplanner-prod` (default Azure hostnames).
-- 2026-10: moved to keiwijs.be: repository renamed, resources re-provisioned in `rg-keiwijs-prod` with
-  explicit names, planner served at `www.keiwijs.be/planner/`. The old resource group was deleted after
-  verification.
+- 2026-10-04: moved to keiwijs.be: repository renamed, resources re-provisioned in `rg-keiwijs-prod` with
+  explicit names, planner served at `www.keiwijs.be/planner/`, both custom domains bound. The old resource
+  group `rg-ssplanner-prod` was deleted after verification.

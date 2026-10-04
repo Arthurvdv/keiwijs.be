@@ -19,9 +19,17 @@ param allowedOrigins string
 param instanceMemoryMB int = 512
 param maximumInstanceCount int = 40
 
+// The endpoints are never empty; the linter cannot see that.
+#disable-next-line BCP329
 var blobBase = endsWith(blobEndpoint, '/') ? substring(blobEndpoint, 0, length(blobEndpoint) - 1) : blobEndpoint
+// The endpoints are never empty; the linter cannot see that.
+#disable-next-line BCP329
 var queueBase = endsWith(queueEndpoint, '/') ? substring(queueEndpoint, 0, length(queueEndpoint) - 1) : queueEndpoint
+// The endpoints are never empty; the linter cannot see that.
+#disable-next-line BCP329
 var tableBase = endsWith(tableEndpoint, '/') ? substring(tableEndpoint, 0, length(tableEndpoint) - 1) : tableEndpoint
+// The endpoints are never empty; the linter cannot see that.
+#disable-next-line BCP329
 var feedBase = endsWith(staticWebsiteEndpoint, '/') ? substring(staticWebsiteEndpoint, 0, length(staticWebsiteEndpoint) - 1) : staticWebsiteEndpoint
 
 resource plan 'Microsoft.Web/serverfarms@2024-04-01' = {
