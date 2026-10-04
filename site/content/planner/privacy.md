@@ -11,8 +11,8 @@ Deze tool is een gratis, open-source hobbyproject van een privépersoon (Arthur)
 - De **Smartschool-link** die je plakt.
 - Je **instellingen**: de klassen, welke geselecteerd zijn, de doorschuifdatum en de trefwoorden.
 - **Tijdstippen**: wanneer de instellingen werden aangemaakt, gewijzigd en voor het laatst verwerkt.
-- Een **hash** (vingerafdruk) van de laatst gegenereerde agenda, om te weten of er iets veranderd is.
-- De gefilterde agenda zelf, als bestand dat je agenda-app ophaalt.
+- Een **hash** (vingerafdruk) van de laatst gegenereerde kalender, om te weten of er iets veranderd is.
+- De gefilterde kalender zelf, als bestand dat je kalender-app ophaalt.
 
 ## Waar?
 
@@ -20,7 +20,7 @@ De planner en je gegevens staan bij Microsoft Azure in de regio **België** (Bel
 
 ## Hoe lang?
 
-Tot je het zelf verwijdert. Agenda's waarvan de Smartschool-link langer dan 30 dagen niet meer werkt, kunnen automatisch verwijderd worden.
+Tot je het zelf verwijdert. Kalenders waarvan de Smartschool-link langer dan 30 dagen niet meer werkt, kunnen automatisch verwijderd worden.
 
 ## Wat bewaren we niet?
 
@@ -30,11 +30,13 @@ Tot je het zelf verwijdert. Agenda's waarvan de Smartschool-link langer dan 30 d
 
 ## Belangrijk: je link is je geheim
 
-Er is geen aanmelding. Je Smartschool-link is tegelijk je sleutel: wie ze kent, kan je gefilterde agenda bekijken en je instellingen wijzigen of verwijderen. Deel de link dus niet, en ook de agenda-link niet met mensen die dat niet mogen zien.
+{{< alert kind="info" >}}
+Er is geen aanmelding. Je Smartschool-link is tegelijk je sleutel: wie ze kent, kan je gefilterde kalender bekijken en je instellingen wijzigen of verwijderen. Deel de link dus niet, en ook de kalenderlink niet met mensen die dat niet mogen zien.
+{{< /alert >}}
 
 ## Je gegevens verwijderen
 
-Plak je Smartschool-link in de [planner]({{< relref "/planner" >}}) en klik op **Verwijder mijn instellingen**. Je instellingen en de gefilterde agenda worden dan gewist. Lukt dat niet, mail dan naar het adres hieronder.
+Plak je Smartschool-link in de [planner]({{< relref "/planner" >}}) en klik op 'Instellingen verwijderen'. Je instellingen en de gefilterde kalender worden dan gewist. Lukt dat niet, mail dan naar het adres hieronder.
 
 ## Contact en broncode
 

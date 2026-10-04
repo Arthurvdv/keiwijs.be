@@ -12,8 +12,12 @@
   <link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}">
   {{- end }}
   <link rel="canonical" href="{{ .Permalink }}">
+  {{- with site.Params.fontPreload }}
+  <link rel="preload" href="{{ . }}" as="font" type="font/woff2" crossorigin>
+  {{- end }}
   {{- block "head" . }}{{ end }}
-  {{- $css := resources.Get "css/main.css" | minify | fingerprint }}
+  {{- /* tokens → fonts → base → components → planner, concatenated (no @import). */}}
+  {{- $css := slice (resources.Get "css/tokens.css") (resources.Get "css/fonts.css") (resources.Get "css/base.css") (resources.Get "css/components.css") (resources.Get "css/planner.css") | resources.Concat "css/main.css" | minify | fingerprint }}
   <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
 </head>
 {{- $cls := .Kind }}
@@ -24,8 +28,10 @@
   {{- if eq .Section "planner" }}
   {{ partial "planner-nav.html" . }}
   {{- end }}
-  <main id="main" class="container">
-    {{ block "main" . }}{{ end }}
+  <main id="main">
+    <div class="container">
+      {{ block "main" . }}{{ end }}
+    </div>
   </main>
   {{ partial "footer.html" . }}
   {{ block "scripts" . }}{{ end }}

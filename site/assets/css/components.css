@@ -1,0 +1,107 @@
+/* Shared components: header, navigation, footer, buttons, forms, cards, alerts
+   (docs/identity/components.md). Derived decisions are marked "derived". */
+
+/* ---------- header (website header, components.md §5) ---------- */
+.site-header { background: var(--color-bg); border-bottom: 1px solid var(--color-border-subtle); }
+.header-inner { display: flex; flex-wrap: wrap; gap: var(--space-2) var(--space-5); align-items: center; justify-content: space-between; min-height: 72px; }
+.brand { display: flex; flex-direction: column; line-height: 1.25; color: var(--color-text); }
+.brand:hover, .brand:focus-visible { text-decoration: none; }
+.brand-name { font-weight: 700; font-size: 1.25rem; }
+.brand-tag { color: var(--color-text-secondary); font-size: var(--text-small); }
+.nav { display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-4); align-items: center; }
+.nav > a { color: var(--color-text); font: 600 var(--text-nav)/1 var(--font-sans); padding: var(--space-3) 2px; border-bottom: 2px solid transparent; }
+.nav > a:hover { text-decoration: none; border-bottom-color: var(--color-accent-soft); }
+.nav > a[aria-current="page"] { border-bottom-color: var(--color-accent); }
+/* derived: the top menu has two items, so it never needs the burger from components.md §5 */
+
+.lang-switch { display: flex; gap: var(--space-1); list-style: none; margin: 0 0 0 var(--space-2); padding: 0; font: var(--text-nav)/1 var(--font-sans); }
+.lang-switch li + li::before { content: "·"; color: var(--color-text-muted); margin-right: var(--space-1); }
+.lang-switch li > * { display: inline-block; padding: var(--space-2) var(--space-1); color: var(--color-text-secondary); }
+.lang-switch a:hover { color: var(--color-text); text-decoration: none; }
+.lang-switch [aria-current] { color: var(--color-text); font-weight: 600; }
+
+/* ---------- planner sub-navigation (filter chips, components.md §8) ---------- */
+.sub-nav { background: var(--color-bg); border-bottom: 1px solid var(--color-border-subtle); }
+.sub-nav ul { display: flex; gap: var(--space-2); list-style: none; margin: 0; padding: var(--space-2) 0; overflow-x: auto; }
+.sub-nav a {
+  display: inline-flex; align-items: center; height: 28px; padding: 0 var(--space-3); white-space: nowrap;
+  border-radius: var(--radius-pill); border: 1px solid var(--color-border);
+  color: var(--color-text); font: 600 var(--text-nav)/1 var(--font-sans);
+}
+.sub-nav a:hover { background: var(--color-bg-hover); text-decoration: none; }
+.sub-nav a[aria-current="page"] { background: var(--color-selected); border-color: var(--color-selected); color: var(--color-action); }
+
+/* ---------- footer (components.md §6) ---------- */
+.site-footer { background: var(--color-footer-bg); color: var(--color-footer-text); font-size: var(--text-nav); }
+.footer-grid { display: grid; gap: var(--space-5); grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); padding-top: var(--space-6); padding-bottom: var(--space-6); }
+.footer-col ul { list-style: none; margin: 0; padding: 0; }
+.footer-col li { margin: var(--space-1) 0; }
+.footer-col a { color: var(--color-footer-text); }
+.footer-col a:hover { color: var(--color-text-inverse); }
+.overline { font-size: var(--text-overline); font-weight: 600; line-height: 1.2; text-transform: uppercase; letter-spacing: 1px; color: var(--color-footer-heading); margin: 0 0 var(--space-2); }
+.socket { background: var(--color-socket-bg); color: var(--color-socket-text); font-size: .6875rem; }
+.socket p { margin: 0; padding: var(--space-3) 0; }
+
+/* ---------- buttons (components.md §3) ---------- */
+.btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--space-2);
+  min-height: 40px; padding: 0 var(--space-4);
+  border-radius: var(--radius-md); border: 1px solid transparent;
+  font: 600 var(--text-button) var(--font-sans); color: var(--color-text);
+  background: var(--color-bg); border-color: var(--color-border);   /* bare .btn = outline look */
+  cursor: pointer; text-decoration: none;
+  transition: background var(--motion-fast) ease-in-out, opacity var(--motion-fast) ease-in-out;
+}
+.btn:hover { background: var(--color-bg-hover); text-decoration: none; }
+.btn-outline { background: var(--color-bg); color: var(--color-text); border-color: var(--color-border); }
+.btn-outline:hover { background: var(--color-bg-hover); }
+.btn-primary { background: var(--color-action); color: var(--color-text-inverse); border-color: transparent; }
+.btn-primary:hover { background: var(--color-action-hover); }
+.btn-text { background: none; border-color: transparent; color: var(--color-text-secondary); }
+.btn-text:hover { color: var(--color-text); background: none; }
+.btn-link { background: none; border-color: transparent; color: var(--color-link-button); padding: 0; min-height: auto; }
+.btn-link:hover { text-decoration: underline; background: none; }
+.btn-accent { background: var(--color-accent); color: var(--color-text-inverse); border-color: transparent; border-bottom-color: var(--color-accent-strong); min-height: 48px; padding: 0 30px; }
+.btn-accent:hover { background: var(--color-accent); opacity: .9; }
+.btn-danger { background: var(--color-danger); color: var(--color-text-inverse); border-color: transparent; }
+.btn-danger:hover { background: var(--color-danger-hover); }
+.btn-lg { min-height: 48px; padding: 0 var(--space-5); }
+.btn-icon { min-height: 32px; min-width: 32px; padding: 0 var(--space-2); background: none; border-color: transparent; color: var(--color-link-button); }
+.btn-icon:hover { background: var(--color-bg-panel); }
+.btn[disabled], .btn:disabled { opacity: var(--opacity-disabled); pointer-events: none; }
+
+/* ---------- forms (components.md §4) ---------- */
+.field-label { display: block; font-size: var(--text-small); font-weight: 600; margin-bottom: var(--space-1); }
+input[type="text"], input[type="url"], select {
+  font: inherit; color: var(--color-text); background: var(--color-bg);
+  min-height: 40px; border: 1px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-2) var(--space-3); min-width: 0;
+}
+input::placeholder { color: var(--color-text-disabled); }
+input[type="text"]:focus-visible, input[type="url"]:focus-visible, select:focus-visible { border-color: var(--color-link-button); box-shadow: var(--shadow-focus); }
+input[type="checkbox"] { width: 16px; height: 16px; accent-color: var(--color-action); flex: none; margin: .25em 0 0; }
+input:disabled { opacity: var(--opacity-disabled); }
+.help { color: var(--color-text-secondary); font-size: var(--text-small); margin: var(--space-1) 0 var(--space-2); }
+
+/* ---------- containers (components.md §6) ---------- */
+.card { background: var(--color-bg); border-radius: var(--radius-card); box-shadow: var(--shadow-card); padding: var(--space-6); margin-top: var(--space-5); }
+@media (max-width: 767px) { .card { padding: var(--space-5) var(--space-4); border-radius: var(--radius-xl); } }
+.cards { display: grid; gap: var(--space-5); grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.tool-card { margin-top: 0; display: flex; flex-direction: column; gap: var(--space-3); }
+.tool-card h3 { margin: 0; }
+.tool-card p { flex: 1; margin: 0; }
+.tool-card .btn { align-self: flex-start; }
+
+.alert { border-radius: var(--radius-lg); padding: var(--space-4) var(--space-5); margin: var(--space-4) 0; font-size: var(--text-small); border: 1px solid; }
+.alert p:last-child { margin-bottom: 0; }
+.alert-info { background: var(--color-info-soft); border-color: var(--color-info-soft-border); color: var(--color-info-soft-text); }
+.alert-success { background: var(--color-success-soft); border-color: var(--color-success-soft-border); color: var(--color-success-soft-text); }
+.alert-warning { background: var(--color-warning-soft); border-color: var(--color-warning-soft-border); color: var(--color-warning-soft-text); }
+.alert-danger { background: var(--color-danger-soft); border-color: var(--color-danger-soft-border); color: var(--color-danger-soft-text); }
+.alert a { color: inherit; text-decoration: underline; }
+
+/* ---------- landing page ---------- */
+.hero { padding: var(--space-5) 0 var(--space-4); }
+.hero-actions { display: flex; flex-wrap: wrap; gap: var(--space-3); margin: var(--space-5) 0 0; }
+.tools, .about, .contact { margin-top: var(--space-7); }
+.tools h2, .contact h2 { margin-top: 0; }
+.not-found { padding: var(--space-6) 0; }

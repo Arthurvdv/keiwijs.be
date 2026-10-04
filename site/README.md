@@ -32,3 +32,17 @@ Output goes to `site/public/`. The deploy workflow copies `site/staticwebapp.con
 ## Translations
 
 UI strings live in `i18n/nl.toml` and `i18n/en.toml`. Keys starting with `js_` are exported to `assets/js/app.js` as a JSON block; when you add one, also add it to the list in `layouts/partials/i18n-json.html`. Landing-page marketing copy lives in the front matter of `content/_index*.md`, so the i18n files stay strict UI copy (no exclamation marks, see `docs/identity/tone-of-voice.md`).
+
+## Styling
+
+The identity in `docs/identity/` is applied through five stylesheets in `assets/css/`, concatenated and fingerprinted in `layouts/_default/baseof.html` (no `@import`):
+
+| File | Contents |
+|---|---|
+| `tokens.css` | the token sheet from `docs/identity/hugo-implementation.md` §2, verbatim (light + derived dark theme) |
+| `fonts.css` | self-hosted Open Sans (one variable woff2 in `static/fonts/`, OFL) |
+| `base.css` | short-name aliases for the planner CSS, element defaults, headings, links, focus ring, skip link |
+| `components.css` | header, menus, footer, buttons, forms, cards, alerts, landing sections |
+| `planner.css` | everything specific to the planner tool; keeps every class that `app.js` emits |
+
+Colours are only ever referenced by token name. CI checks that each hex value in the built CSS exists in `docs/identity/colors.md` and that the UI strings contain no exclamation marks.

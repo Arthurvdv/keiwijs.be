@@ -1,0 +1,137 @@
+/* Identity tokens. Copied verbatim from docs/identity/hugo-implementation.md §2;
+   values come from colors.md, typography.md and components.md. Change them there first. */
+
+/* ---------- identity tokens: light ---------- */
+:root {
+  /* brand & accent */
+  --color-accent: #FF520E;
+  --color-accent-strong: #D03808;
+  --color-accent-soft: #FF7337;
+  --gradient-brand: linear-gradient(180deg, #FF750E 0%, #F40700 100%);
+
+  /* interactive */
+  --color-action: #3A70E6;
+  --color-action-hover: #2564CF;
+  --color-link: #0033CC;
+  --color-link-button: #278DD7;
+  --color-info: #1B96F1;
+  --color-selected: #DCEBFA;
+  --color-unread: #DCEDFF;
+
+  /* status */
+  --color-success: #57D31A;        --color-success-hover: #2EB42F;
+  --color-warning: #FFCC00;        --color-warning-hover: #D2B224;
+  --color-danger: #E30000;         --color-danger-hover: #D20000;
+  --color-neutral-action: #D8E0E8; --color-neutral-action-hover: #91A6C1;
+  --color-info-soft: #E6F5FF;    --color-info-soft-border: #B0DEFF;    --color-info-soft-text: #022E4D;
+  --color-success-soft: #EAFCEA; --color-success-soft-border: #BCF6BC; --color-success-soft-text: #0D450E;
+  --color-warning-soft: #FFFCE8; --color-warning-soft-border: #FFF4B7; --color-warning-soft-text: #4D4409;
+  --color-danger-soft: #FFE6E6;  --color-danger-soft-border: #FFACAC;  --color-danger-soft-text: #4D0000;
+
+  /* text */
+  --color-text: #262626;
+  --color-text-secondary: #757575;
+  --color-text-muted: #868686;
+  --color-text-disabled: #CCCCCC;
+  --color-text-error: #E30000;
+  --color-text-inverse: #FFFFFF;
+
+  /* surfaces & borders */
+  --color-bg: #FFFFFF;
+  --color-bg-canvas: #EEEEEE;
+  --color-bg-alt: #F4F6F7;
+  --color-bg-sidebar: #F3F4F7;
+  --color-bg-panel: #F1F1F1;
+  --color-bg-hover: #F5F5F5;
+  --color-bg-flyout: #FEFEFE;
+  --color-bg-widget-header: #DBE0E6;
+  --color-border: #CCCCCC;
+  --color-border-strong: #868686;
+  --color-border-subtle: #E1E1E1;
+  --color-divider-menu: #808080;
+  --color-icon-settings: #7A71BB;
+  --color-footer-bg: #333333;
+  --color-footer-bg-deep: #222222;
+  --color-footer-text: #AAAAAA;
+  --color-footer-border: #555555;
+  --color-footer-heading: #919191;
+  --color-socket-bg: #111111;
+  --color-socket-text: #EEEEEE;
+
+  /* audience blocks */
+  --block-green: #98CC2C;  --block-green-text: #0D450E;
+  --block-yellow: #F7C447; --block-yellow-text: #4D4409;
+  --block-blue: #76BFF7;   --block-blue-text: #022E4D;
+  --block-orange: #FF520E; --block-orange-text: #FFFFFF;
+
+  /* shadows */
+  --shadow-1: 0 0 1px rgba(0,42,88,.08), 0 1px 2px rgba(0,42,88,.08);
+  --shadow-2: 0 0 2px rgba(0,42,88,.08), 0 1px 4px rgba(0,42,88,.08), 0 2px 8px rgba(0,42,88,.08);
+  --shadow-card: 0 0 24px rgba(0,42,88,.30);
+  --shadow-flyout: 0 4px 16px rgba(0,0,0,.50);
+  --shadow-focus: 0 0 5px #278DD7;
+
+  /* typography */
+  --font-sans: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --font-mono: ui-monospace, "Cascadia Mono", Consolas, Menlo, monospace;
+  --text-display: 3rem;   --text-h1: 2.5rem;  --text-h2: 1.75rem; --text-h3: 1.125rem; --text-h4: 1rem;
+  --text-lead: 1.25rem;   --text-body: 1rem;  --text-small: .875rem; --text-meta: .75rem;
+  --text-button: .875rem; --text-nav: .8125rem; --text-overline: .8125rem;
+
+  /* spacing & shape */
+  --space-1: 4px; --space-2: 8px; --space-3: 12px; --space-4: 16px; --space-5: 24px;
+  --space-6: 32px; --space-7: 48px; --space-8: 64px; --space-9: 96px;
+  --radius-sm: 4px; --radius-md: 6px; --radius-lg: 8px; --radius-xl: 12px;
+  --radius-card: 24px; --radius-pill: 999px; --radius-round: 50%;
+  --motion-fast: 150ms; --motion-slow: 250ms; --opacity-disabled: .45;
+  --container: 1130px; --content: 800px;
+
+  color-scheme: light;
+}
+
+/* ---------- identity tokens: dark (derived) ---------- */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { --_dark: 1; }
+}
+:root[data-theme="dark"] { --_dark: 1; }
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-bg: #1E2227; --color-bg-canvas: #15181C; --color-bg-alt: #232830;
+    --color-bg-sidebar: #1A1E23; --color-bg-panel: #272C33; --color-bg-hover: #272C33;
+    --color-bg-flyout: #272C33; --color-bg-widget-header: #272C33;
+    --color-border: #3A4149; --color-border-strong: #52606F; --color-border-subtle: #2E343B;
+    --color-text: #F4F6F7; --color-text-secondary: #A9B5C2; --color-text-muted: #91A0AF;
+    --color-text-disabled: #52606F; --color-text-error: #FF7373;
+    --color-link: #7CC6FD; --color-link-button: #4AAEF8;
+    --color-selected: #0B3A66; --color-unread: #0B3A66;
+    --color-info-soft: #0B2A44; --color-info-soft-border: #0B63A4; --color-info-soft-text: #B0DEFF;
+    --color-success-soft: #0D2E12; --color-success-soft-border: #219023; --color-success-soft-text: #BCF6BC;
+    --color-warning-soft: #332D0A; --color-warning-soft-border: #A68E19; --color-warning-soft-text: #FFF4B7;
+    --color-danger-soft: #3A0F0F; --color-danger-soft-border: #A60000; --color-danger-soft-text: #FFACAC;
+    --color-footer-bg: #0F1114; --color-footer-bg-deep: #0A0B0D; --color-socket-bg: #050607;
+    --shadow-card: 0 0 24px rgba(0,0,0,.60); --shadow-focus: 0 0 5px #4AAEF8;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --color-bg: #1E2227; --color-bg-canvas: #15181C; --color-bg-alt: #232830;
+  --color-bg-sidebar: #1A1E23; --color-bg-panel: #272C33; --color-bg-hover: #272C33;
+  --color-bg-flyout: #272C33; --color-bg-widget-header: #272C33;
+  --color-border: #3A4149; --color-border-strong: #52606F; --color-border-subtle: #2E343B;
+  --color-text: #F4F6F7; --color-text-secondary: #A9B5C2; --color-text-muted: #91A0AF;
+  --color-text-disabled: #52606F; --color-text-error: #FF7373;
+  --color-link: #7CC6FD; --color-link-button: #4AAEF8;
+  --color-selected: #0B3A66; --color-unread: #0B3A66;
+  --color-info-soft: #0B2A44; --color-info-soft-border: #0B63A4; --color-info-soft-text: #B0DEFF;
+  --color-success-soft: #0D2E12; --color-success-soft-border: #219023; --color-success-soft-text: #BCF6BC;
+  --color-warning-soft: #332D0A; --color-warning-soft-border: #A68E19; --color-warning-soft-text: #FFF4B7;
+  --color-danger-soft: #3A0F0F; --color-danger-soft-border: #A60000; --color-danger-soft-text: #FFACAC;
+  --color-footer-bg: #0F1114; --color-footer-bg-deep: #0A0B0D; --color-socket-bg: #050607;
+  --shadow-card: 0 0 24px rgba(0,0,0,.60); --shadow-focus: 0 0 5px #4AAEF8;
+  color-scheme: dark;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --motion-fast: 0ms; --motion-slow: 0ms; }
+}

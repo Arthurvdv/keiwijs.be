@@ -15,7 +15,7 @@ disableDefaultLanguageRedirect = true
   githubUrl = "https://github.com/Arthurvdv/keiwijs.be"
   contactEmail = "tuurbo@outlook.com"
   themeColor = "#FF520E"
-  fontPreload = "/fonts/OpenSans-Regular.woff2"
+  fontPreload = "/fonts/OpenSans-Variable.woff2"
 
 [languages]
   [languages.nl]

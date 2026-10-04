@@ -10,7 +10,7 @@ slug: "hoe-werkt-het"
 1. Open de **Planner** in Smartschool.
 2. Kies **Planner delen buiten Smartschool**.
 3. **Kopieer de link.** Ze begint met `https://` en bevat `.smartschool.be/planner/sync/ics/`.
-4. Plak de link in de [planner]({{< relref "/planner" >}}) en klik op Controleren.
+4. Plak de link in de [planner]({{< relref "/planner" >}}) en klik op 'Controleren'.
 
 ## Hoe worden klassen herkend?
 
@@ -28,7 +28,7 @@ Staat er geen klas in de titel, dan kan je optioneel de klas van de organiserend
 
 ## Wat betekent "zonder klasvermelding"?
 
-Activiteiten voor de hele school, zoals zwemmen, studiedagen en vakanties, hebben meestal geen klas in de titel. Standaard blijven die in jouw agenda. Zet de schakelaar uit als je ze liever niet ziet.
+Activiteiten voor de hele school, zoals zwemmen, studiedagen en vakanties, hebben meestal geen klas in de titel. Standaard blijven die in jouw kalender. Zet de schakelaar uit als je ze liever niet ziet.
 
 ## Hoe werkt de jaarlijkse doorschuiving?
 
@@ -42,4 +42,4 @@ Wil je dat een klas niet meeschuift, bijvoorbeeld omdat je kind zit te blijven, 
 
 - De titels in Smartschool zijn vrije tekst. Een leerkracht die een klas anders schrijft, kan ervoor zorgen dat een activiteit niet herkend wordt. Het voorbeeld toont altijd wat er gebeurt.
 - "Behalve" wordt zo goed mogelijk begrepen, maar is niet waterdicht.
-- De agenda wordt elk uur opnieuw opgebouwd. Google Agenda zelf kan tot 24 uur nodig hebben om wijzigingen op te halen.
+- De kalender wordt elk uur opnieuw opgebouwd. Google Agenda zelf kan tot 24 uur nodig hebben om wijzigingen op te halen.

@@ -30,11 +30,13 @@ Until you delete it yourself. Calendars whose Smartschool link has not worked fo
 
 ## Important: your link is your secret
 
+{{< alert kind="info" >}}
 There is no login. Your Smartschool link is also your key: anyone who knows it can see your filtered calendar and change or delete your settings. Do not share the link, and do not share the calendar link with people who should not see it.
+{{< /alert >}}
 
 ## Deleting your data
 
-Paste your Smartschool link in the [planner]({{< relref "/planner" >}}) and click **Delete my settings**. Your settings and the filtered calendar are then erased. If that does not work, email the address below.
+Paste your Smartschool link in the [planner]({{< relref "/planner" >}}) and click 'Delete settings'. Your settings and the filtered calendar are then erased. If that does not work, email the address below.
 
 ## Contact and source code
 

@@ -22,7 +22,7 @@ On the rollover date every selected class with "move up" moves one place in the 
 
 ## Can I change the date?
 
-Yes, under Rollover date you choose a day and month. After changing it, click Generate my calendar link again.
+Yes, under Rollover date you choose a day and month. After changing it, click 'Create calendar link' again.
 
 ## What if my child repeats a year?
 
@@ -38,7 +38,7 @@ Yes, free and without an account. The source code is open (MIT license).
 
 ## How do I remove everything?
 
-Paste your Smartschool link in the planner and click **Delete my settings**. More details are on the [privacy page]({{< relref "privacy" >}}).
+Paste your Smartschool link in the planner and click 'Delete settings'. More details are on the [privacy page]({{< relref "privacy" >}}).
 
 ## Is my calendar private?
 

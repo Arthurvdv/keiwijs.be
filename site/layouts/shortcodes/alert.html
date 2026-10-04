@@ -1,0 +1,5 @@
+{{- /* {{% alert kind="info" %}}…{{% /alert %}} → info | success | warning | danger (soft tokens). */ -}}
+{{- $kind := .Get "kind" | default "info" -}}
+<div class="alert alert-{{ $kind }}" role="note">
+{{ .Inner | markdownify }}
+</div>
