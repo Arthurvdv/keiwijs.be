@@ -16,7 +16,7 @@ Deze tool is een gratis, open-source hobbyproject van een privépersoon (Arthur)
 
 ## Waar?
 
-Alles staat bij Microsoft Azure in de regio **West-Europa** (Nederland).
+De planner en je gegevens staan bij Microsoft Azure in de regio **België** (Belgium Central). De website en de logboeken staan in de regio **West-Europa** (Nederland).
 
 ## Hoe lang?
 
@@ -34,12 +34,12 @@ Er is geen aanmelding. Je Smartschool-link is tegelijk je sleutel: wie ze kent, 
 
 ## Je gegevens verwijderen
 
-Plak je Smartschool-link op de [startpagina](/) en klik op **Verwijder mijn instellingen**. Je instellingen en de gefilterde agenda worden dan gewist. Lukt dat niet, mail dan naar het adres hieronder.
+Plak je Smartschool-link in de [planner]({{< relref "/planner" >}}) en klik op **Verwijder mijn instellingen**. Je instellingen en de gefilterde agenda worden dan gewist. Lukt dat niet, mail dan naar het adres hieronder.
 
 ## Contact en broncode
 
 - Verantwoordelijke: Arthur, een privépersoon.
 - Vragen over privacy: [tuurbo@outlook.com](mailto:tuurbo@outlook.com)
-- Broncode (MIT-licentie): [github.com/Arthurvdv/smartschool-planner-filter](https://github.com/Arthurvdv/smartschool-planner-filter)
+- Broncode (MIT-licentie): [github.com/Arthurvdv/keiwijs.be](https://github.com/Arthurvdv/keiwijs.be)
 
 Volgens de AVG heb je recht op inzage, verbetering en verwijdering van je gegevens, en kan je klacht indienen bij de Gegevensbeschermingsautoriteit.

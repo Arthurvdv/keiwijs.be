@@ -10,7 +10,7 @@ slug: "hoe-werkt-het"
 1. Open de **Planner** in Smartschool.
 2. Kies **Planner delen buiten Smartschool**.
 3. **Kopieer de link.** Ze begint met `https://` en bevat `.smartschool.be/planner/sync/ics/`.
-4. Plak de link op de [startpagina](/) en klik op Controleren.
+4. Plak de link in de [planner]({{< relref "/planner" >}}) en klik op Controleren.
 
 ## Hoe worden klassen herkend?
 

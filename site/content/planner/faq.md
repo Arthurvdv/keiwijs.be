@@ -1,12 +1,12 @@
 ---
 title: "Veelgestelde vragen"
 linkTitle: "FAQ"
-description: "Antwoorden op de meest gestelde vragen over Smartschool Planner Filter."
+description: "Antwoorden op de meest gestelde vragen over Keiwijs Planner."
 ---
 
 ## Waarom zie ik nog activiteiten van andere klassen?
 
-Meestal staat de klas niet (of anders geschreven) in de titel, waardoor de activiteit als "zonder klasvermelding" geldt en blijft staan. Bekijk het voorbeeld op de startpagina: daar staat per activiteit waarom ze blijft of verdwijnt. Je kan de schakelaar voor activiteiten zonder klas ook uitzetten.
+Meestal staat de klas niet (of anders geschreven) in de titel, waardoor de activiteit als "zonder klasvermelding" geldt en blijft staan. Bekijk het voorbeeld in de planner: daar staat per activiteit waarom ze blijft of verdwijnt. Je kan de schakelaar voor activiteiten zonder klas ook uitzetten.
 
 ## Hoe vaak wordt mijn agenda ververst?
 
@@ -38,7 +38,7 @@ Ja, gratis en zonder account. De broncode is open (MIT-licentie).
 
 ## Hoe verwijder ik alles?
 
-Plak je Smartschool-link op de startpagina en klik op **Verwijder mijn instellingen**. Meer uitleg staat op de [privacypagina](/privacy/).
+Plak je Smartschool-link in de planner en klik op **Verwijder mijn instellingen**. Meer uitleg staat op de [privacypagina]({{< relref "privacy" >}}).
 
 ## Is mijn agenda privé?
 

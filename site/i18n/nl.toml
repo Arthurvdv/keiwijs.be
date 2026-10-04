@@ -1,5 +1,5 @@
 # Keys prefixed with "js_" are exported to app.js (see layouts/partials/i18n-json.html).
-site_tagline = "Enkel de agenda van jouw klas"
+site_tagline = "Slimme hulpjes voor ouders"
 skip_link = "Naar de inhoud"
 nav_label = "Hoofdmenu"
 lang_switch_label = "Taal"
@@ -122,3 +122,16 @@ js_deleted = "Je instellingen zijn verwijderd."
 js_delete_none = "Er waren geen instellingen om te verwijderen."
 js_existing_banner = "Bestaande instellingen geladen voor deze link."
 js_months = "januari,februari,maart,april,mei,juni,juli,augustus,september,oktober,november,december"
+
+# Landing page, navigation and footer (added with the move to www.keiwijs.be).
+nav_planner_label = "Planner-menu"
+tools_title = "Hulpjes"
+contact_title = "Contact"
+contact_text = "Vragen, een foutje gezien of een idee voor een nieuw hulpje? Mail naar"
+footer_col_site = "Keiwijs"
+footer_col_planner = "Planner"
+footer_col_about = "Over"
+footer_contact = "Contact"
+not_found_title = "Deze pagina bestaat niet"
+not_found_text = "De link klopt niet meer of is verkeerd getypt. Ga terug naar de startpagina en probeer het van daaruit."
+not_found_home = "Naar de startpagina"

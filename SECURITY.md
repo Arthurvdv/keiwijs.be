@@ -4,8 +4,8 @@
 
 Please do **not** open a public issue for security problems. Use GitHub's
 private vulnerability reporting on this repository ("Security" tab → "Report a
-vulnerability"), or e-mail the maintainer address listed on the website's
-privacy page. You should get a first reply within 7 days.
+vulnerability"), or e-mail the maintainer address listed on the planner privacy page
+(https://www.keiwijs.be/planner/privacy/). You should get a first reply within 7 days.
 
 ## Scope and threat model
 

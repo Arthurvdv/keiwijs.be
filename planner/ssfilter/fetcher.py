@@ -111,7 +111,7 @@ async def fetch_ics(
     url: str,
     client: httpx.AsyncClient,
     *,
-    user_agent: str = "SmartSchoolPlannerFilter/1.0",
+    user_agent: str = "KeiwijsPlanner/1.0",
     host_pattern: re.Pattern[str] = _default_host,
     path_pattern: re.Pattern[str] = _default_path,
     max_bytes: int = MAX_BODY_BYTES,

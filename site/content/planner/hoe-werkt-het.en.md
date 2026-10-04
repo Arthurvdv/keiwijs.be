@@ -10,7 +10,7 @@ slug: "how-it-works"
 1. Open the **Planner** in Smartschool.
 2. Choose **Share planner outside Smartschool** (Planner delen buiten Smartschool).
 3. **Copy the link.** It starts with `https://` and contains `.smartschool.be/planner/sync/ics/`.
-4. Paste the link on the [home page](/en/) and click Check.
+4. Paste the link in the [planner]({{< relref "/planner" >}}) and click Check.
 
 ## How are classes detected?
 

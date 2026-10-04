@@ -1,0 +1,91 @@
+name: Deploy site
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'site/**'
+      - '.github/workflows/deploy-site.yml'
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
+
+concurrency:
+  group: deploy-site
+  cancel-in-progress: false
+
+env:
+  AZURE_RESOURCE_GROUP: ${{ vars.AZURE_RESOURCE_GROUP }}
+  SITE_DOMAIN: ${{ vars.SITE_DOMAIN }}
+  DEPLOYMENT_NAME: keiwijs-infra
+
+jobs:
+  site:
+    runs-on: ubuntu-latest
+    environment: prod
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: '0.165.0'
+          extended: true
+
+      - uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      # The infra deployment may be running in parallel (a push that touches infra/ and site/).
+      - name: Wait for infra deployment
+        id: infra
+        run: |
+          for i in $(seq 1 40); do
+            state=$(az deployment group show -g "$AZURE_RESOURCE_GROUP" -n "$DEPLOYMENT_NAME" --query properties.provisioningState -o tsv 2>/dev/null || echo "Missing")
+            case "$state" in
+              Succeeded) break ;;
+              Failed|Canceled) echo "infra deployment is $state"; exit 1 ;;
+              *) echo "infra deployment: $state, waiting..."; sleep 30 ;;
+            esac
+          done
+          [ "$state" = "Succeeded" ] || { echo "infra deployment not ready; run 'Deploy infra' first"; exit 1; }
+          OUT=$(az deployment group show -g "$AZURE_RESOURCE_GROUP" -n "$DEPLOYMENT_NAME" --query properties.outputs -o json)
+          echo "swaName=$(jq -r .staticWebAppName.value <<< "$OUT")" >> "$GITHUB_OUTPUT"
+          echo "storageAccountName=$(jq -r .storageAccountName.value <<< "$OUT")" >> "$GITHUB_OUTPUT"
+
+      - name: Build site
+        working-directory: site
+        run: hugo --minify --gc --baseURL "https://${SITE_DOMAIN}/"
+
+      # The SWA action reads staticwebapp.config.json from the app_location folder. The feed host
+      # (storage static website, zone label assigned at creation) is substituted into the CSP
+      # connect-src; the API host is explicit in the file.
+      - name: Copy SWA config
+        run: |
+          FEED_BASE=$(az storage account show -n "${{ steps.infra.outputs.storageAccountName }}" -g "$AZURE_RESOURCE_GROUP" --query primaryEndpoints.web -o tsv)
+          FEED_BASE="${FEED_BASE%/}"
+          sed -e "s|https://REPLACE-ME.web.core.windows.net|${FEED_BASE}|g" \
+              site/staticwebapp.config.json > site/public/staticwebapp.config.json
+          if grep -q REPLACE-ME site/public/staticwebapp.config.json; then echo "placeholder left in config"; exit 1; fi
+
+      - name: Fetch SWA deployment token
+        id: token
+        run: |
+          TOKEN=$(az staticwebapp secrets list \
+            --name "${{ steps.infra.outputs.swaName }}" \
+            --resource-group "$AZURE_RESOURCE_GROUP" \
+            --query properties.apiKey -o tsv)
+          echo "::add-mask::$TOKEN"
+          echo "token=$TOKEN" >> "$GITHUB_OUTPUT"
+
+      - uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ steps.token.outputs.token }}
+          action: upload
+          app_location: site/public
+          skip_app_build: true
+          skip_api_build: true
+          output_location: ''

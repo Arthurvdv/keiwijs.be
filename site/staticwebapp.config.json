@@ -1,0 +1,15 @@
+{
+  "trailingSlash": "always",
+  "responseOverrides": {
+    "404": { "rewrite": "/404.html" }
+  },
+  "globalHeaders": {
+    "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; font-src 'self'; connect-src 'self' https://planner-keiwijs-be.azurewebsites.net https://REPLACE-ME.web.core.windows.net; form-action 'self'; base-uri 'self'; frame-ancestors 'none'; object-src 'none'",
+    "Referrer-Policy": "strict-origin-when-cross-origin",
+    "X-Content-Type-Options": "nosniff",
+    "Permissions-Policy": "camera=(), microphone=(), geolocation=(), payment=(), usb=(), interest-cohort=()"
+  },
+  "mimeTypes": {
+    ".json": "application/json"
+  }
+}

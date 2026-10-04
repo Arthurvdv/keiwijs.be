@@ -176,3 +176,23 @@ details.advanced > summary, .accordion summary { cursor: pointer; font-weight: 6
 .accordion details { border: 1px solid var(--border); border-radius: 8px; padding: 6px 12px; margin: 6px 0; }
 .accordion details p { margin: 6px 0 8px; }
 .faq-q { margin-top: 1.4em; }
+
+/* Landing page, planner sub-nav, footer columns (interim styling; the identity restyle follows). */
+.hero-landing .display { font-size: clamp(2rem, 6vw, 3rem); font-weight: 300; line-height: 1.1; }
+.hero-landing .display strong { color: var(--accent); font-weight: 700; }
+.hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 20px; }
+.btn-outline { background: transparent; }
+.btn-accent { background: var(--accent); color: var(--accent-text); border-color: var(--accent); font-weight: 600; }
+.cards { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.tool-card h3 { margin-top: 0; }
+.about, .contact { margin-top: 40px; }
+.sub-nav { background: var(--surface); border-bottom: 1px solid var(--border); }
+.sub-nav ul { display: flex; gap: 6px; list-style: none; margin: 0; padding: 8px 0; overflow-x: auto; }
+.sub-nav a { display: inline-block; white-space: nowrap; padding: 4px 12px; border-radius: 999px; border: 1px solid var(--border); color: var(--text); text-decoration: none; font-size: .9rem; }
+.sub-nav a:hover, .sub-nav a[aria-current="page"] { background: var(--accent-soft); border-color: var(--accent); }
+.footer-grid { display: grid; gap: 24px; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); padding-bottom: 24px; }
+.footer-col ul { list-style: none; margin: 0; padding: 0; }
+.footer-col li { margin: 4px 0; }
+.overline { font-size: .8125rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin: 0 0 8px; }
+.socket { border-top: 1px solid var(--border); font-size: .8rem; }
+.not-found { text-align: left; }

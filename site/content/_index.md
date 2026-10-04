@@ -1,10 +1,15 @@
 ---
-title: "Smartschool Planner Filter"
-description: "Maak van de Smartschool-planner een agenda met enkel de activiteiten van de klas van je kind. Gratis, zonder account of wachtwoord."
+title: "Keiwijs"
+description: "Keiwijs maakt gratis, slimme hulpjes voor ouders van schoolgaande kinderen. Begin met de Planner: enkel de klas van je kind in je eigen kalender."
+params:
+  heroTitle: "Kei handig voor **ouders**"
+  heroLead: "Keiwijs bouwt kleine, gratis hulpjes die het schoolleven een beetje eenvoudiger maken. Geen account, geen reclame, gewoon handig."
+  ctaPrimary: "Planner openen"
+  ctaSecondary: "Meer over Keiwijs"
 ---
 
-## Zo werkt het
+## Over Keiwijs
 
-1. **Plak je Smartschool-link.** Kopieer in Smartschool de link bij Planner, Planner delen buiten Smartschool, en plak ze hierboven.
-2. **Kies de klas van je kind.** Vink de juiste klas(sen) aan en bekijk meteen in het voorbeeld welke activiteiten overblijven.
-3. **Voeg de nieuwe agenda-link toe.** Abonneer je in Google Agenda, op je iPhone of in Outlook. Elk schooljaar schuift de klas vanzelf op.
+Keiwijs is een hobbyproject van Arthur, papa van schoolgaande kinderen. Het begon met één ergernis: een schoolkalender vol activiteiten van andere klassen. Daar kwam de Planner uit voort, en er volgen wellicht nog meer hulpjes.
+
+Alles is gratis en open source. We vragen geen account, tonen geen reclame en bewaren niet meer dan nodig. Hoe we met je gegevens omgaan, lees je per hulpje op de privacypagina.

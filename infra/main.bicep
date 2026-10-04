@@ -6,16 +6,23 @@ param location string = resourceGroup().location
 @description('Region for resources not offered in the primary region: Static Web Apps (Central US, East US 2, West US 2, West Europe, East Asia only) and Application Insights components.')
 param secondaryLocation string = 'westeurope'
 
-@description('Base name used as prefix for all resources.')
-@minLength(3)
-@maxLength(12)
-param baseName string = 'ssplanner'
+@description('Custom domain of the website (bound to the Static Web App via CNAME).')
+param siteDomain string = 'www.keiwijs.be'
+
+@description('Phase 2 switch: create the custom-domain binding on the Static Web App. The CNAME for siteDomain must resolve publicly first, because the binding waits for DNS validation. The apex domain is bound by the Deploy infra workflow (TXT token flow), not here.')
+param bindCustomDomains bool = false
+
+// Explicit resource names (no hash suffix). Function app and storage account names are global.
+param functionAppName string = 'planner-keiwijs-be'
+param planName string = 'planner-keiwijs-be-plan'
+param storageAccountName string = 'plannerkeiwijsbe'
+param staticWebAppName string = 'keiwijs-be-swa'
+param logAnalyticsName string = 'keiwijs-be-log'
+param appInsightsName string = 'keiwijs-be-appi'
+param budgetName string = 'keiwijs-be-budget'
 
 @description('E-mail address that receives budget alerts.')
 param budgetContactEmail string
-
-@description('Optional custom domain (e.g. planner.example.org) of the Static Web App; added to SITE_URL/CORS allow-list. Leave empty for none.')
-param siteCustomDomain string = ''
 
 @description('Monthly budget (subscription currency).')
 param budgetAmount int = 2
@@ -24,54 +31,51 @@ param budgetAmount int = 2
 param budgetStartDate string = ''
 
 param tags object = {
-  app: 'smartschool-planner-filter'
+  app: 'keiwijs'
 }
-
-var suffix = take(uniqueString(resourceGroup().id), 6)
-var storageName = toLower(take(replace('${baseName}st${suffix}', '-', ''), 24))
-var functionAppName = '${baseName}-func-${suffix}'
 
 module monitoring 'modules/monitoring.bicep' = {
   name: 'monitoring'
   params: {
-    logAnalyticsName: '${baseName}-log-${suffix}'
-    appInsightsName: '${baseName}-appi-${suffix}'
+    logAnalyticsName: logAnalyticsName
+    appInsightsName: appInsightsName
     location: secondaryLocation
-    tags: tags
+    tags: union(tags, { component: 'shared' })
   }
 }
 
 module storage 'modules/storage.bicep' = {
   name: 'storage'
   params: {
-    name: storageName
+    name: storageAccountName
     location: location
-    tags: tags
+    tags: union(tags, { component: 'planner' })
   }
 }
 
 module swa 'modules/swa.bicep' = {
   name: 'swa'
   params: {
-    name: '${baseName}-swa-${suffix}'
+    name: staticWebAppName
     // Static Web Apps are only available in a handful of regions; location is metadata only.
     location: secondaryLocation
-    tags: tags
+    tags: union(tags, { component: 'site' })
+    customDomains: bindCustomDomains ? [siteDomain] : []
   }
 }
 
 var swaUrl = 'https://${swa.outputs.defaultHostname}'
-var customUrl = empty(siteCustomDomain) ? '' : 'https://${siteCustomDomain}'
-var siteUrl = empty(customUrl) ? swaUrl : customUrl
-var allowedOrigins = empty(customUrl) ? swaUrl : '${swaUrl},${customUrl}'
+var siteUrl = 'https://${siteDomain}'
+// The default hostname stays allowed so the site also works before DNS is live.
+var allowedOrigins = '${siteUrl},${swaUrl}'
 
 module functionApp 'modules/functionapp.bicep' = {
   name: 'functionapp'
   params: {
-    planName: '${baseName}-plan-${suffix}'
+    planName: planName
     functionAppName: functionAppName
     location: location
-    tags: tags
+    tags: union(tags, { component: 'planner' })
     storageAccountName: storage.outputs.name
     blobEndpoint: storage.outputs.blobEndpoint
     queueEndpoint: storage.outputs.queueEndpoint
@@ -96,7 +100,7 @@ module rbac 'modules/rbac.bicep' = {
 module budget 'modules/budget.bicep' = {
   name: 'budget'
   params: {
-    name: '${baseName}-budget'
+    name: budgetName
     amount: budgetAmount
     contactEmail: budgetContactEmail
     startDate: budgetStartDate
@@ -109,3 +113,4 @@ output storageAccountName string = storage.outputs.name
 output staticWebsiteEndpoint string = storage.outputs.webEndpoint
 output staticWebAppName string = swa.outputs.name
 output staticWebAppDefaultHostname string = swa.outputs.defaultHostname
+output siteUrl string = siteUrl

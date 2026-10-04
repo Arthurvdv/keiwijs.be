@@ -1,0 +1,115 @@
+name: Deploy infra
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'infra/**'
+      - '.github/workflows/deploy-infra.yml'
+  workflow_dispatch:
+    inputs:
+      bindCustomDomains:
+        description: 'Phase 2: bind www (the CNAME must resolve publicly first)'
+        type: boolean
+        default: false
+      bindApex:
+        description: 'Request the apex binding and print the TXT token + stable IP for the registrar'
+        type: boolean
+        default: false
+
+permissions:
+  id-token: write
+  contents: read
+
+concurrency:
+  group: deploy-infra
+  cancel-in-progress: false
+
+env:
+  AZURE_RESOURCE_GROUP: ${{ vars.AZURE_RESOURCE_GROUP }}
+  SITE_DOMAIN: ${{ vars.SITE_DOMAIN }}
+  APEX_DOMAIN: ${{ vars.APEX_DOMAIN }}
+  DEPLOYMENT_NAME: keiwijs-infra
+
+jobs:
+  infra:
+    runs-on: ubuntu-latest
+    environment: prod
+    steps:
+      - uses: actions/checkout@v4
+
+      # OIDC: the three values are identifiers (no password); kept as repository secrets.
+      - uses: azure/login@v2
+        with:
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
+
+      # Fixed deployment name: the api and site workflows read its outputs.
+      - name: Deploy Bicep
+        run: |
+          az deployment group create \
+            --resource-group "$AZURE_RESOURCE_GROUP" \
+            --name "$DEPLOYMENT_NAME" \
+            --template-file infra/main.bicep \
+            --parameters infra/main.bicepparam \
+            --parameters location="${{ vars.AZURE_LOCATION }}" \
+                         siteDomain="$SITE_DOMAIN" \
+                         budgetContactEmail="${{ secrets.BUDGET_CONTACT_EMAIL }}" \
+                         bindCustomDomains="${{ inputs.bindCustomDomains || false }}" \
+            --query properties.outputs -o json > outputs.json
+          cat outputs.json
+
+      - name: Read outputs
+        id: out
+        run: |
+          for k in functionAppName functionAppHostName storageAccountName staticWebsiteEndpoint staticWebAppName staticWebAppDefaultHostname; do
+            echo "$k=$(jq -r ".$k.value" outputs.json)" >> "$GITHUB_OUTPUT"
+          done
+          {
+            echo "## Infra outputs"
+            echo
+            echo "| Output | Value |"
+            echo "|---|---|"
+            jq -r 'to_entries[] | "| \(.key) | `\(.value.value)` |"' outputs.json
+            echo
+            echo "DNS at the registrar: CNAME \`www\` -> \`$(jq -r .staticWebAppDefaultHostname.value outputs.json)\`"
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      # Static website hosting is a blob data-plane property: it cannot be set through ARM/Bicep.
+      # Shared keys are disabled on the account, so this uses Entra auth (--auth-mode login) and
+      # needs "Storage Blob Data Contributor" for the deploying principal (see docs/DEPLOY.md).
+      # Idempotent; also creates the $web container, which only holds the rendered feeds.
+      - name: Enable static website hosting
+        run: |
+          az storage blob service-properties update \
+            --account-name "${{ steps.out.outputs.storageAccountName }}" \
+            --static-website \
+            --index-document index.html \
+            --auth-mode login
+
+      # Apex domains cannot use CNAME validation. Request the binding with the TXT-token method,
+      # then print the token and the stable inbound IP so the TXT and A records can be created at
+      # the registrar. Re-running only re-prints; the binding itself is created once.
+      - name: Apex domain (TXT token flow)
+        if: ${{ inputs.bindApex }}
+        run: |
+          SWA="${{ steps.out.outputs.staticWebAppName }}"
+          if ! az staticwebapp hostname list -n "$SWA" -g "$AZURE_RESOURCE_GROUP" --query "[?name=='$APEX_DOMAIN']" -o tsv | grep -q .; then
+            az staticwebapp hostname set -n "$SWA" -g "$AZURE_RESOURCE_GROUP" \
+              --hostname "$APEX_DOMAIN" --validation-method dns-txt-token --no-wait
+            sleep 20
+          fi
+          IP=$(az staticwebapp show -n "$SWA" -g "$AZURE_RESOURCE_GROUP" --query stableInboundIP -o tsv)
+          az staticwebapp hostname show -n "$SWA" -g "$AZURE_RESOURCE_GROUP" --hostname "$APEX_DOMAIN" -o json > apex.json
+          cat apex.json
+          {
+            echo "## Apex domain $APEX_DOMAIN"
+            echo
+            echo "| Record | Host | Value |"
+            echo "|---|---|---|"
+            echo "| TXT | \`@\` | \`$(jq -r '.validationToken // "(not yet generated, re-run in a minute)"' apex.json)\` |"
+            echo "| A | \`@\` | \`$IP\` |"
+            echo
+            echo "Status: \`$(jq -r .status apex.json)\`. After both hostnames are Ready, set \`$SITE_DOMAIN\` as default domain in the portal."
+          } >> "$GITHUB_STEP_SUMMARY"

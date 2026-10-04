@@ -1,0 +1,11 @@
+# Tools shown as cards on the landing page. `pageRef` is a Hugo logical path (same in every language).
+- key: planner
+  pageRef: /planner
+  nl:
+    title: "Keiwijs Planner"
+    text: "Alleen de activiteiten van de klas van je kind uit de Smartschool-planner, in je eigen kalender. Schuift elk schooljaar vanzelf mee."
+    cta: "Planner openen"
+  en:
+    title: "Keiwijs Planner"
+    text: "Only your child's class from the Smartschool planner, in your own calendar. Moves up with every school year by itself."
+    cta: "Open the planner"

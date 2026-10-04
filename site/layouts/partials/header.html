@@ -1,15 +1,15 @@
 <header class="site-header">
   <div class="container header-inner">
     <a class="brand" href="{{ site.Home.RelPermalink }}">
-      <span class="brand-name">Smartschool Planner Filter</span>
+      <span class="brand-name">{{ site.Title }}</span>
       <span class="brand-tag">{{ i18n "site_tagline" }}</span>
     </a>
     <nav aria-label="{{ i18n "nav_label" }}" class="nav">
       {{- $page := . }}
-      {{- range slice "/hoe-werkt-het" "/faq" "/privacy" }}
-        {{- with site.GetPage . }}
-      <a href="{{ .RelPermalink }}"{{ if eq .RelPermalink $page.RelPermalink }} aria-current="page"{{ end }}>{{ .LinkTitle }}</a>
-        {{- end }}
+      {{- range site.Menus.main }}
+        {{- /* The home entry is an ancestor of every page, so only mark it current on the home page itself. */}}
+        {{- $current := or ($page.IsMenuCurrent "main" .) (and ($page.HasMenuCurrent "main" .) (not .Page.IsHome)) }}
+      <a href="{{ .URL }}"{{ if $current }} aria-current="page"{{ end }}>{{ .Name }}</a>
       {{- end }}
       {{ partial "lang-switch.html" . }}
     </nav>

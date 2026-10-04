@@ -45,7 +45,7 @@ class Settings:
             host_pattern=re.compile(e.get("UPSTREAM_HOST_PATTERN", DEFAULT_HOST_PATTERN)),
             path_pattern=re.compile(e.get("UPSTREAM_PATH_PATTERN", DEFAULT_PATH_PATTERN)),
             user_agent=e.get(
-                "UPSTREAM_USER_AGENT", f"SmartSchoolPlannerFilter/1.0 (+{site_url}/privacy/)"
+                "UPSTREAM_USER_AGENT", f"KeiwijsPlanner/1.0 (+{site_url}/planner/privacy/)"
             ),
         )
 

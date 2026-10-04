@@ -1,0 +1,10 @@
+<nav class="sub-nav" aria-label="{{ i18n "nav_planner_label" }}">
+  <div class="container">
+    <ul>
+      {{- $page := . }}
+      {{- range site.Menus.planner }}
+      <li><a href="{{ .URL }}"{{ if $page.IsMenuCurrent "planner" . }} aria-current="page"{{ end }}>{{ .Name }}</a></li>
+      {{- end }}
+    </ul>
+  </div>
+</nav>

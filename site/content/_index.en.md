@@ -1,10 +1,15 @@
 ---
-title: "Smartschool Planner Filter"
-description: "Turn the Smartschool planner into a calendar with only the activities of your child's class. Free, no account or password."
+title: "Keiwijs"
+description: "Keiwijs makes free, smart little tools for parents of school-age children. Start with the Planner: only your child's class in your own calendar."
+params:
+  heroTitle: "Seriously handy for **parents**"
+  heroLead: "Keiwijs builds small, free tools that make school life a little simpler. No account, no ads, just useful."
+  ctaPrimary: "Open the planner"
+  ctaSecondary: "More about Keiwijs"
 ---
 
-## How it works
+## About Keiwijs
 
-1. **Paste your Smartschool link.** In Smartschool, copy the link under Planner, Share planner outside Smartschool, and paste it above.
-2. **Pick your child's class.** Tick the right class(es) and see right away in the preview which activities remain.
-3. **Add the new calendar link.** Subscribe in Google Calendar, on your iPhone or in Outlook. Every school year the class moves up by itself.
+Keiwijs is a hobby project by Arthur, a dad of school-age children. It started with one annoyance: a school calendar full of other classes' activities. The Planner grew out of that, and more tools may follow.
+
+Everything is free and open source. We ask for no account, show no ads and keep no more than needed. How we handle your data is explained per tool on its privacy page.

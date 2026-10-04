@@ -3,21 +3,27 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  {{- $title := cond .IsHome site.Title (printf "%s | %s" .Title site.Title) }}
+  {{- $title := cond .IsHome (printf "%s – %s" site.Title (i18n "site_tagline")) (printf "%s | %s" .Title site.Title) }}
   <title>{{ $title }}</title>
   {{- with .Description }}<meta name="description" content="{{ . }}">{{ end }}
   <meta name="color-scheme" content="light dark">
-  <meta name="api-base" content="{{ site.Params.apiBase }}">
+  <meta name="theme-color" content="{{ site.Params.themeColor }}">
   {{- range .AllTranslations }}
   <link rel="alternate" hreflang="{{ .Language.Lang }}" href="{{ .Permalink }}">
   {{- end }}
   <link rel="canonical" href="{{ .Permalink }}">
+  {{- block "head" . }}{{ end }}
   {{- $css := resources.Get "css/main.css" | minify | fingerprint }}
   <link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
 </head>
-<body class="page-{{ if .IsHome }}home{{ else }}{{ .File.ContentBaseName }}{{ end }}">
+{{- $cls := .Kind }}
+{{- if .IsHome }}{{ $cls = "home" }}{{ else if .IsSection }}{{ $cls = .Section }}{{ else }}{{ with .File }}{{ $cls = .ContentBaseName }}{{ end }}{{ end }}
+<body class="page-{{ $cls }}">
   <a class="skip-link" href="#main">{{ i18n "skip_link" }}</a>
   {{ partial "header.html" . }}
+  {{- if eq .Section "planner" }}
+  {{ partial "planner-nav.html" . }}
+  {{- end }}
   <main id="main" class="container">
     {{ block "main" . }}{{ end }}
   </main>

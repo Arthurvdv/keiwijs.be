@@ -1,12 +1,12 @@
 ---
 title: "Frequently asked questions"
 linkTitle: "FAQ"
-description: "Answers to common questions about Smartschool Planner Filter."
+description: "Answers to common questions about Keiwijs Planner."
 ---
 
 ## Why do I still see activities of other classes?
 
-Usually the class is missing (or written differently) in the title, so the activity counts as "without a class" and stays. Check the preview on the home page: it shows per activity why it stays or disappears. You can also switch off the toggle for activities without a class.
+Usually the class is missing (or written differently) in the title, so the activity counts as "without a class" and stays. Check the preview in the planner: it shows per activity why it stays or disappears. You can also switch off the toggle for activities without a class.
 
 ## How often is my calendar refreshed?
 
@@ -38,7 +38,7 @@ Yes, free and without an account. The source code is open (MIT license).
 
 ## How do I remove everything?
 
-Paste your Smartschool link on the home page and click **Delete my settings**. More details are on the [privacy page](/en/privacy/).
+Paste your Smartschool link in the planner and click **Delete my settings**. More details are on the [privacy page]({{< relref "privacy" >}}).
 
 ## Is my calendar private?
 

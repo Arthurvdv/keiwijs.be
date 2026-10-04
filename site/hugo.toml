@@ -1,8 +1,8 @@
-# Smartschool Planner Filter - public website.
-# Local dev:  hugo server -D        (API: `func start` on http://localhost:7071)
+# Keiwijs - public website (landing page + the planner under /planner/).
+# Local dev:  hugo server -D        (API: `func start` in planner/ on http://localhost:7071)
 # Production: hugo --minify --gc    (see config/production/hugo.toml and README.md)
-baseURL = "https://example.org/"
-title = "Smartschool Planner Filter"
+baseURL = "https://www.keiwijs.be/"
+title = "Keiwijs"
 defaultContentLanguage = "nl"
 defaultContentLanguageInSubdir = false
 disableKinds = ["taxonomy", "term", "RSS"]
@@ -10,20 +10,75 @@ enableRobotsTXT = true
 disableDefaultLanguageRedirect = true
 
 [params]
-  # Base URL of the Azure Functions API (no trailing slash).
+  # Base URL of the Azure Functions API (no trailing slash). Overridden in production config.
   apiBase = "http://localhost:7071"
-  githubUrl = "https://github.com/Arthurvdv/smartschool-planner-filter"
-  privacyEmail = "tuurbo@outlook.com"
+  githubUrl = "https://github.com/Arthurvdv/keiwijs.be"
+  contactEmail = "tuurbo@outlook.com"
+  themeColor = "#FF520E"
+  fontPreload = "/fonts/OpenSans-Regular.woff2"
 
 [languages]
   [languages.nl]
     label = "Nederlands"
     locale = "nl-BE"
     weight = 1
+
+    [[languages.nl.menus.main]]
+      name = "Start"
+      pageRef = "/"
+      weight = 10
+    [[languages.nl.menus.main]]
+      name = "Planner"
+      pageRef = "/planner"
+      weight = 20
+
+    [[languages.nl.menus.planner]]
+      name = "Planner"
+      pageRef = "/planner"
+      weight = 10
+    [[languages.nl.menus.planner]]
+      name = "Hoe werkt het?"
+      pageRef = "/planner/hoe-werkt-het"
+      weight = 20
+    [[languages.nl.menus.planner]]
+      name = "FAQ"
+      pageRef = "/planner/faq"
+      weight = 30
+    [[languages.nl.menus.planner]]
+      name = "Privacy"
+      pageRef = "/planner/privacy"
+      weight = 40
+
   [languages.en]
     label = "English"
     locale = "en"
     weight = 2
+
+    [[languages.en.menus.main]]
+      name = "Home"
+      pageRef = "/"
+      weight = 10
+    [[languages.en.menus.main]]
+      name = "Planner"
+      pageRef = "/planner"
+      weight = 20
+
+    [[languages.en.menus.planner]]
+      name = "Planner"
+      pageRef = "/planner"
+      weight = 10
+    [[languages.en.menus.planner]]
+      name = "How it works"
+      pageRef = "/planner/hoe-werkt-het"
+      weight = 20
+    [[languages.en.menus.planner]]
+      name = "FAQ"
+      pageRef = "/planner/faq"
+      weight = 30
+    [[languages.en.menus.planner]]
+      name = "Privacy"
+      pageRef = "/planner/privacy"
+      weight = 40
 
 [markup.goldmark.renderer]
   unsafe = false

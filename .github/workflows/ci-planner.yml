@@ -1,11 +1,21 @@
-name: CI
+name: CI planner
 
 on:
   push:
+    paths:
+      - 'planner/**'
+      - '.github/workflows/ci-planner.yml'
   pull_request:
+    paths:
+      - 'planner/**'
+      - '.github/workflows/ci-planner.yml'
 
 permissions:
   contents: read
+
+defaults:
+  run:
+    working-directory: planner
 
 jobs:
   python:
@@ -41,33 +51,3 @@ jobs:
       - name: pip-audit (advisory)
         continue-on-error: true
         run: uv run pip-audit
-
-  site:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: peaceiris/actions-hugo@v3
-        with:
-          hugo-version: '0.165.0'
-          extended: true
-
-      - name: Build site
-        working-directory: site
-        env:
-          HUGO_PARAMS_APIBASE: https://example.azurewebsites.net
-        run: hugo --minify --gc --baseURL https://example.azurestaticapps.net
-
-  bicep:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Install Bicep
-        run: az bicep install
-
-      - name: Build
-        run: az bicep build --file infra/main.bicep --stdout > /dev/null
-
-      - name: Lint
-        run: az bicep lint --file infra/main.bicep
