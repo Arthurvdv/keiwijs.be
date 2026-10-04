@@ -36,6 +36,30 @@ fieldset.group legend + * { clear: both; }
 .tag-row .check { align-items: center; font-size: var(--text-small); }
 .tag-row .check input { margin-top: 0; }
 .tag-row .spacer { flex: 1; }
+.icon-check { gap: var(--space-1); color: var(--color-text-secondary); }
+.icon-check:has(input:checked) { color: var(--color-action); }
+.icon-check:has(input:disabled) { opacity: var(--opacity-disabled); cursor: default; }
+.icon-check .icon { flex: none; }
+/* Anchor the tooltip to the row, not the small checkbox, so it never sticks out of the card on phones. */
+.tag-row { position: relative; min-width: 0; }
+.tag-row .tip { position: static; }
+.tag-row .tip::after { left: var(--space-2); transform: none; max-width: calc(100% - 2 * var(--space-2)); }
+@media (max-width: 479px) {
+  .tag-list .tag-row { flex-wrap: nowrap; gap: var(--space-2); }
+  .tag-row .tag-order { flex-direction: column; gap: 0; }
+  .tag-row .tag-order .btn-icon { min-height: 22px; }
+  .tag-row .tag-name { width: 4em; }
+  .icon-row .icon-keyword { flex: 1 1 0; min-width: 0; }
+  .icon-row .icon-input { width: 3.25em; }
+}
+.icon-legend { display: flex; flex-wrap: wrap; gap: var(--space-1) var(--space-4); }
+.icon-legend span { display: inline-flex; align-items: center; gap: var(--space-1); }
+.icon-legend .icon { color: var(--color-action); }
+
+/* title icon rules */
+.icon-row .icon-keyword { flex: 1 1 8em; width: auto; }
+.icon-input { width: 4.5em; flex: none; text-align: center; }
+.fallback-field { display: flex; align-items: center; gap: var(--space-2); margin-top: var(--space-3); font-size: var(--text-small); font-weight: 600; }
 .badge { display: inline-block; min-width: 2.2em; text-align: center; padding: 2px var(--space-2); border-radius: var(--radius-pill); background: var(--color-info-soft); color: var(--color-info-soft-text); font-size: var(--text-meta); font-weight: 600; font-variant-numeric: tabular-nums; }
 .badge.zero { background: transparent; border: 1px solid var(--color-border); color: var(--color-text-secondary); }
 

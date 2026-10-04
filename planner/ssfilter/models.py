@@ -10,6 +10,15 @@ from datetime import UTC, datetime
 from typing import Any
 from urllib.parse import urlsplit
 
+from .icons import (
+    DEFAULT_FALLBACK_ICON,
+    DEFAULT_ICON_RULES,
+    IconRule,
+    icon_rules_from_json,
+    icon_rules_to_json,
+    validate_fallback_icon,
+    validate_icon_rules,
+)
 from .rules import FilterConfig, clean_keywords
 from .tags import (
     Tag,
@@ -23,7 +32,7 @@ from .tags import (
 )
 
 SCHEMA_VERSION = 1
-DEFAULT_ROLLOVER = "07-01"
+DEFAULT_ROLLOVER = "08-01"
 
 
 def row_key_for(normalised_url: str) -> str:
@@ -49,6 +58,9 @@ class FeedConfig:
     exclude_keywords: tuple[str, ...] = ()
     use_organisator: bool = False
     strip_participants: bool = True
+    title_icons: bool = True
+    icon_rules: tuple[IconRule, ...] = DEFAULT_ICON_RULES
+    fallback_icon: str = DEFAULT_FALLBACK_ICON
     rollover_month_day: str = DEFAULT_ROLLOVER
     next_rollover_utc: datetime = field(default_factory=utcnow)
     last_rollover_utc: datetime | None = None
@@ -84,6 +96,9 @@ class FeedConfig:
             exclude_keywords=self.exclude_keywords,
             use_organisator=self.use_organisator,
             strip_participants=self.strip_participants,
+            title_icons=self.title_icons,
+            icon_rules=self.icon_rules,
+            fallback_icon=self.fallback_icon,
         )
 
     # ------------------------------------------------------------------ settings DTO (API)
@@ -95,6 +110,9 @@ class FeedConfig:
             "excludeKeywords": list(self.exclude_keywords),
             "useOrganisator": self.use_organisator,
             "stripParticipants": self.strip_participants,
+            "titleIcons": self.title_icons,
+            "iconRules": icon_rules_to_json(self.icon_rules),
+            "fallbackIcon": self.fallback_icon,
             "rolloverMonthDay": self.rollover_month_day,
             "nextRolloverUtc": self.next_rollover_utc.isoformat(),
             "lastRolloverUtc": self.last_rollover_utc.isoformat()
@@ -116,6 +134,10 @@ class FeedConfig:
             )
         except ValueError as exc:
             raise TagValidationError(str(exc)) from exc
+        icon_rules = validate_icon_rules(
+            icon_rules_from_json(dto.get("iconRules", icon_rules_to_json(self.icon_rules)))
+        )
+        fallback_icon = validate_fallback_icon(str(dto.get("fallbackIcon", self.fallback_icon)))
         return replace(
             self,
             tags=tags,
@@ -124,6 +146,9 @@ class FeedConfig:
             exclude_keywords=exclude,
             use_organisator=bool(dto.get("useOrganisator", False)),
             strip_participants=bool(dto.get("stripParticipants", True)),
+            title_icons=bool(dto.get("titleIcons", True)),
+            icon_rules=icon_rules,
+            fallback_icon=fallback_icon,
             rollover_month_day=month_day,
             next_rollover_utc=next_rollover_utc(month_day, now),
             updated_utc=now,
@@ -141,6 +166,9 @@ class FeedConfig:
             "ExcludeKeywords": json.dumps(list(self.exclude_keywords), ensure_ascii=False),
             "UseOrganisator": self.use_organisator,
             "StripParticipants": self.strip_participants,
+            "TitleIcons": self.title_icons,
+            "IconRules": json.dumps(icon_rules_to_json(self.icon_rules), ensure_ascii=False),
+            "FallbackIcon": self.fallback_icon,
             "RolloverMonthDay": self.rollover_month_day,
             "NextRolloverUtc": self.next_rollover_utc,
             "LastRolloverUtc": self.last_rollover_utc,
@@ -167,6 +195,9 @@ class FeedConfig:
             exclude_keywords=tuple(json.loads(e.get("ExcludeKeywords") or "[]")),
             use_organisator=bool(e.get("UseOrganisator", False)),
             strip_participants=bool(e.get("StripParticipants", True)),
+            title_icons=bool(e.get("TitleIcons", True)),
+            icon_rules=_icon_rules(e.get("IconRules")),
+            fallback_icon=str(e.get("FallbackIcon", DEFAULT_FALLBACK_ICON) or ""),
             rollover_month_day=str(e.get("RolloverMonthDay") or DEFAULT_ROLLOVER),
             next_rollover_utc=_dt(e.get("NextRolloverUtc")) or utcnow(),
             last_rollover_utc=_dt(e.get("LastRolloverUtc")),
@@ -214,6 +245,12 @@ def _dt(value: Any) -> datetime | None:
         return parsed if parsed.tzinfo else parsed.replace(tzinfo=UTC)
     # azure-data-tables may hand back TablesEntityDatetime (a datetime subclass) -> handled above
     raise TypeError(f"unsupported datetime value: {type(value)!r}")
+
+
+def _icon_rules(value: Any) -> tuple[IconRule, ...]:
+    if value is None or value == "":
+        return DEFAULT_ICON_RULES
+    return icon_rules_from_json(json.loads(value))
 
 
 def _as_list(value: Any, name: str) -> list[Any]:

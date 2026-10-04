@@ -11,6 +11,13 @@ Twemoji / Noto Color Emoji) that reads the same at a glance. Where you draw your
 follow the style in components.md §10–11 (flat, filled, 2-tone, no outlines, 24 px
 grid).
 
+> **Feed reality.** The parent-facing Smartschool iCal export (what the Keiwijs planner
+> reads) carries **no item-type field**. In practice it only contains school-free days
+> (description `Deelnemers: Iedereen`) and appointments on the school calendar
+> (`Kalender: …`). The published feed therefore picks title icons from user-editable
+> keyword rules (`planner/ssfilter/icons.py`), not from this taxonomy, and uses emoji
+> because calendar apps cannot show images in titles.
+
 ## 1. Structure
 
 The planner exposes items in a **three-level tree**. A "share / filter" UI shows it as

@@ -17,8 +17,17 @@
   const t = (key, vars = {}) =>
     (STRINGS[key] ?? key).replace(/\{(\w+)\}/g, (_, k) => (vars[k] ?? `{${k}}`));
 
-  const LIMITS = { maxTags: 30, maxTagName: 40, maxKeywords: 20, maxKeywordLen: 60 };
-  const DEFAULT_MONTH_DAY = '07-01';
+  const LIMITS = {
+    maxTags: 30, maxTagName: 40, maxKeywords: 20, maxKeywordLen: 60, maxIconRules: 30, maxIconKeyword: 40, maxIcon: 16,
+  };
+  const DEFAULT_MONTH_DAY = '08-01';
+  // Mirrors DEFAULT_ICON_RULES / DEFAULT_FALLBACK_ICON in planner/ssfilter/icons.py.
+  const DEFAULT_ICON_RULES = [
+    ['vakantie', '☀\uFE0F'], ['geen school', '☀\uFE0F'], ['studiedag', '☀\uFE0F'], ['bib', '📚'], ['toets', '📝'],
+    ['rapport', '📄'], ['oudercontact', '👥'], ['vaccin', '💉'], ['zeeklassen', '🌊'], ['bosklassen', '🌲'],
+    ['schoolfeest', '🎉'], ['uitstap', '🚌'], ['zwemmen', '🏊'],
+  ];
+  const DEFAULT_FALLBACK_ICON = '📌';
   const DAYS_IN_MONTH = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
   const SMARTSCHOOL_MARKER = '.smartschool.be/planner/sync/ics/';
 
@@ -42,7 +51,9 @@
     status: $('status'), editor: $('editor'), banner: $('banner-existing'), calSummary: $('calendar-summary'),
     tagList: $('tag-list'), btnAddTag: $('btn-add-tag'),
     rollDay: $('roll-day'), rollMonth: $('roll-month'), nextRollover: $('next-rollover'),
-    includeUntagged: $('include-untagged'), useOrganisator: $('use-organisator'), stripParticipants: $('strip-participants'),
+    includeUntagged: $('include-untagged'), useOrganisator: $('use-organisator'), includeParticipants: $('include-participants'),
+    titleIcons: $('title-icons'), iconRules: $('icon-rules'), iconList: $('icon-list'), btnAddIcon: $('btn-add-icon'),
+    fallbackIcon: $('fallback-icon'),
     settingsError: $('settings-error'),
     previewCount: $('preview-count'), previewBody: $('preview-body'), onlyDropped: $('only-dropped'),
     btnGenerate: $('btn-generate'), btnDelete: $('btn-delete'),
@@ -58,8 +69,20 @@
     excludeKeywords: [],
     useOrganisator: false,
     stripParticipants: true,
+    titleIcons: true,
+    iconRules: DEFAULT_ICON_RULES.map(([keyword, icon]) => ({ keyword, icon })),
+    fallbackIcon: DEFAULT_FALLBACK_ICON,
     rolloverMonthDay: DEFAULT_MONTH_DAY,
   });
+
+  /** Trim, and add VS16 to a lone text-presentation symbol so it renders full width (mirrors the server). */
+  const normaliseIcon = (raw) => {
+    const icon = String(raw ?? '').trim();
+    const chars = Array.from(icon);
+    if (chars.length === 1 && /\p{So}/u.test(icon) && icon.codePointAt(0) < 0x1F000) return `${icon}\uFE0F`;
+    return icon;
+  };
+  const cleanKeyword = (raw) => String(raw ?? '').trim().replace(/\s+/g, ' ');
 
   const state = {
     url: '',                 // pasted Smartschool link (memory only)
@@ -159,6 +182,21 @@
       if (list.length > LIMITS.maxKeywords) return t('err_kw_count');
       if (list.some((w) => w.length > LIMITS.maxKeywordLen)) return t('err_kw_long');
     }
+    if (s.iconRules.length > LIMITS.maxIconRules) return t('err_icon_count');
+    const seenIcons = new Set();
+    for (const rule of s.iconRules) {
+      const keyword = cleanKeyword(rule.keyword);
+      const icon = normaliseIcon(rule.icon);
+      if (!keyword || !icon) return t('err_icon_empty');
+      if (keyword.length > LIMITS.maxIconKeyword || icon.length > LIMITS.maxIcon) return t('err_icon_long');
+      if (/\s/.test(icon)) return t('err_icon_space');
+      const key = keyword.toLowerCase();
+      if (seenIcons.has(key)) return t('err_icon_dup', { name: keyword });
+      seenIcons.add(key);
+    }
+    const fallback = normaliseIcon(s.fallbackIcon);
+    if (fallback.length > LIMITS.maxIcon) return t('err_icon_long');
+    if (/\s/.test(fallback)) return t('err_icon_space');
     return null;
   }
 
@@ -176,6 +214,9 @@
       excludeKeywords: [...s.excludeKeywords],
       useOrganisator: Boolean(s.useOrganisator),
       stripParticipants: Boolean(s.stripParticipants),
+      titleIcons: Boolean(s.titleIcons),
+      iconRules: s.iconRules.map((r) => ({ keyword: cleanKeyword(r.keyword), icon: normaliseIcon(r.icon) })),
+      fallbackIcon: normaliseIcon(s.fallbackIcon),
       rolloverMonthDay: s.rolloverMonthDay,
     };
   }
@@ -194,6 +235,11 @@
       excludeKeywords: [...(dto?.excludeKeywords ?? [])],
       useOrganisator: dto?.useOrganisator ?? base.useOrganisator,
       stripParticipants: dto?.stripParticipants ?? base.stripParticipants,
+      titleIcons: dto?.titleIcons ?? base.titleIcons,
+      iconRules: Array.isArray(dto?.iconRules)
+        ? dto.iconRules.map((r) => ({ keyword: String(r.keyword ?? ''), icon: String(r.icon ?? '') }))
+        : base.iconRules,
+      fallbackIcon: typeof dto?.fallbackIcon === 'string' ? dto.fallbackIcon : base.fallbackIcon,
       rolloverMonthDay: /^\d{2}-\d{2}$/.test(dto?.rolloverMonthDay ?? '') ? dto.rolloverMonthDay : base.rolloverMonthDay,
     };
     state.nextRolloverUtc = dto?.nextRolloverUtc ?? null;
@@ -242,26 +288,44 @@
     if (focus) ui.tagList.querySelector(focus)?.focus();
   }
 
+  const iconButton = (text, label, subject, action, disabled = false) =>
+    el('button', { type: 'button', class: 'btn btn-icon', 'aria-label': `${label} ${subject}`.trim(), title: label, text, disabled, 'data-action': action });
+
+  /** Inline SVG cloned from a <template> in list.html. */
+  const svgIcon = (id) => $(id)?.content.firstElementChild?.cloneNode(true) ?? null;
+
+  /** Checkbox whose visible label is an icon; the text lives in aria-label and a tooltip. */
+  const iconCheck = (input, iconId, tip) =>
+    el('label', { class: 'check icon-check tip', 'data-tip': tip }, input, svgIcon(iconId));
+
+  /** Move list[from] to list[to] (neighbours) and re-render with focus on the same control. */
+  function swapRows(list, from, to, action, rerender) {
+    [list[from], list[to]] = [list[to], list[from]];
+    rerender(`li:nth-child(${to + 1}) [data-action="${action}"]:not(:disabled)`);
+    changed();
+  }
+
   function tagRow(tag, index, total) {
-    const labels = {
-      up: ui.tagList.dataset.up, down: ui.tagList.dataset.down, del: ui.tagList.dataset.del,
-    };
-    const iconBtn = (text, label, action, disabled = false) =>
-      el('button', { type: 'button', class: 'btn btn-icon', 'aria-label': `${label} ${tag.name}`.trim(), title: label, text, disabled, 'data-action': action });
+    const data = ui.tagList.dataset;
+    const iconBtn = (text, label, action, disabled = false) => iconButton(text, label, tag.name, action, disabled);
 
     const name = el('input', {
       type: 'text', class: 'tag-name', value: tag.name, maxLength: 80,
-      placeholder: t('new_tag_placeholder'), 'aria-label': ui.tagList.dataset.nameLabel, autocomplete: 'off',
+      placeholder: t('new_tag_placeholder'), 'aria-label': data.nameLabel, autocomplete: 'off',
     });
     const badge = el('span', { class: 'badge' });
     updateBadge(badge, tag.name);
 
-    const selected = el('input', { type: 'checkbox', checked: tag.selected });
-    const move = el('input', { type: 'checkbox', checked: tag.selected && tag.moveNext, disabled: !tag.selected });
+    const selected = el('input', { type: 'checkbox', checked: tag.selected, 'aria-label': `${data.selected} ${tag.name}`.trim() });
+    const move = el('input', {
+      type: 'checkbox', checked: tag.selected && tag.moveNext, disabled: !tag.selected, 'aria-label': `${data.move} ${tag.name}`.trim(),
+    });
 
     name.addEventListener('input', () => {
       tag.name = name.value;
       updateBadge(badge, tag.name);
+      selected.setAttribute('aria-label', `${data.selected} ${tag.name}`.trim());
+      move.setAttribute('aria-label', `${data.move} ${tag.name}`.trim());
       changed();
     });
     selected.addEventListener('change', () => {
@@ -276,15 +340,10 @@
       changed();
     });
 
-    const swap = (to, action) => {
-      const list = state.settings.tags;
-      [list[index], list[to]] = [list[to], list[index]];
-      renderTags(`li:nth-child(${to + 1}) [data-action="${action}"]:not(:disabled)`);
-      changed();
-    };
-    const up = iconBtn('↑', labels.up, 'up', index === 0);
-    const down = iconBtn('↓', labels.down, 'down', index === total - 1);
-    const del = iconBtn('×', labels.del, 'del');
+    const swap = (to, action) => swapRows(state.settings.tags, index, to, action, renderTags);
+    const up = iconBtn('↑', data.up, 'up', index === 0);
+    const down = iconBtn('↓', data.down, 'down', index === total - 1);
+    const del = iconBtn('×', data.del, 'del');
     up.addEventListener('click', () => swap(index - 1, 'up'));
     down.addEventListener('click', () => swap(index + 1, 'down'));
     del.addEventListener('click', () => {
@@ -296,11 +355,57 @@
     return el('li', { class: 'tag-row' },
       el('span', { class: 'tag-order' }, up, down),
       name,
-      el('label', { class: 'check' }, selected, el('span', { text: ui.tagList.dataset.selected })),
-      el('label', { class: 'check' }, move, el('span', { text: ui.tagList.dataset.move })),
+      iconCheck(selected, 'icon-include', data.selectedTip),
+      iconCheck(move, 'icon-move', data.moveTip),
       badge,
       el('span', { class: 'spacer' }),
       del);
+  }
+
+  // ------------------------------------------------------------------ title icon rules
+  function renderIconRules(focus) {
+    const rules = state.settings.iconRules;
+    ui.iconList.replaceChildren(...rules.map((rule, i) => iconRuleRow(rule, i, rules.length)));
+    ui.btnAddIcon.disabled = rules.length >= LIMITS.maxIconRules;
+    if (focus) ui.iconList.querySelector(focus)?.focus();
+  }
+
+  function iconRuleRow(rule, index, total) {
+    const data = ui.iconList.dataset;
+    const iconBtn = (text, label, action, disabled = false) => iconButton(text, label, rule.keyword, action, disabled);
+    const keyword = el('input', {
+      type: 'text', class: 'icon-keyword', value: rule.keyword, maxLength: LIMITS.maxIconKeyword,
+      'aria-label': data.keywordLabel, autocomplete: 'off',
+    });
+    const icon = el('input', {
+      type: 'text', class: 'icon-input', value: rule.icon, maxLength: LIMITS.maxIcon, 'aria-label': data.iconLabel, autocomplete: 'off',
+    });
+    keyword.addEventListener('input', () => { rule.keyword = keyword.value; changed(); });
+    icon.addEventListener('input', () => { rule.icon = icon.value; changed(); });
+    icon.addEventListener('blur', () => { icon.value = rule.icon = normaliseIcon(icon.value); });
+
+    const swap = (to, action) => swapRows(state.settings.iconRules, index, to, action, renderIconRules);
+    const up = iconBtn('↑', data.up, 'up', index === 0);
+    const down = iconBtn('↓', data.down, 'down', index === total - 1);
+    const del = iconBtn('×', data.del, 'del');
+    up.addEventListener('click', () => swap(index - 1, 'up'));
+    down.addEventListener('click', () => swap(index + 1, 'down'));
+    del.addEventListener('click', () => {
+      state.settings.iconRules.splice(index, 1);
+      const left = state.settings.iconRules.length;
+      renderIconRules(left ? `li:nth-child(${Math.min(index + 1, left)}) .icon-keyword` : null);
+      changed();
+    });
+
+    return el('li', { class: 'tag-row icon-row' }, el('span', { class: 'tag-order' }, up, down), keyword, icon, el('span', { class: 'spacer' }), del);
+  }
+
+  function renderIconSettings() {
+    const s = state.settings;
+    ui.titleIcons.checked = s.titleIcons;
+    ui.iconRules.disabled = !s.titleIcons;
+    ui.fallbackIcon.value = s.fallbackIcon;
+    renderIconRules();
   }
 
   // ------------------------------------------------------------------ rollover date
@@ -452,7 +557,7 @@
         : el('td', { text: `${t('status_dropped')}: ${reasonText(e.reason, e.detail)}` });
       return el('tr', { class: e.keep ? 'kept' : 'dropped' },
         el('td', { class: 'when', text: formatWhen(e.start, e.allDay) }),
-        el('td', { class: 'summary', text: e.summary || '' }),
+        el('td', { class: 'summary', text: e.icon ? `${e.icon} ${e.summary || ''}` : (e.summary || '') }),
         el('td', {}, ...(e.tags ?? []).map((name) => el('span', { class: 'tag-chip', text: name }))),
         status);
     }));
@@ -463,8 +568,9 @@
     const s = state.settings;
     ui.includeUntagged.checked = s.includeUntagged;
     ui.useOrganisator.checked = s.useOrganisator;
-    ui.stripParticipants.checked = s.stripParticipants;
+    ui.includeParticipants.checked = !s.stripParticipants;
     renderTags();
+    renderIconSettings();
     renderRollover();
     renderIncludeChips();
     renderExcludeChips();
@@ -619,7 +725,21 @@
     });
     ui.includeUntagged.addEventListener('change', () => { state.settings.includeUntagged = ui.includeUntagged.checked; changed(); });
     ui.useOrganisator.addEventListener('change', () => { state.settings.useOrganisator = ui.useOrganisator.checked; changed(); });
-    ui.stripParticipants.addEventListener('change', () => { state.settings.stripParticipants = ui.stripParticipants.checked; changed(); });
+    ui.includeParticipants.addEventListener('change', () => { state.settings.stripParticipants = !ui.includeParticipants.checked; changed(); });
+    ui.titleIcons.addEventListener('change', () => {
+      state.settings.titleIcons = ui.titleIcons.checked;
+      ui.iconRules.disabled = !ui.titleIcons.checked;
+      changed();
+    });
+    ui.btnAddIcon.addEventListener('click', () => {
+      state.settings.iconRules.push({ keyword: '', icon: '' });
+      renderIconRules('li:last-child .icon-keyword');
+      changed();
+    });
+    ui.fallbackIcon.addEventListener('input', () => { state.settings.fallbackIcon = ui.fallbackIcon.value; changed(); });
+    ui.fallbackIcon.addEventListener('blur', () => {
+      ui.fallbackIcon.value = state.settings.fallbackIcon = normaliseIcon(ui.fallbackIcon.value);
+    });
     ui.onlyDropped.addEventListener('change', renderPreview);
     ui.btnGenerate.addEventListener('click', onGenerate);
     ui.btnDelete.addEventListener('click', onDelete);

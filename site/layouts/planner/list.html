@@ -31,8 +31,33 @@
     <fieldset class="group">
       <legend>{{ i18n "tags_legend" }}</legend>
       <p class="help">{{ i18n "tags_help" }}</p>
-      <ol id="tag-list" class="tag-list" data-up="{{ i18n "tag_up" }}" data-down="{{ i18n "tag_down" }}" data-del="{{ i18n "tag_delete" }}" data-name-label="{{ i18n "tag_name" }}" data-selected="{{ i18n "tag_selected" }}" data-move="{{ i18n "tag_move" }}"></ol>
+      <p class="icon-legend help">
+        <span>{{ partial "icons/check.html" . }} {{ i18n "tag_selected" }}</span>
+        <span>{{ partial "icons/grad-cap.html" . }} {{ i18n "tag_move" }}</span>
+      </p>
+      <template id="icon-include">{{ partial "icons/check.html" . }}</template>
+      <template id="icon-move">{{ partial "icons/grad-cap.html" . }}</template>
+      <ol id="tag-list" class="tag-list" data-up="{{ i18n "tag_up" }}" data-down="{{ i18n "tag_down" }}" data-del="{{ i18n "tag_delete" }}" data-name-label="{{ i18n "tag_name" }}" data-selected="{{ i18n "tag_selected" }}" data-move="{{ i18n "tag_move" }}" data-selected-tip="{{ i18n "tag_selected_tip" }}" data-move-tip="{{ i18n "tag_move_tip" }}"></ol>
       <button type="button" id="btn-add-tag" class="btn">{{ i18n "tag_add" }}</button>
+    </fieldset>
+
+    <fieldset class="group">
+      <legend>{{ i18n "icons_legend" }}</legend>
+      <label class="check">
+        <input type="checkbox" id="title-icons" aria-describedby="icons-help">
+        <span>{{ i18n "icons_title_label" }}</span>
+      </label>
+      <p id="icons-help" class="help">{{ i18n "icons_help" }}</p>
+      <fieldset id="icon-rules" class="plain">
+        <ol id="icon-list" class="tag-list" data-up="{{ i18n "tag_up" }}" data-down="{{ i18n "tag_down" }}" data-del="{{ i18n "tag_delete" }}" data-keyword-label="{{ i18n "icons_keyword" }}" data-icon-label="{{ i18n "icons_icon" }}"></ol>
+        <button type="button" id="btn-add-icon" class="btn">{{ i18n "icons_add" }}</button>
+        <label class="fallback-field">
+          <span>{{ i18n "icons_fallback" }}</span>
+          <input type="text" id="fallback-icon" class="icon-input" maxlength="16" autocomplete="off" aria-describedby="fallback-help">
+        </label>
+        <p id="fallback-help" class="help">{{ i18n "icons_fallback_help" }}</p>
+      </fieldset>
+      <p class="help">{{ i18n "icons_body_help" }}</p>
     </fieldset>
 
     <fieldset class="group">
@@ -77,9 +102,10 @@
       </div>
       <p id="kw-help" class="help">{{ i18n "adv_keywords_help" }}</p>
       <label class="check">
-        <input type="checkbox" id="strip-participants">
-        <span>{{ i18n "adv_strip" }}</span>
+        <input type="checkbox" id="include-participants" aria-describedby="participants-help">
+        <span>{{ i18n "adv_participants" }}</span>
       </label>
+      <p id="participants-help" class="help">{{ i18n "adv_participants_help" }}</p>
     </details>
 
     <p id="settings-error" class="error" role="alert" hidden></p>

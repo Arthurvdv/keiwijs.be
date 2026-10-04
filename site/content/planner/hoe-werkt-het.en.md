@@ -33,11 +33,17 @@ Activities for the whole school, such as swimming, study days and holidays, usua
 
 ## How does the yearly rollover work?
 
-Every year on the date you choose (1 July by default) the selected classes move up one place in the list. The order of the list therefore decides where your child goes next.
+Every year on the date you choose (1 August by default) the selected classes move up one place in the list. The order of the list therefore decides where your child goes next.
 
-**Example:** you have two children, one in K2 and one in L4. On 1 July they become K3 and L5. If a child was in L6, that class drops off: the child leaves primary school and the class is no longer followed.
+**Example:** you have two children, one in K2 and one in L4. On 1 August they become K3 and L5. If a child was in L6, that class drops off: the child leaves primary school and the class is no longer followed.
 
-If a class should not move along, for instance because your child repeats a year, untick "move up next school year".
+If a class should not move along, for instance because your child repeats a year, untick "Move up next school year" (the graduation cap).
+
+## Icons
+
+When an activity title contains a word from your list, its icon goes in front, for example ☀️ for "vakantie" or 📚 for "bib". The first matching rule wins. If no rule matches, the activity gets the fallback icon (📌 by default); leave it empty if you prefer no icon then. You can add, remove and reorder rules, or switch title icons off completely.
+
+In the description, Smartschool's fixed fields always get an icon: 🗓️ Kalender, 👤 Organisator, 👥 Deelnemers, 🔗 Weblink and 📝 Organisatie of verloop.
 
 ## Limitations
 

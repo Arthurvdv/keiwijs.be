@@ -62,7 +62,10 @@ Deployed from `main` by GitHub Actions (see [docs/DEPLOY.md](docs/DEPLOY.md)).
   the yearly rollover (sequence based: `K3 → L1`, last tag drops off).
 * `planner/ssfilter/rules.py` – keep/drop decision: exclude keyword → include
   keyword → untagged (school-wide) → tag match.
+* `planner/ssfilter/icons.py` – emoji icons: keyword rules for the title (first
+  match wins, then a fallback) and fixed icons for known description labels.
 * `planner/ssfilter/transform.py` – strips pupil names (`Extra deelnemers`),
+  adds the icons,
   suffixes the calendar name, adds TTL hints, and fingerprints the output
   ignoring `DTSTAMP` (Smartschool regenerates it on every fetch).
 * `planner/ssfilter/fetcher.py` – SSRF-guarded upstream fetch (https,
@@ -99,7 +102,10 @@ All requests are JSON. CORS is restricted to the site origin(s).
   "excludeKeywords": [],
   "useOrganisator": false,
   "stripParticipants": true,
-  "rolloverMonthDay": "07-01"
+  "titleIcons": true,
+  "iconRules": [{ "keyword": "vakantie", "icon": "☀️" }, { "keyword": "bib", "icon": "📚" }],
+  "fallbackIcon": "📌",
+  "rolloverMonthDay": "08-01"
 }
 ```
 
@@ -151,8 +157,8 @@ feeds (no execution metering), Static Web Apps Free for the site.
 * Stored per feed: the Smartschool feed URL, the tag settings, timestamps and a
   hash of the last rendered content. Nothing else. No passwords, no accounts,
   no analytics.
-* Pupil names in `Extra deelnemers` are removed from the published feed by
-  default.
+* Extra participants (`Extra deelnemers`, which can be pupil names) are left out of
+  the published feed by default; the user can opt in under Advanced.
 * The feed URL is a capability URL: do not share it. Delete everything with the
   button on the site (`DELETE /api/config`).
 * Report security issues as described in [SECURITY.md](SECURITY.md).

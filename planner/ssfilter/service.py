@@ -14,6 +14,7 @@ import httpx
 from . import ical
 from .config import Settings
 from .fetcher import UpstreamError, fetch_ics, new_client, normalise_url
+from .icons import summary_icon
 from .models import FeedConfig, row_key_for
 from .publisher import BlobFeedPublisher, FeedPublisher
 from .renderer import FAILING_THRESHOLD, Renderer, RenderResult
@@ -204,6 +205,9 @@ class App:
                     "end": _when(event, "DTEND"),
                     "allDay": _is_all_day(event),
                     "summary": summary,
+                    "icon": summary_icon(summary, cfg.icon_rules, cfg.fallback_icon)
+                    if cfg.title_icons
+                    else None,
                     "tags": sorted(decision.signal.matched),
                     "keep": decision.keep,
                     "reason": decision.reason,
