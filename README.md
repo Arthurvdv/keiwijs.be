@@ -25,7 +25,7 @@ This trade-off is deliberate and documented on the privacy page.
 | Website | https://www.keiwijs.be |
 | Planner | https://www.keiwijs.be/planner/ |
 | API | https://planner-keiwijs-be.azurewebsites.net (`/healthz`) |
-| Feeds | `https://plannerkeiwijsbe.z??.web.core.windows.net/feeds/<hash>.ics` (zone label assigned by Azure at creation) |
+| Feeds | `https://plannerkeiwijsbe.z50.web.core.windows.net/feeds/<hash>.ics` |
 
 Deployed from `main` by GitHub Actions (see [docs/DEPLOY.md](docs/DEPLOY.md)).
 

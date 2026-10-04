@@ -9,11 +9,11 @@ on:
   workflow_dispatch:
     inputs:
       bindCustomDomains:
-        description: 'Phase 2: bind www (the CNAME must resolve publicly first)'
+        description: 'One-time: bind www via Bicep (CNAME must resolve first; the deployment may hang polling, prefer the portal)'
         type: boolean
         default: false
       bindApex:
-        description: 'Request the apex binding and print the TXT token + stable IP for the registrar'
+        description: 'One-time: request the apex binding and print the TXT token + stable IP for the registrar'
         type: boolean
         default: false
 
