@@ -2,13 +2,8 @@ name: CI infra
 
 on:
   push:
-    paths:
-      - 'infra/**'
-      - '.github/workflows/ci-infra.yml'
   pull_request:
-    paths:
-      - 'infra/**'
-      - '.github/workflows/ci-infra.yml'
+
 
 permissions:
   contents: read

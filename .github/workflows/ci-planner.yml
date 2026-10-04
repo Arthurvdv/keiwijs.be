@@ -2,13 +2,8 @@ name: CI planner
 
 on:
   push:
-    paths:
-      - 'planner/**'
-      - '.github/workflows/ci-planner.yml'
   pull_request:
-    paths:
-      - 'planner/**'
-      - '.github/workflows/ci-planner.yml'
+
 
 permissions:
   contents: read
