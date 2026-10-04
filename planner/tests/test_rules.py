@@ -75,7 +75,9 @@ def test_participants_and_icons(calendar: ical.Component) -> None:
     cfg = _cfg({"L4"}, strip_participants=False, title_icons=False)
     kept = ical.parse(render(RuleEngine(cfg).apply(calendar)[0], cfg))
     toets = next(e for e in kept.events() if ical.text_value(e, "SUMMARY") == "Vlaamse toets L4")
-    assert "👥 Extra deelnemers: " in ical.text_value(toets, "DESCRIPTION")
+    description = ical.text_value(toets, "DESCRIPTION")
+    assert "👥 Extra deelnemers: " in description
+    assert "🗓️ Kalender: " in description  # labels stay when title icons are off
 
 
 def test_render_output_properties(calendar: ical.Component) -> None:

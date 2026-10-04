@@ -58,6 +58,7 @@ async def test_inspect_new_feed(app: App, fixture_bytes: bytes) -> None:
     assert data["settings"]["fallbackIcon"] == "📌"
     assert data["settings"]["iconRules"][0] == {"keyword": "vakantie", "icon": "☀️"}
     assert data["feedUrl"].startswith("https://acct.z6.web.core.windows.net/feeds/")
+    assert data["webcalUrl"] == "webcal://" + data["feedUrl"].split("://", 1)[1]
     # nothing selected yet: only untagged items are kept
     assert data["keptCount"] == 48
     first = data["events"][0]

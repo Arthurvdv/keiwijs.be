@@ -126,6 +126,7 @@ class App:
             "existing": existing,
             "settings": cfg.settings_dto(),
             "feedUrl": self.publisher.url_for(cfg.row_key),
+            "webcalUrl": _webcal(self.publisher.url_for(cfg.row_key)),
             "rowKey": cfg.row_key,
             "lastRenderedUtc": cfg.last_rendered_utc.isoformat() if cfg.last_rendered_utc else None,
             **self._preview(calendar, cfg),

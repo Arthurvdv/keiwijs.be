@@ -576,8 +576,19 @@
     renderExcludeChips();
     show(ui.banner, state.existing);
     ui.banner.textContent = state.existing ? t('existing_banner') : '';
+    ui.btnGenerate.textContent = t(state.existing ? 'btn_save' : 'btn_generate');
     show(ui.btnDelete, state.existing);
     showError(ui.settingsError, validateSettings(s));
+  }
+
+  // Shows the (never-changing) feed links, or hides the block when `data` is null.
+  function renderResult(data, message = '') {
+    ui.feedUrl.value = data?.feedUrl || '';
+    ui.webcalUrl.value = data?.webcalUrl || '';
+    ui.resultMessage.textContent = message;
+    show(ui.resultMessage, Boolean(message));
+    show(ui.result, Boolean(data));
+    ui.testResult.textContent = '';
   }
 
   function resetAll() {
@@ -590,8 +601,7 @@
     });
     ui.url.value = '';
     show(ui.editor, false);
-    show(ui.result, false);
-    ui.testResult.textContent = '';
+    renderResult(null);
     ui.previewBody.replaceChildren();
     ui.previewCount.textContent = '';
     ui.url.focus();
@@ -615,8 +625,7 @@
       state.events = data.events ?? [];
       state.eventCount = data.eventCount ?? state.events.length;
       state.keptCount = data.keptCount ?? 0;
-      show(ui.result, false);
-      ui.testResult.textContent = '';
+      renderResult(state.existing ? data : null);
       show(ui.editor, true);
       renderEditor();
       renderCalendarSummary(data.calendarName);
@@ -641,18 +650,15 @@
         state.nextRolloverUtc = data.settings.nextRolloverUtc ?? state.nextRolloverUtc;
         renderRollover();
       }
-      ui.feedUrl.value = data.feedUrl || '';
-      ui.webcalUrl.value = data.webcalUrl || '';
       const messages = [data.created ? t('saved_new') : t('saved_update')];
       const render = data.render ?? {};
       if (render.ok === false) messages.push(t('render_warning', { error: render.error || '?' }));
       if (render.rollovers?.some((r) => r && r !== 'geen wijzigingen')) {
         messages.push(t('rollovers_applied', { summary: render.rollovers.join('; ') }));
       }
-      ui.resultMessage.textContent = messages.join(' ');
-      show(ui.result, true);
+      renderResult(data, messages.join(' '));
+      ui.btnGenerate.textContent = t('btn_save');
       show(ui.btnDelete, true);
-      ui.testResult.textContent = '';
       ui.result.scrollIntoView({ behavior: 'smooth', block: 'start' });
     } catch (err) {
       showError(ui.settingsError, friendlyError(err));

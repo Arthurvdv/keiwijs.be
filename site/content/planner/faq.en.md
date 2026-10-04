@@ -22,7 +22,7 @@ On the rollover date every selected class with "move up" moves one place in the 
 
 ## Can I change the date?
 
-Yes, under Rollover date you choose a day and month. After changing it, click 'Create calendar link' again.
+Yes, under Rollover date you choose a day and month. After changing it, click 'Save changes'.
 
 ## What if my child repeats a year?
 

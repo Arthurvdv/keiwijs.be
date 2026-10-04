@@ -43,7 +43,7 @@ Wil je dat een klas niet meeschuift, bijvoorbeeld omdat je kind zit te blijven, 
 
 Bevat de titel van een activiteit een woord uit je lijst, dan komt het bijhorende pictogram ervoor, bijvoorbeeld ☀️ voor "vakantie" of 📚 voor "bib". De eerste regel die past, wint. Past er geen enkele regel, dan krijgt de activiteit het reservepictogram (standaard 📌); laat dat leeg als je dan liever geen pictogram ziet. Je kan regels toevoegen, verwijderen en van volgorde veranderen, of de pictogrammen in de titel helemaal uitzetten.
 
-In de beschrijving krijgen de vaste velden van Smartschool altijd een pictogram: 🗓️ Kalender, 👤 Organisator, 👥 Deelnemers, 🔗 Weblink en 📝 Organisatie of verloop.
+In de beschrijving krijgen de vaste velden van Smartschool altijd een pictogram: 🗓️ Kalender, 👤 Organisator, 👥 Deelnemers, 🔗 Weblink en 📝 Organisatie of verloop. Staan de pictogrammen in de titel aan, dan vervangt het pictogram de woorden Kalender, Organisator en Weblink: je ziet dan bijvoorbeeld "🗓️ Nieuwstrein voor ouders" in plaats van "🗓️ Kalender: Nieuwstrein voor ouders".
 
 ## Beperkingen
 
